@@ -2,41 +2,32 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import trailerLogoLight from "@/public/icons/trailer-logo-light.png";
-import burgerNav from "@/public/tool/burger-nav.svg";
-// import trailerLogoDark from "@/public/icons/trailer-logo-dark.png";
+import Hamburger from "@/components/ui/hamburger";
 
 const Navbar = () => {
   return (
-    <nav className="p-5 flex justify-between">
-      <div className="flex">
-        {/* X is the hamburger Icon/Sidebar initiation */}
-        <div className="absolute top-0 left-0 p-3">
-          <button className="cursor-pointer">
-            <Image src={burgerNav} alt="Menu" width={100} height={75} />
-          </button>
-        </div>
-        <div className="absolute z-1">
-          <Link href="/">
-            <Image
-              className="ml-30"
-              src={trailerLogoLight}
-              alt="TrailerLogo"
-              width={280}
-              height={180}
-              priority
-            />
-          </Link>
-        </div>
+    <nav className="absolute top-0 w-full z-50 p-5 flex items-center justify-between">
+      <div className="flex items-center gap-5">
+        <Hamburger />
+        <Link href="/">
+          <Image
+            src={trailerLogoLight}
+            alt="TrailerLogo"
+            width={280}
+            height={180}
+            priority
+          />
+        </Link>
       </div>
 
-      <div>
-        <p className="border-b border-black w-80 text-sm uppercase mb-5">
-          SearchBar
-        </p>
-        <ul className="flex justify-between items-center gap-2.5">
+      <div className="flex flex-col items-end">
+        <div className="border-b border-black w-60 mb-5">
+          <p className="text-sm uppercase">SearchBar</p>
+        </div>
+        <ul className="flex items-center gap-5">
           <li>
-            <Link className="uppercase text-sm" href="/about">
-              About
+            <Link className="uppercase text-sm" href="/help">
+              Help
             </Link>
           </li>
           <li>

@@ -4,9 +4,9 @@ import perfume1 from "@/public/perfume-1.jpg";
 
 export default function Home() {
   return (
-    <main className="h-full w-[1280px] p-5">
+    <main className="h-screen w-screen flex justify-center">
       {/* ImageContainer */}
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center gap-1">
         <Image
           src={perfumeModel1}
           alt="PerfumeModel"
