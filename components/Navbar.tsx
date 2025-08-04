@@ -7,43 +7,46 @@ import burgerNav from "@/public/tool/burger-nav.svg";
 
 const Navbar = () => {
   return (
-    <nav className="p-8 flex justify-between">
+    <nav className="p-5 flex justify-between">
       <div className="flex">
         {/* X is the hamburger Icon/Sidebar initiation */}
-        <div className="absolute top-0 left-0 p-4">
-          <button>
+        <div className="absolute top-0 left-0 p-3">
+          <button className="cursor-pointer">
             <Image src={burgerNav} alt="Menu" width={100} height={75} />
           </button>
         </div>
-        <Link href="/">
-          <Image
-            className="ml-20"
-            src={trailerLogoLight}
-            alt="TrailerLogo"
-            width={220}
-            height={400}
-            priority
-          />
-        </Link>
+        <div className="absolute z-1">
+          <Link href="/">
+            <Image
+              className="ml-30"
+              src={trailerLogoLight}
+              alt="TrailerLogo"
+              width={280}
+              height={180}
+              priority
+            />
+          </Link>
+        </div>
       </div>
+
       <div>
-        <p>SearchBar</p>
-      </div>
-      <div>
+        <p className="border-b border-black w-80 text-sm uppercase mb-5">
+          SearchBar
+        </p>
         <ul className="flex justify-between items-center gap-2.5">
           <li>
-            <Link className="uppercase text-md" href="/about">
+            <Link className="uppercase text-sm" href="/about">
               About
             </Link>
           </li>
           <li>
-            <Link className="uppercase text-md" href="/login">
+            <Link className="uppercase text-sm" href="/login">
               Login
             </Link>
           </li>
           <li>
-            <Link className="uppercase text-md" href="/checkout">
-              Cart
+            <Link className="uppercase text-sm" href="/checkout">
+              CartIcon
             </Link>
           </li>
         </ul>
