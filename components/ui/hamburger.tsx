@@ -12,7 +12,7 @@ const Hamburger = () => {
   };
 
   return (
-    <div>
+    <div className="fixed top-3 left-3">
       <button
         onClick={handleToggle}
         aria-label="Toggle Menu"

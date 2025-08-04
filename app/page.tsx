@@ -12,14 +12,14 @@ export default function Home() {
           alt="PerfumeModel"
           width={420}
           height={620}
-          className="grayscale"
+          className="grayscale shadow-2xl"
         />
         <Image
           src={perfume1}
           alt="Perfume"
           width={420}
           height={620}
-          className="grayscale"
+          className="grayscale shadow-2xl"
         />
       </div>
     </main>
