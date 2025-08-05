@@ -59,8 +59,8 @@ const SideBar = () => {
         } w-full md:w-[600px] 2xl:w-[900px] flex`}
       >
         {/* left side south side */}
-        <div className="w-1/3 p-6">
-          <ul className="space-y-4">
+        <div className="w-1/3 p-6 border-1 border-black">
+          <ul className="space-y-4 border-1 border-black">
             {(Object.keys(navigationData) as Category[]).map((category) => (
               <li key={category}>
                 <button
@@ -76,9 +76,9 @@ const SideBar = () => {
           </ul>
         </div>
         {/* rigfht side east side */}
-        <div className="w-2/3 p-6 overflow-y-auto">
+        <div className="w-2/3 p-6 overflow-y-auto border-black border-1">
           {activeCategory && navigationData[activeCategory] && (
-            <div>
+            <div className="border-1 border-black">
               <Image
                 src={navigationData[activeCategory].image}
                 alt={activeCategory}
