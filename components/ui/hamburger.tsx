@@ -46,6 +46,7 @@ const SideBar = () => {
           ></div>
         </div>
       )}
+
       <div
         className={`fixed top-0 left-0 md:h-[100px] 2xl:h-[150px] bg-white border-none transform transition-transform duration-300 ease-in-out z-20 w-full ${
           isOpen ? "translate-y-0" : "-translate-y-full"
