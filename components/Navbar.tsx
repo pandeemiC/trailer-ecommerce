@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="border-b border-black w-60 mb-5">
           <p className="text-sm uppercase">SearchBar</p>
         </div>
-        <ul className="flex items-center gap-5">
+        <ul className="flex items-center gap-5 mr-8">
           <li className="hover:border-b transition-all duraiton-100 border-black">
             <Link className="uppercase text-sm" href="/help">
               Help

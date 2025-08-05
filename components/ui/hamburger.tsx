@@ -29,9 +29,9 @@ const SideBar = () => {
           <Image
             src={burgerOpenNav}
             alt="Menu"
-            width={100}
+            width={120}
             height={75}
-            className={`transition-transform duration-300 ease-in-out ${
+            className={`transition-transform duration-300 ease-in-out ml-10 ${
               isOpen ? "rotate-90" : "rotate-0"
             }`}
           />
