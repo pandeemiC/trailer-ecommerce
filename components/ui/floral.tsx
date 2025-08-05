@@ -4,7 +4,7 @@ import testFloral from "@/public/tool/testfloral.png";
 
 const Floral = () => {
   return (
-    <div className="fixed inset-0 z-10 pointer-events-none">
+    <div className="fixed inset-0 z-50 pointer-events-none">
       <Image
         src={testFloral}
         width={120}

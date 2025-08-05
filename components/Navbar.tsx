@@ -2,26 +2,26 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import trailerLogoLight from "@/public/icons/trailer-logo-light.png";
-import Hamburger from "@/components/ui/hamburger";
+import SideBar from "@/components/ui/hamburger";
 
 const Navbar = () => {
   return (
-    <nav className="absolute top-0 w-full z-50 p-5 flex items-center justify-between">
+    <nav className="absolute top-0 w-full z-30 p-5 flex items-center justify-between">
       <div className="flex items-center gap-5">
-        <Hamburger />
+        <SideBar />
         <Link href="/">
           <Image
             src={trailerLogoLight}
             alt="TrailerLogo"
-            width={280}
+            width={300}
             height={180}
             priority
-            className="fixed top-0 left-30"
+            className="fixed top-0 left-40 z-30 min-2xl:w-[420px]"
           />
         </Link>
       </div>
 
-      <div className="flex flex-col items-end fixed top-5 right-3">
+      <div className="flex flex-col items-end fixed top-5 right-3 z-30">
         <div className="border-b border-black w-60 mb-5">
           <p className="text-sm uppercase">SearchBar</p>
         </div>

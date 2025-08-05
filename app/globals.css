@@ -119,4 +119,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .navitems {
+    @apply transition-transform duration-300 ease-in-out text-sm uppercase text-primary hover:border-b border-primary;
+  }
 }
