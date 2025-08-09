@@ -10,17 +10,17 @@ export default function Home() {
         <Image
           src={perfumeModel1}
           alt="PerfumeModel"
-          width={420}
+          width={490}
           height={620}
           className="grayscale shadow-2xl min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
         />
-        <Image
+        {/* <Image
           src={perfume1}
           alt="Perfume"
-          width={420}
+          width={490}
           height={620}
           className="grayscale shadow-2xl min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
-        />
+        /> */}
       </div>
     </main>
   );
