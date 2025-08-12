@@ -2,7 +2,7 @@ export type Category = keyof typeof navigationData;
 
 export const navigationData = {
   WOMAN: {
-    image: "/woman-img.jpg",
+    image: "/category-img1.jpg",
     links: [
       { title: "NEW ARRIVALS", href: "/woman-new-arrivals" },
       { title: "BEST SELLERS", href: "/woman-best-sellers" },
@@ -13,7 +13,7 @@ export const navigationData = {
     ],
   },
   MAN: {
-    image: "/man-img.jpg",
+    image: "/category-img1.jpg",
     links: [
       { title: "NEW ARRIVALS", href: "/man-new-arrivals" },
       { title: "BEST SELLERS", href: "/man-best-sellers" },
@@ -24,7 +24,7 @@ export const navigationData = {
     ],
   },
   KIDS: {
-    image: "/kids-img.jpg",
+    image: "/category-img1.jpg",
     links: [
       { title: "NEW ARRIVALS", href: "/kids-new-arrivals" },
       { title: "BEST SELLERS", href: "/kids-best-sellers" },
@@ -33,7 +33,7 @@ export const navigationData = {
     ],
   },
   HOME: {
-    image: "/home-img.jpg",
+    image: "/category-img1.jpg",
     links: [
       { title: "NEW ARRIVALS", href: "/home-new-arrivals" },
       { title: "BEST SELLERS", href: "/home-best-sellers" },
@@ -44,7 +44,7 @@ export const navigationData = {
     ],
   },
   FRAGRANCE: {
-    image: "/fragrance-img.jpg",
+    image: "/category-img1.jpg",
     links: [
       { title: "NEW ARRIVALS", href: "/fragrance-new-arrivals" },
       { title: "BEST SELLERS", href: "/fragrance-best-sellers" },

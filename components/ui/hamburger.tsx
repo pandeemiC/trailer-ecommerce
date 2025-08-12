@@ -59,14 +59,14 @@ const SideBar = () => {
         } w-full md:w-[600px] 2xl:w-[900px] flex`}
       >
         {/* left side south side */}
-        <div className="w-1/3 p-6 border-1 border-black">
-          <ul className="space-y-4 border-1 border-black">
+        <div className="w-1/3 p-6 flex flex-row justify-center items-center mb-[170px]">
+          <ul className="space-y-4 tracking-widest">
             {(Object.keys(navigationData) as Category[]).map((category) => (
               <li key={category}>
                 <button
                   onClick={() => handleCategoryClick(category)}
-                  className={`uppercase text-sm font-semibold ${
-                    activeCategory === category ? "border-b-2 border-black" : ""
+                  className={`uppercase text-lg font-normal ${
+                    activeCategory === category ? "border-b-1 border-black" : ""
                   }`}
                 >
                   {category}
@@ -76,19 +76,22 @@ const SideBar = () => {
           </ul>
         </div>
         {/* rigfht side east side */}
-        <div className="w-2/3 p-6 overflow-y-auto border-black border-1">
+        <div className="w-2/3 p-6 overflow-y-auto flex flex-row justify-center items-center">
           {activeCategory && navigationData[activeCategory] && (
-            <div className="border-1 border-black">
+            <div className="mt-20">
               <Image
                 src={navigationData[activeCategory].image}
                 alt={activeCategory}
-                width={200}
+                width={250}
                 height={300}
                 className="mb-4"
               />
               <ul>
                 {navigationData[activeCategory].links.map((link) => (
-                  <li key={link.title} className="mb-2">
+                  <li
+                    key={link.title}
+                    className="mb-5 font-light tracking-widest text-md"
+                  >
                     <Link href={link.href} className="hover:underline">
                       {link.title}
                     </Link>
