@@ -13,7 +13,7 @@ export const navigationData = {
     ],
   },
   MAN: {
-    image: "/category-img1.jpg",
+    image: "/category-img2.jpg",
     links: [
       { title: "NEW ARRIVALS", href: "/man-new-arrivals" },
       { title: "BEST SELLERS", href: "/man-best-sellers" },
@@ -24,7 +24,7 @@ export const navigationData = {
     ],
   },
   KIDS: {
-    image: "/category-img1.jpg",
+    image: "/category-img3.jpg",
     links: [
       { title: "NEW ARRIVALS", href: "/kids-new-arrivals" },
       { title: "BEST SELLERS", href: "/kids-best-sellers" },
@@ -33,7 +33,7 @@ export const navigationData = {
     ],
   },
   HOME: {
-    image: "/category-img1.jpg",
+    image: "/category-img4.jpg",
     links: [
       { title: "NEW ARRIVALS", href: "/home-new-arrivals" },
       { title: "BEST SELLERS", href: "/home-best-sellers" },
@@ -44,7 +44,7 @@ export const navigationData = {
     ],
   },
   FRAGRANCE: {
-    image: "/category-img1.jpg",
+    image: "/category-img5.jpg",
     links: [
       { title: "NEW ARRIVALS", href: "/fragrance-new-arrivals" },
       { title: "BEST SELLERS", href: "/fragrance-best-sellers" },
