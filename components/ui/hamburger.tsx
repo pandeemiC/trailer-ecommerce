@@ -9,7 +9,7 @@ import { navigationData, type Category } from "@/components/ui/navigationData";
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isContentLoaded, setIsContentLoaded] = useState(false);
+  const [isContentLoaded, setIsContentLoaded] = useState(true);
   const [activeCategory, setActiveCategory] = useState<Category>("WOMAN");
 
   const handleToggle = () => {
