@@ -72,14 +72,14 @@ export default function Home() {
         <Image
           src={womanModel2}
           alt="WomanModel2"
-          width={580}
+          width={620}
           height={620}
           className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
         />
         <Image
           src={womanModel1}
           alt="WomanModel"
-          width={580}
+          width={620}
           height={620}
           className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
         />

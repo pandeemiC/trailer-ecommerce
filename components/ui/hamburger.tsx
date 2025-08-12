@@ -110,7 +110,7 @@ const SideBar = () => {
                     alt={activeCategory}
                     width={250}
                     height={300}
-                    className="mb-4 rounded-md"
+                    className="mb-8 rounded-md"
                   />
                   <ul>
                     {navigationData[activeCategory].links.map((link) => (
