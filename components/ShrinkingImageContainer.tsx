@@ -43,10 +43,22 @@ export default function ShrinkingImageContainer({
   const [setNode, entry] = useIntersectionObserver({ threshold });
 
   useEffect(() => {
-    if (entry?.isIntersecting) {
-      const newScale = Math.max(0.7, 1 - (1 - entry.intersectionRatio) * 0.5);
-      setScale(newScale);
-    }
+    if (!entry) return;
+
+    const triggerPercent = 100;
+    const minScale = 0.5;
+
+    const viewportHeight = window.innerHeight;
+    const triggerPoint = viewportHeight * (triggerPercent / 100);
+
+    const elementBottom = entry.boundingClientRect.bottom;
+    const animationRange = triggerPoint;
+
+    const progress = (triggerPoint - elementBottom) / animationRange;
+
+    const clampedProgress = Math.max(0, Math.min(progress, 1));
+    const newScale = 1 - clampedProgress * (1 - minScale);
+    setScale(newScale);
   }, [entry]);
 
   return (

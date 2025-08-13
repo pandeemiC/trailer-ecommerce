@@ -41,6 +41,7 @@ export default function Home() {
           </Link>
         </section>
       </ShrinkingImageContainer>
+
       <ShrinkingImageContainer>
         <section className="flex justify-center items-center py-10 mb-75 overflow-auto">
           <div className="flex flex-col justify-center items-center mr-30 font-light text-sm tracking-widest">
