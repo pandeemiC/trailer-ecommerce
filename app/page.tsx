@@ -21,7 +21,7 @@ export default function Home() {
       {/* IMAGE CONTAINER */}
       <ShrinkingImageContainer>
         <section className="flex justify-center items-center py-10 overflow-auto">
-          <Link href="/fragrance">
+          <Link href="fragrance">
             <Image
               src={perfumeModel1}
               alt="PerfumeModel"
@@ -30,7 +30,7 @@ export default function Home() {
               className="grayscale shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
             />
           </Link>
-          <Link href="/fragrance/for-her">
+          <Link href="fragrance/for-her">
             <Image
               src={perfume1}
               alt="Perfume"
@@ -49,107 +49,127 @@ export default function Home() {
             <h3 className="mb-10 p-2">Photography by Daniel Archer</h3>
             <p className="p-2">Summer Zebra Collection of 2025</p>
             <p className="p-2 mb-10">Talents / Me, Myself and I</p>
-            <Image
-              src={womanDressModel5}
-              alt="WomanModel"
-              width={420}
-              height={620}
-              className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
-            />
+            <Link href="woman/new-arrivals">
+              <Image
+                src={womanDressModel5}
+                alt="WomanModel"
+                width={420}
+                height={620}
+                className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
+              />
+            </Link>
           </div>
-          <Image
-            src={womanDressModel4}
-            alt="WomanModel2"
-            width={720}
-            height={620}
-            className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
-          />
+          <Link href="woman/best-sellers">
+            <Image
+              src={womanDressModel4}
+              alt="WomanModel2"
+              width={720}
+              height={620}
+              className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
+            />
+          </Link>
         </section>
       </ShrinkingImageContainer>
 
       {/* FULL IMAGE CONTAINER */}
       <ShrinkingImageContainer>
         <section className="relative h-300 w-screen">
-          <Image
-            src={fragrance1}
-            alt="Fragrance"
-            fill
-            className="object-cover shadow-md"
-            priority
-          />
+          <Link href="fragrance">
+            <Image
+              src={fragrance1}
+              alt="Fragrance"
+              fill
+              className="object-cover shadow-md"
+              priority
+            />
+          </Link>
         </section>
       </ShrinkingImageContainer>
 
       <ShrinkingImageContainer>
         <section className="flex justify-center items-center py-10 overflow-auto">
-          <Image
-            src={womanDressModel1}
-            alt="Woman Dress Model Alt"
-            width={520}
-            height={620}
-            className="shadow-md object-cover"
-          />
-          <Image
-            src={womanDressModel2}
-            alt="Woman Dress Model Alt"
-            width={520}
-            height={620}
-            className="shadow-md object-cover"
-          />
+          <Link href="woman/dresses">
+            <Image
+              src={womanDressModel1}
+              alt="Woman Dress Model Alt"
+              width={520}
+              height={620}
+              className="shadow-md object-cover"
+            />
+          </Link>
+          <Link href="woman/dresses">
+            <Image
+              src={womanDressModel2}
+              alt="Woman Dress Model Alt"
+              width={520}
+              height={620}
+              className="shadow-md object-cover"
+            />
+          </Link>
         </section>
       </ShrinkingImageContainer>
 
       <ShrinkingImageContainer>
         <section className="relative h-450 w-screen">
-          <Image
-            src={womanDressModel3}
-            alt="Woman Dress Model Full"
-            fill
-            className="object-cover shadow-md"
-          />
+          <Link href="woman/jackets">
+            <Image
+              src={womanDressModel3}
+              alt="Woman Dress Model Full"
+              fill
+              className="object-cover shadow-md"
+            />
+          </Link>
         </section>
       </ShrinkingImageContainer>
 
       <ShrinkingImageContainer>
         <section className="flex justify-center items-center py-10 overflow-auto">
-          <Image
-            src={womanModel2}
-            alt="WomanModel2"
-            width={620}
-            height={620}
-            className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
-          />
-          <Image
-            src={womanModel1}
-            alt="WomanModel"
-            width={620}
-            height={620}
-            className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
-          />
+          <Link href="woman/tops">
+            <Image
+              src={womanModel2}
+              alt="WomanModel2"
+              width={620}
+              height={620}
+              className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
+            />
+          </Link>
+          <Link href="woman/tops">
+            <Image
+              src={womanModel1}
+              alt="WomanModel"
+              width={620}
+              height={620}
+              className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
+            />
+          </Link>
         </section>
       </ShrinkingImageContainer>
 
       <ShrinkingImageContainer>
         <section className="flex justify-center items-center py-10 overflow-auto">
-          <Image
-            src={maleModel1}
-            alt="WomanModel2"
-            width={720}
-            height={620}
-            className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
-          />
+          <Link href="man/linen">
+            <Image
+              src={maleModel1}
+              alt="WomanModel2"
+              width={720}
+              height={620}
+              className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
+            />
+          </Link>
           <div className="flex flex-col justify-center items-center ml-30 font-light text-sm tracking-widest">
             <h1 className="font-bold text-2xl">The Embroidery Edit</h1>
             <h3 className="mb-10 p-2">Photography by Daniel Archer</h3>
             <p className="p-2">Summer Embroidery Collection of 2025</p>
             <p className="p-2 mb-10">Talents / Me, Myself and I</p>
-            <Image
-              src={maleModel2}
-              alt="WomanModel"
-              width={420}
-              height={620}
-              className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
-            />
+            <Link href="man">
+              <Image
+                src={maleModel2}
+                alt="WomanModel"
+                width={420}
+                height={620}
+                className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
+              />
+            </Link>
           </div>
         </section>
       </ShrinkingImageContainer>
