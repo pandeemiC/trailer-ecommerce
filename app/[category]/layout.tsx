@@ -16,7 +16,7 @@ export default async function CategoryLayout({
 
   return (
     <div>
-      <nav className="absolute fixed top-1/7 right-0 gap-4 p-4">
+      <nav className="fixed top-1/7 right-0 gap-4 p-4">
         {categoryData.links.map((link) => {
           const fullHref = link.href
             ? `${categoryData.basePath}${link.href.startsWith("/") ? "" : "/"}${
