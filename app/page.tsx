@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ShrinkingImageContainer from "@/components/ShrinkingImageContainer";
 
 import perfumeModel1 from "@/public/perfume-model-1.jpg";
 import perfume1 from "@/public/perfume-1.jpg";
@@ -18,45 +19,52 @@ export default function Home() {
   return (
     <main className="w-full overflow-x-hidden">
       {/* IMAGE CONTAINER */}
-      <section className="flex justify-center items-center py-10 mb-75 overflow-auto">
-        <Image
-          src={perfumeModel1}
-          alt="PerfumeModel"
-          width={490}
-          height={620}
-          className="grayscale shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
-        />
-        <Image
-          src={perfume1}
-          alt="Perfume"
-          width={490}
-          height={620}
-          className="grayscale shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
-        />
-      </section>
-
-      <section className="flex justify-center items-center py-10 mb-75 overflow-auto">
-        <div className="flex flex-col justify-center items-center mr-30 font-light text-sm tracking-widest">
-          <h1 className="font-bold text-2xl">The Zebra Collection Edit</h1>
-          <h3 className="mb-10 p-2">Photography by Daniel Archer</h3>
-          <p className="p-2">Summer Zebra Collection of 2025</p>
-          <p className="p-2 mb-10">Talents / Me, Myself and I</p>
+      <ShrinkingImageContainer>
+        <section className="flex justify-center items-center py-10 mb-75 overflow-auto">
+          <Link href="/fragrance">
+            <Image
+              src={perfumeModel1}
+              alt="PerfumeModel"
+              width={490}
+              height={620}
+              className="grayscale shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
+            />
+          </Link>
+          <Link href="/fragrance/for-her">
+            <Image
+              src={perfume1}
+              alt="Perfume"
+              width={490}
+              height={620}
+              className="grayscale shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
+            />
+          </Link>
+        </section>
+      </ShrinkingImageContainer>
+      <ShrinkingImageContainer>
+        <section className="flex justify-center items-center py-10 mb-75 overflow-auto">
+          <div className="flex flex-col justify-center items-center mr-30 font-light text-sm tracking-widest">
+            <h1 className="font-bold text-2xl">The Zebra Collection Edit</h1>
+            <h3 className="mb-10 p-2">Photography by Daniel Archer</h3>
+            <p className="p-2">Summer Zebra Collection of 2025</p>
+            <p className="p-2 mb-10">Talents / Me, Myself and I</p>
+            <Image
+              src={womanDressModel5}
+              alt="WomanModel"
+              width={420}
+              height={620}
+              className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
+            />
+          </div>
           <Image
-            src={womanDressModel5}
-            alt="WomanModel"
-            width={420}
+            src={womanDressModel4}
+            alt="WomanModel2"
+            width={720}
             height={620}
-            className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
+            className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
           />
-        </div>
-        <Image
-          src={womanDressModel4}
-          alt="WomanModel2"
-          width={720}
-          height={620}
-          className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
-        />
-      </section>
+        </section>
+      </ShrinkingImageContainer>
 
       {/* FULL IMAGE CONTAINER */}
       <section className="relative h-300 w-screen mb-75">
