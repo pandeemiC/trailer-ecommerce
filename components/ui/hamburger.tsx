@@ -113,19 +113,27 @@ const SideBar = () => {
                     className="mb-8 rounded-md"
                   />
                   <ul>
-                    {navigationData[activeCategory].links.map((link) => (
-                      <li
-                        key={link.title}
-                        className="mb-5 font-light tracking-widest text-md"
-                      >
-                        <Link
-                          href={link.href}
-                          className="hover:border-b-1 border-black p-1"
+                    {navigationData[activeCategory].links.map((link) => {
+                      const categoryInfo = navigationData[activeCategory];
+                      const fullHref =
+                        link.href === ""
+                          ? categoryInfo.basePath
+                          : `${categoryInfo.basePath}/${link.href}`;
+
+                      return (
+                        <li
+                          key={link.title}
+                          className="mb-5 font-light tracking-widest text-md"
                         >
-                          {link.title}
-                        </Link>
-                      </li>
-                    ))}
+                          <Link
+                            href={fullHref}
+                            className="hover:border-b-1 border-black p-1"
+                          >
+                            {link.title}
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               )}

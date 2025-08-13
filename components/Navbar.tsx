@@ -22,18 +22,18 @@ const Navbar = () => {
       </div>
 
       <div className="flex flex-col items-end fixed top-5 right-3 z-30">
-        <div className="border-b border-black w-60 mb-5">
-          <p className="text-sm uppercase">SearchBar</p>
+        <div className="border-b border-black w-60 p-1 mb-5">
+          <p className="text-sm uppercase">Search</p>
         </div>
         <ul className="flex items-center gap-5 mr-8">
           <li className="hover:border-b transition-all duraiton-100 border-black">
-            <Link className="uppercase text-sm" href="/help">
-              Help
+            <Link className="uppercase text-sm" href="/login">
+              Log In
             </Link>
           </li>
           <li className="hover:border-b transition-all duraiton-100 border-black">
-            <Link className="uppercase text-sm" href="/login">
-              Login
+            <Link className="uppercase text-sm" href="/help">
+              Help
             </Link>
           </li>
           <li className="hover:border-b transition-all duraiton-100 border-black">

@@ -1,5 +1,3 @@
-// src/components/ui/navigationData.ts
-
 export type Category = keyof typeof navigationData;
 
 export const navigationData = {
