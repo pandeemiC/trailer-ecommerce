@@ -48,11 +48,6 @@ export default function ShrinkingImageContainer({
     const triggerPercent = 100;
     const minScale = 0.5;
 
-    const hiScale = 1; // Not used, but could be useful for future adjustments
-    const loScale = minScale; // Not used, but could be useful for future adjustments
-    const scaleRange = hiScale - loScale; // Not used, but could be useful for future adjustments
-    const entryRatio = entry.intersectionRatio; // Not used, but could be useful for future adjustments
-
     const viewportHeight = window.innerHeight;
     const triggerPoint = viewportHeight * (triggerPercent / 100);
 
