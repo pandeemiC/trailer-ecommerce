@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import styles from "./ShrinkingImageContainer.module.css";
+import { getPreviouslyCachedImageOrNull } from "next/dist/server/image-optimizer";
 
 const useIntersectionObserver = (
   options: IntersectionObserverInit
