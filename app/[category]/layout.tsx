@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navigationData, Category } from "@/components/ui/navigationData";
+import { navigationData, Category } from "@/lib/navigationData";
 
 export default async function CategoryLayout({
   children,

@@ -1,4 +1,4 @@
-import { navigationData, type Category } from "@/components/ui/navigationData";
+import { navigationData, type Category } from "@/lib/navigationData";
 
 function toCamelCase(title: string) {
   return title
@@ -24,5 +24,5 @@ export const ROUTES = (Object.keys(navigationData) as Category[]).reduce(
     });
     return acc;
   },
-  {} as Record<Category, Record<string, string>>
+  {} as Record<Category, Record<string, string>>,
 );

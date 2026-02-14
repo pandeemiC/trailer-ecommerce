@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import burgerOpenNav from "@/public/tool/burger-open-nav.svg";
-import { navigationData, type Category } from "@/components/ui/navigationData";
+import { navigationData, type Category } from "@/lib/navigationData";
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,15 +43,26 @@ const SideBar = () => {
         <button
           onClick={handleToggle}
           aria-label="Toggle Menu"
-          className="cursor-pointer"
+          className="cursor-pointer ml-10 w-[120px] h-[75px] flex flex-col justify-center items-center"
         >
-          <Image
-            src={burgerOpenNav}
-            alt="Menu"
-            width={120}
-            height={75}
-            className={`transition-transform duration-300 ease-in-out ml-10 ${
-              isOpen ? "rotate-90" : "rotate-0"
+          {/* top line */}
+          <span
+            className={`block w-[70px] h-[2px] bg-black transition-all duration-300 ease-in-out ${
+              isOpen ? "rotate-45 translate-y-[22px]" : "rotate-0 translate-y-0"
+            }`}
+          />
+          {/* middle line */}
+          <span
+            className={`block w-[70px] my-[20px] h-[2px] bg-black transition-all duration-300 ease-in-out ${
+              isOpen ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          {/* bottom line */}
+          <span
+            className={`block w-[70px] h-[2px] bg-black transition-all duration-300 ease-in-out ${
+              isOpen
+                ? "-rotate-45 -translate-y-[22px]"
+                : "rotate-0 translate-y-0"
             }`}
           />
         </button>
