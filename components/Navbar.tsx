@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import trailerLogoLight from "@/public/icons/trailer-logo-light.png";
 import SideBar from "@/components/ui/hamburger";
+import SearchBar from "@/components/SearchBar";
 
 const Navbar = () => {
   return (
@@ -21,27 +22,26 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="flex flex-col items-end fixed top-5 right-3 z-30">
-        <div className="border-b border-black w-60 p-1 mb-5">
-          <p className="text-sm uppercase">Search</p>
-        </div>
-        <ul className="flex items-center gap-5 mr-8">
-          <li className="hover:border-b transition-all duraiton-100 border-black">
-            <Link className="uppercase text-sm" href="/login">
-              Log In
-            </Link>
-          </li>
-          <li className="hover:border-b transition-all duraiton-100 border-black">
-            <Link className="uppercase text-sm" href="/help">
-              Help
-            </Link>
-          </li>
-          <li className="hover:border-b transition-all duraiton-100 border-black">
-            <Link className="uppercase text-sm" href="/checkout">
-              CartIcon
-            </Link>
-          </li>
-        </ul>
+      <div className="flex items-center gap-6 fixed top-5 right-8 z-30">
+        <SearchBar />
+        <Link
+          className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
+          href="/login"
+        >
+          Log In
+        </Link>
+        <Link
+          className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
+          href="/help"
+        >
+          Help
+        </Link>
+        <Link
+          className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
+          href="/checkout"
+        >
+          Cart
+        </Link>
       </div>
     </nav>
   );
