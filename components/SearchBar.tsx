@@ -15,7 +15,7 @@ export default function SearchBar() {
   return (
     <div className="relative flex items-center">
       {!isOpen && (
-        <button onClick={() => setIsOpen(true)}>
+        <button onClick={() => setIsOpen(true)} className="cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -46,7 +46,7 @@ export default function SearchBar() {
         />
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute right-1 text-[11px] font-light"
+          className="absolute right-1 text-[11px] font-light cursor-pointer"
         >
           ✕
         </button>

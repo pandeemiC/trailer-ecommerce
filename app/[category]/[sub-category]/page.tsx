@@ -36,20 +36,29 @@ export default async function SubCategoryPage({
 
   console.log(heroProduct);
   return (
-    <main className="w-full overflow-x-hidden">
+    <main className="overflow-x-hidden">
       {heroProduct && (
-        <section className="flex justify-center items-center pb-10">
-          <Image
-            src={
-              heroProduct.product_images.find(
-                (img) => img.image_type === "hero",
-              )?.url ?? heroProduct.image
-            }
-            alt={heroProduct.name}
-            width={1000}
-            height={1200}
-            className="object-cover"
-          />
+        <section className="w-full min-h-screen flex justify-center items-center p-5">
+          <div className="flex flex-col items-start w-full max-w-[1000px]">
+            <Image
+              src={
+                heroProduct.product_images.find(
+                  (img) => img.image_type === "hero",
+                )?.url ?? heroProduct.image
+              }
+              alt={heroProduct.name}
+              width={1000}
+              height={1200}
+              className="object-cover w-full h-auto"
+            />
+
+            <div className="mt-3 text-black/70 text-sm font-light text-left">
+              <h1 className="tracking-widest uppercase bg-gray-100 p-1">
+                {heroProduct.name}
+              </h1>
+              <p className="mt-1">${heroProduct.price}</p>
+            </div>
+          </div>
         </section>
       )}
     </main>
