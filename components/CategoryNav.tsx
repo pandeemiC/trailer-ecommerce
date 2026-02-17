@@ -17,20 +17,14 @@ export default function CategoryNav({
 }) {
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Track if user has scrolled past the top area
-      setScrolled(currentScrollY > 100);
-
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling DOWN past 100px → hide
         setVisible(false);
       } else {
-        // Scrolling UP → show
         setVisible(true);
       }
 
@@ -43,9 +37,9 @@ export default function CategoryNav({
 
   return (
     <nav
-      className={`fixed top-[10vh] right-0 z-20 flex items-center gap-6 h-[5vh] pr-8 transition-all duration-300 ${
-        visible ? "translate-y-0" : "-translate-y-full"
-      } ${scrolled && visible ? "bg-white/90 backdrop-blur-sm w-full" : ""}`}
+      className={`fixed top-[10vh] right-0 z-20 flex items-center gap-6 h-[5vh] pr-8 bg-white/90 backdrop-blur-sm transition-opacity duration-300 ${
+        visible ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
     >
       {links.map((link) => {
         const fullHref = link.href

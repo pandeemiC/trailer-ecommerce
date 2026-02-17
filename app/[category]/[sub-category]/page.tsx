@@ -56,9 +56,36 @@ export default async function SubCategoryPage({
               <h1 className="tracking-widest uppercase bg-gray-100 p-1">
                 {heroProduct.name}
               </h1>
-              <p className="mt-1">${heroProduct.price}</p>
+              <p className="mt-1 tracking-widest">${heroProduct.price}</p>
             </div>
           </div>
+        </section>
+      )}
+
+      {featuredProduct && (
+        <section className="flex justify-center items-start gap-5 py-10">
+          {featuredProduct.product_images
+            .filter((img) => img.image_type === "thumbnail")
+            .sort((a, b) => a.position - b.position)
+            .map((img) => (
+              <div key={img.id} className="flex flex-col items-start">
+                <Image
+                  src={img.url}
+                  alt={featuredProduct.name}
+                  width={500}
+                  height={620}
+                  className="object-cover"
+                />
+                <div className="mt-3 text-black/70 text-sm font-light">
+                  <h2 className="tracking-widest uppercase bg-gray-100 p-1">
+                    {featuredProduct.name}
+                  </h2>
+                  <p className="mt-1 tracking-widest">
+                    ${featuredProduct.price}
+                  </p>
+                </div>
+              </div>
+            ))}
         </section>
       )}
     </main>
