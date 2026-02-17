@@ -37,7 +37,7 @@ export default function CategoryNav({
 
   return (
     <nav
-      className={`fixed top-[10vh] right-0 z-20 flex items-center gap-6 h-[5vh] pr-8 bg-white/90 backdrop-blur-sm transition-opacity duration-300 ${
+      className={`fixed top-[7vh] right-0 z-20 flex items-center rounded-md gap-6 h-[5vh] pr-8 pl-3 bg-white/90 backdrop-blur-sm transition-opacity duration-300 ${
         visible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
