@@ -49,14 +49,12 @@ export default async function SubCategoryPage({
               alt={heroProduct.name}
               width={1000}
               height={1200}
-              className="object-cover w-full h-auto"
+              className="object-cover w-full h-auto cursor-pointer"
             />
 
-            <div className="mt-3 text-black/70 text-sm font-light text-left">
-              <h1 className="tracking-widest uppercase bg-gray-100 p-1">
-                {heroProduct.name}
-              </h1>
-              <p className="mt-1 tracking-widest">${heroProduct.price}</p>
+            <div className="product-label">
+              <h1 className="product-title">{heroProduct.name}</h1>
+              <p className="product-price">${heroProduct.price}</p>
             </div>
           </div>
         </section>
@@ -66,7 +64,6 @@ export default async function SubCategoryPage({
         <section className="flex justify-center items-start gap-5 py-10">
           {featuredProduct.product_images
             .filter((img) => img.image_type === "thumbnail")
-            .sort((a, b) => a.position - b.position)
             .map((img) => (
               <div key={img.id} className="flex flex-col items-start">
                 <Image
@@ -74,18 +71,33 @@ export default async function SubCategoryPage({
                   alt={featuredProduct.name}
                   width={500}
                   height={620}
-                  className="object-cover"
+                  className="object-cover cursor-pointer"
                 />
-                <div className="mt-3 text-black/70 text-sm font-light">
-                  <h2 className="tracking-widest uppercase bg-gray-100 p-1">
-                    {featuredProduct.name}
-                  </h2>
-                  <p className="mt-1 tracking-widest">
-                    ${featuredProduct.price}
-                  </p>
+                <div className="product-label cursor-pointer">
+                  <h2 className="product-title">{featuredProduct.name}</h2>
+                  <p className="product-price">${featuredProduct.price}</p>
                 </div>
               </div>
             ))}
+        </section>
+      )}
+      {gridProducts && (
+        <section className="grid grid-cols-4 gap-5 px-53 py-10">
+          {gridProducts.map((product) => (
+            <div key={product.id} className="flex flex-col flex-wrap">
+              <Image
+                src={product.image}
+                alt={product.description}
+                width={300}
+                height={400}
+                className="object-cover cursor-pointer"
+              />
+              <div className="product-label cursor-pointer">
+                <h2 className="product-title">{product.name}</h2>
+                <p className="product-price">${product.price}</p>
+              </div>
+            </div>
+          ))}
         </section>
       )}
     </main>
