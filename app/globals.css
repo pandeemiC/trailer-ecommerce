@@ -129,7 +129,7 @@
   }
 
   .product-title {
-    @apply tracking-widest uppercase bg-gray-100 text-[11px] p-1;
+    @apply tracking-widest uppercase text-[11px] p-1;
   }
 
   .product-price {

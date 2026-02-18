@@ -52,7 +52,7 @@ export default async function ProductPage({
             <hr className="my-10" />
 
             {/* Add to cart */}
-            <button className="w-full py-3 bg-white border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black hover:text-white transition-colors">
+            <button className="w-full py-3 bg-white border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black hover:text-white transition-colors cursor-pointer">
               ADD TO CART
             </button>
 
