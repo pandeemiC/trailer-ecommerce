@@ -4,7 +4,6 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <footer className="w-full bg-white mt-20">
-      {/* Newsletter signup */}
       <div className="flex justify-center items-center py-16 border-t border-black/10">
         <div className="flex flex-col items-center gap-4">
           <h3 className="text-[11px] font-light tracking-widest uppercase">
@@ -23,83 +22,123 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Footer links */}
       <div className="flex justify-center gap-20 py-10 border-t border-black/10">
-        {/* Help */}
         <div className="flex flex-col gap-3">
           <h4 className="text-[11px] font-medium tracking-widest uppercase mb-2">
             Help
           </h4>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             FAQ
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Shipping
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Returns & Exchanges
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Contact Us
           </Link>
         </div>
 
-        {/* Follow Us */}
         <div className="flex flex-col gap-3">
           <h4 className="text-[11px] font-medium tracking-widest uppercase mb-2">
-            Follow Us
+            Follow Me
           </h4>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Instagram
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Twitter / X
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
-            Pinterest
+          <Link
+            href="www.github.com/pandeemiC"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
+            Github (WORKS)
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             TikTok
           </Link>
         </div>
 
-        {/* Company */}
         <div className="flex flex-col gap-3">
           <h4 className="text-[11px] font-medium tracking-widest uppercase mb-2">
             Company
           </h4>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             About Us
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Careers
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Sustainability
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Press
           </Link>
         </div>
 
-        {/* Policies */}
         <div className="flex flex-col gap-3">
           <h4 className="text-[11px] font-medium tracking-widest uppercase mb-2">
             Policies
           </h4>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Privacy Policy
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Terms of Use
           </Link>
-          <Link href="#" className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors">
+          <Link
+            href="#"
+            className="text-[10px] font-light tracking-widest uppercase text-black/60 hover:text-black transition-colors"
+          >
             Cookies
           </Link>
         </div>
       </div>
 
-      {/* Big outline TRAILER text */}
+      {/* TRAILER TEXT */}
       <div className="relative overflow-hidden py-5">
         <h1
           className="text-center font-bold uppercase select-none"
