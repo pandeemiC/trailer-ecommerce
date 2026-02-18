@@ -135,4 +135,20 @@
   .product-price {
     @apply mt-1 tracking-widest text-[12px];
   }
+
+  .product-page-title {
+    @apply text-[12px] uppercase tracking-widest font-light;
+  }
+
+  .product-page-price {
+    @apply text-[15px] uppercase tracking-widest font-light;
+  }
+
+  .product-page-description {
+    @apply text-[12px] uppercase tracking-widest text-black/80 font-light;
+  }
+
+  .product-page-extras {
+    @apply text-[12px] uppercase tracking-widest text-black font-light cursor-pointer;
+  }
 }

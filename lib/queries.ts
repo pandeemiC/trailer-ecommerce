@@ -98,17 +98,16 @@ export async function getProductsWithImages(
   return data.map((item) => item.products);
 }
 
-export async function getProductById(productId: string) {
+export async function getProductById(productId: string): Promise<Product | null> {
   const { data, error } = await supabase
     .from("products")
     .select("*, product_images(*)")
     .eq("id", productId)
-    .single()
-    .returns<Product>();
+    .single();
 
   if (error) {
     console.error("Failed to fetch product by id: ", error.message);
     return null;
   }
-  return data;
+  return data as Product;
 }
