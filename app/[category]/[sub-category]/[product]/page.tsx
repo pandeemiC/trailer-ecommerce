@@ -79,6 +79,21 @@ export default async function ProductPage({
           </div>
         </section>
       )}
+
+      <hr className="mb-10 px-20" />
+
+      <section className="grid grid-cols-2 min-w-[1000px] px-40 gap-8">
+        {galleryImages.map((img) => (
+          <Image
+            key={img.id}
+            src={img.url}
+            alt={productData.name}
+            width={800}
+            height={1000}
+            className="object-cover w-full cursor-pointer"
+          />
+        ))}
+      </section>
     </main>
   );
 }
