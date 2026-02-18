@@ -125,14 +125,14 @@
   }
 
   .product-label {
-    @apply mt-3 text-black/70 text-sm font-light;
+    @apply mt-3 text-black/70 font-light;
   }
 
   .product-title {
-    @apply tracking-widest uppercase bg-gray-100 p-1;
+    @apply tracking-widest uppercase bg-gray-100 text-[11px] p-1;
   }
 
   .product-price {
-    @apply mt-1 tracking-widest;
+    @apply mt-1 tracking-widest text-[12px];
   }
 }

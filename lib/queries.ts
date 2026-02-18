@@ -82,7 +82,9 @@ export async function getSubcategoryBySlug(slug: string, categoryId: string) {
   return data;
 }
 
-export async function getProductsWithImages(subcategoryId: string): Promise<Product[] | null> {
+export async function getProductsWithImages(
+  subcategoryId: string,
+): Promise<Product[] | null> {
   const { data, error } = await supabase
     .from("product_subcategories")
     .select("products(*, product_images(*))")
@@ -94,4 +96,19 @@ export async function getProductsWithImages(subcategoryId: string): Promise<Prod
     return null;
   }
   return data.map((item) => item.products);
+}
+
+export async function getProductById(productId: string) {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*, product_images(*)")
+    .eq("id", productId)
+    .single()
+    .returns<Product>();
+
+  if (error) {
+    console.error("Failed to fetch product by id: ", error.message);
+    return null;
+  }
+  return data;
 }

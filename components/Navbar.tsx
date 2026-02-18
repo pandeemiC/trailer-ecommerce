@@ -14,7 +14,7 @@ const Navbar = () => {
           <Image
             src={trailerLogoLight}
             alt="TrailerLogo"
-            width={300}
+            width={270}
             height={180}
             priority
             className="fixed top-0 left-40 z-30 min-2xl:w-[420px]"

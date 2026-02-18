@@ -39,7 +39,7 @@ export default async function SubCategoryPage({
   return (
     <main className="overflow-x-hidden">
       {heroProduct && (
-        <section className="w-full min-h-screen flex justify-center items-center p-5">
+        <section className="w-full min-h-screen flex justify-center items-center px-5">
           <Link href={`/${category}/${subCategory}/${heroProduct.id}`}>
             <div className="flex flex-col items-start w-full max-w-[1000px]">
               <Image
