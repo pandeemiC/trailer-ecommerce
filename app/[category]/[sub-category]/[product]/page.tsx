@@ -80,9 +80,9 @@ export default async function ProductPage({
         </section>
       )}
 
-      <hr className="mb-10 px-20" />
+      <hr className="mb-15 px-20" />
 
-      <section className="grid grid-cols-2 min-w-[1000px] px-40 gap-8">
+      <section className="grid grid-cols-2 min-w-[1000px] px-40 gap-12">
         {galleryImages.map((img) => (
           <Image
             key={img.id}
