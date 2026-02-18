@@ -15,3 +15,10 @@ export type Product = {
     position: number;
   }[];
 };
+
+export type GalleryImage = {
+  id: string;
+  url: string;
+  image_type: string;
+  position: number;
+};

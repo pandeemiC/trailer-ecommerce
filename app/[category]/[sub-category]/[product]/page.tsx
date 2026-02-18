@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getProductById } from "@/lib/queries";
+import GalleryLightbox from "@/components/GalleryLightbox";
 
 export default async function ProductPage({
   params,
@@ -80,20 +81,9 @@ export default async function ProductPage({
         </section>
       )}
 
-      <hr className="mb-15 px-20" />
+      <hr className="mb-15 mx-40" />
 
-      <section className="grid grid-cols-2 min-w-[1000px] px-40 gap-12">
-        {galleryImages.map((img) => (
-          <Image
-            key={img.id}
-            src={img.url}
-            alt={productData.name}
-            width={800}
-            height={1000}
-            className="object-cover w-full cursor-pointer"
-          />
-        ))}
-      </section>
+      <GalleryLightbox images={galleryImages} productName={productData.name} />
     </main>
   );
 }
