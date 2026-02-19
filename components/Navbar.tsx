@@ -4,6 +4,7 @@ import Image from "next/image";
 import trailerLogoLight from "@/public/icons/trailer-logo-light.png";
 import SideBar from "@/components/ui/hamburger";
 import SearchBar from "@/components/SearchBar";
+import CartButton from "./CartButton";
 
 const Navbar = () => {
   return (
@@ -22,26 +23,23 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="flex items-center gap-6 fixed top-5 right-8 z-30 bg-white opacity-100 px-4 py-1 rounded-md">
+      <div className="flex items-center gap-2 fixed top-5 right-8 z-30">
         <SearchBar />
-        <Link
-          className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
-          href="/login"
-        >
-          Log In
-        </Link>
-        <Link
-          className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
-          href="/help"
-        >
-          Help
-        </Link>
-        <Link
-          className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
-          href="/checkout"
-        >
-          Cart
-        </Link>
+        <div className="flex items-center gap-6 bg-white px-4 py-1 rounded-md">
+          <Link
+            className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
+            href="/login"
+          >
+            Log In
+          </Link>
+          <Link
+            className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
+            href="/help"
+          >
+            Help
+          </Link>
+          <CartButton />
+        </div>
       </div>
     </nav>
   );

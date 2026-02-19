@@ -14,7 +14,6 @@ export interface CartState {
   clearCart: () => void;
   totalItems: () => number;
   totalPrice: () => number;
-  // TODO: removeFromCart, clearCart, totalItems, totalPrice
 }
 
 export const useCartStore = create<CartState>()(
@@ -41,7 +40,6 @@ export const useCartStore = create<CartState>()(
           return { items: [...state.items, { product, quantity: 1 }] };
         }),
 
-      // TODO: removeFromCart, clearCart, totalItems, totalPrice
       removeFromCart: (productId: string) =>
         set((state) => ({
           items: state.items.filter((item) => item.product.id !== productId),
