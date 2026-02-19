@@ -56,6 +56,9 @@ export default function CartSideBar() {
                 width={320}
                 height={320}
               />
+              <h1 className="product-page-title">{item.product.name}</h1>
+              <h3 className="product-page-title">{item.quantity}</h3>
+              <h3 className="product-page-title">{item.product.price}</h3>
             </div>
           ))}
           {/* TODO: CART TOTAL / SHOPPING BAG BTN / CONTINUE BTN / POLICY (PRADA) <P> TAG */}
