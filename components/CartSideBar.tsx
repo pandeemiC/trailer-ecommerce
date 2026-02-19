@@ -47,6 +47,7 @@ export default function CartSideBar() {
           {items.length === 0 && (
             <h1 className="product-title">Shopping Cart is Empty</h1>
           )}
+          {/* TODO: PRODUCT NAME / PRODUCT PRICE / PRODUCT QUANTITY */}
           {items.map((item) => (
             <div key={item.product.id} className="">
               <Image
@@ -57,6 +58,7 @@ export default function CartSideBar() {
               />
             </div>
           ))}
+          {/* TODO: CART TOTAL / SHOPPING BAG BTN / CONTINUE BTN / POLICY (PRADA) <P> TAG */}
         </SheetContent>
       </Sheet>
     </div>
