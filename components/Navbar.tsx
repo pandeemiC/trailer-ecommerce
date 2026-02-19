@@ -22,7 +22,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="flex items-center gap-6 fixed top-5 right-8 z-30 bg-white/80 px-4 py-1 rounded-md">
+      <div className="flex items-center gap-6 fixed top-5 right-8 z-30 bg-white opacity-100 px-4 py-1 rounded-md">
         <SearchBar />
         <Link
           className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
