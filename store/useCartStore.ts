@@ -10,12 +10,16 @@ export interface CartItem {
 export interface CartState {
   items: CartItem[];
   addToCart: (product: Product) => void;
+  removeFromCart: (productId: string) => void;
+  clearCart: () => void;
+  totalItems: () => number;
+  totalPrice: () => number;
   // TODO: removeFromCart, clearCart, totalItems, totalPrice
 }
 
 export const useCartStore = create<CartState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       items: [],
 
       addToCart: (product) =>
@@ -38,6 +42,20 @@ export const useCartStore = create<CartState>()(
         }),
 
       // TODO: removeFromCart, clearCart, totalItems, totalPrice
+      removeFromCart: (productId: string) =>
+        set((state) => ({
+          items: state.items.filter((item) => item.product.id !== productId),
+        })),
+      clearCart: () => set({ items: [] }),
+
+      totalItems: () =>
+        get().items.reduce((sum, item) => sum + item.quantity, 0),
+
+      totalPrice: () =>
+        get().items.reduce(
+          (sum, item) => sum + item.product.price * item.quantity,
+          0,
+        ),
     }),
     { name: "cart" },
   ),

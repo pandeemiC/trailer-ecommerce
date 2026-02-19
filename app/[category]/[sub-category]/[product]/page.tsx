@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getProductById } from "@/lib/queries";
 import GalleryLightbox from "@/components/GalleryLightbox";
+import AddToCartButton from "@/components/AddToCartButton";
 
 export default async function ProductPage({
   params,
@@ -52,9 +53,7 @@ export default async function ProductPage({
             <hr className="my-10" />
 
             {/* Add to cart */}
-            <button className="w-full py-3 bg-white border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black hover:text-white transition-colors cursor-pointer">
-              ADD TO CART
-            </button>
+            <AddToCartButton product={productData} />
 
             <hr className="my-10" />
 
