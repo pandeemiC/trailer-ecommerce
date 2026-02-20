@@ -5,6 +5,7 @@ import trailerLogoLight from "@/public/icons/trailer-logo-light.png";
 import SideBar from "@/components/ui/hamburger";
 import SearchBar from "@/components/SearchBar";
 import CartButton from "./CartButton";
+import CartSideBar from "./CartSideBar";
 
 const Navbar = () => {
   return (
@@ -38,7 +39,7 @@ const Navbar = () => {
           >
             Help
           </Link>
-          <CartButton />
+          <CartSideBar />
         </div>
       </div>
     </nav>

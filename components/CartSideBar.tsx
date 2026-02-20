@@ -36,10 +36,12 @@ export default function CartSideBar() {
         </SheetTrigger>
         <SheetContent
           side="right"
-          className="flex flex-col bg-white h-full opacity-100"
+          className="flex flex-col bg-white h-full opacity-100 overflow-y-auto !border-none !w-[425px] !max-w-none items-center"
         >
           <SheetHeader>
-            <SheetTitle className="product-title">Shopping Cart</SheetTitle>
+            <SheetTitle className="product-title item-start">
+              Shopping Cart
+            </SheetTitle>
           </SheetHeader>
 
           {/* CONTENTS */}
@@ -49,7 +51,7 @@ export default function CartSideBar() {
           )}
           {/* TODO: PRODUCT NAME / PRODUCT PRICE / PRODUCT QUANTITY */}
           {items.map((item) => (
-            <div key={item.product.id} className="">
+            <div key={item.product.id} className="flex-1">
               <Image
                 src={item.product.image}
                 alt={item.product.name}
@@ -57,11 +59,23 @@ export default function CartSideBar() {
                 height={320}
               />
               <h1 className="product-page-title">{item.product.name}</h1>
-              <h3 className="product-page-title">{item.quantity}</h3>
-              <h3 className="product-page-title">{item.product.price}</h3>
+              <h3 className="product-page-title">Qty: {item.quantity}</h3>
+              <h3 className="product-page-title">${item.product.price}</h3>
             </div>
           ))}
           {/* TODO: CART TOTAL / SHOPPING BAG BTN / CONTINUE BTN / POLICY (PRADA) <P> TAG */}
+          <button className="add-to-cart-btn">Continue</button>
+          <button className="add-to-cart-btn-reverse">Shopping Bag</button>
+          <p className="text-[10px] text-black/80 font-light">
+            By continuing, I declare that I have read and accept the{" "}
+            <span className="underline cursor-pointer">
+              Purchase Conditions
+            </span>{" "}
+            and understand Trailer&apos;s{" "}
+            <span className="underline cursor-pointer">
+              Privacy and Cookie Policy
+            </span>
+          </p>
         </SheetContent>
       </Sheet>
     </div>

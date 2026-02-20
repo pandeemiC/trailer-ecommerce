@@ -151,4 +151,12 @@
   .product-page-extras {
     @apply text-[12px] uppercase tracking-widest text-black font-light cursor-pointer;
   }
+
+  .add-to-cart-btn {
+    @apply w-full py-3 bg-white border border-black uppercase text-[11px] tracking-widest font-light hover:bg-gray-100 transition-colors cursor-pointer;
+  }
+
+  .add-to-cart-btn-reverse {
+    @apply w-full py-3 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer;
+  }
 }
