@@ -40,7 +40,25 @@ export default async function SubCategoryPage({
 
   console.log(heroProduct);
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden relative">
+      {/* subcategory label */}
+      <div className="absolute top-20 right-15 z-10 pointer-events-none">
+        <div className="flex flex-col items-center gap-1">
+          {subcategory_data.name.split("").map((letter: string, i: number) => (
+            <span
+              key={i}
+              className="text-[clamp(80px,9vw,130px)] font-extralight uppercase leading-none tracking-widest"
+              style={{
+                WebkitTextStroke: "1px rgba(0, 0, 0, 0.15)",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              {letter}
+            </span>
+          ))}
+        </div>
+      </div>
+
       {heroProduct && (
         <section className="w-full min-h-screen flex justify-center items-center px-5">
           <Link href={`/${category}/${subCategory}/${heroProduct.id}`}>
@@ -94,28 +112,30 @@ export default async function SubCategoryPage({
       )}
       {gridProducts && (
         <section className="px-53 py-10">
-          <h1 className="text-[13px] font-light tracking-[0.3em] uppercase mb-8 pl-1">Trails</h1>
+          <h1 className="text-[13px] font-light tracking-[0.3em] uppercase mb-8 pl-1">
+            Trails
+          </h1>
           <div className="grid grid-cols-4 gap-5">
-          {gridProducts.map((product) => (
-            <Link
-              key={product.id}
-              href={`/${category}/${subCategory}/${product.id}`}
-            >
-              <div key={product.id} className="flex flex-col flex-wrap">
-                <Image
-                  src={product.image}
-                  alt={product.description}
-                  width={300}
-                  height={400}
-                  className="object-cover cursor-pointer"
-                />
-                <div className="product-label cursor-pointer">
-                  <h2 className="product-title">{product.name}</h2>
-                  <p className="product-price">${product.price}</p>
+            {gridProducts.map((product) => (
+              <Link
+                key={product.id}
+                href={`/${category}/${subCategory}/${product.id}`}
+              >
+                <div key={product.id} className="flex flex-col flex-wrap">
+                  <Image
+                    src={product.image}
+                    alt={product.description}
+                    width={300}
+                    height={400}
+                    className="object-cover cursor-pointer"
+                  />
+                  <div className="product-label cursor-pointer">
+                    <h2 className="product-title">{product.name}</h2>
+                    <p className="product-price">${product.price}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
           </div>
         </section>
       )}
