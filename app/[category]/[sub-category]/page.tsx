@@ -34,6 +34,9 @@ export default async function SubCategoryPage({
   const heroProduct = products.find((p) => p.featured_type === "hero");
   const featuredProduct = products.find((p) => p.featured_type === "featured");
   const gridProducts = products.filter((p) => !p.featured_type);
+  const heroBottomProduct = products.find(
+    (p) => p.featured_type === "hero_bottom",
+  );
 
   console.log(heroProduct);
   return (
@@ -90,7 +93,9 @@ export default async function SubCategoryPage({
         </section>
       )}
       {gridProducts && (
-        <section className="grid grid-cols-4 gap-5 px-53 py-10">
+        <section className="px-53 py-10">
+          <h1 className="text-[13px] font-light tracking-[0.3em] uppercase mb-8 pl-1">Trails</h1>
+          <div className="grid grid-cols-4 gap-5">
           {gridProducts.map((product) => (
             <Link
               key={product.id}
@@ -111,6 +116,31 @@ export default async function SubCategoryPage({
               </div>
             </Link>
           ))}
+          </div>
+        </section>
+      )}
+
+      {heroBottomProduct && (
+        <section className="w-full min-h-screen flex justify-center items-center px-5 py-20">
+          <Link href={`/${category}/${subCategory}/${heroBottomProduct.id}`}>
+            <div className="flex flex-col items-start w-full max-w-[1000px]">
+              <Image
+                src={
+                  heroBottomProduct.product_images.find(
+                    (img) => img.image_type === "hero",
+                  )?.url ?? heroBottomProduct.image
+                }
+                alt={heroBottomProduct.name}
+                width={1000}
+                height={1200}
+                className="object-cover w-full h-auto cursor-pointer"
+              />
+              <div className="product-label">
+                <h1 className="product-title">{heroBottomProduct.name}</h1>
+                <p className="product-price">${heroBottomProduct.price}</p>
+              </div>
+            </div>
+          </Link>
         </section>
       )}
     </main>
