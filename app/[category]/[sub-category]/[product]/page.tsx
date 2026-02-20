@@ -33,7 +33,7 @@ export default async function ProductPage({
           {/* left hero */}
           <div className="w-1/2">
             <Image
-              src={heroImage?.url ?? productData.image}
+              src={productData.image}
               alt={productData.name}
               width={800}
               height={950}

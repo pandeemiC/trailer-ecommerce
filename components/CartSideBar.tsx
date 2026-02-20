@@ -36,46 +36,87 @@ export default function CartSideBar() {
         </SheetTrigger>
         <SheetContent
           side="right"
-          className="flex flex-col bg-white h-full opacity-100 overflow-y-auto !border-none !w-[425px] !max-w-none items-center"
+          className="flex flex-col bg-white h-full !border-none !w-[425px] !max-w-none !p-0 !gap-0"
         >
-          <SheetHeader>
-            <SheetTitle className="product-title item-start">
-              Shopping Cart
+          <SheetHeader className="p-5 pb-3">
+            <SheetTitle className="text-[11px] font-light tracking-widest uppercase text-left">
+              Shopping Bag ({totalItems()})
             </SheetTitle>
           </SheetHeader>
 
-          {/* CONTENTS */}
+          {/* area */}
+          <div className="flex-1 overflow-y-auto px-5">
+            {items.length === 0 && (
+              <p className="text-[11px] font-light tracking-widest uppercase mt-10 flex items-center justify-center h-3/4">
+                Your cart is empty
+              </p>
+            )}
 
-          {items.length === 0 && (
-            <h1 className="product-title">Shopping Cart is Empty</h1>
-          )}
-          {/* TODO: PRODUCT NAME / PRODUCT PRICE / PRODUCT QUANTITY */}
-          {items.map((item) => (
-            <div key={item.product.id} className="flex-1">
-              <Image
-                src={item.product.image}
-                alt={item.product.name}
-                width={320}
-                height={320}
-              />
-              <h1 className="product-page-title">{item.product.name}</h1>
-              <h3 className="product-page-title">Qty: {item.quantity}</h3>
-              <h3 className="product-page-title">${item.product.price}</h3>
+            {items.map((item) => (
+              <div
+                key={item.product.id}
+                className="flex gap-4 py-4 border-b border-black/10"
+              >
+                {/* left image */}
+                <div className="w-[100px] shrink-0">
+                  <Image
+                    src={item.product.image}
+                    alt={item.product.name}
+                    width={100}
+                    height={130}
+                    className="object-cover w-full"
+                  />
+                </div>
+
+                {/*  details - right */}
+                <div className="flex flex-col justify-between flex-1">
+                  <div>
+                    <h1 className="text-[11px] font-light tracking-widest uppercase">
+                      {item.product.name}
+                    </h1>
+                    <h3 className="text-[11px] font-light tracking-widest mt-1">
+                      ${item.product.price}
+                    </h3>
+                    <h3 className="text-[10px] font-light tracking-widest text-black/50 mt-1">
+                      Qty: {item.quantity}
+                    </h3>
+                  </div>
+                  <button
+                    onClick={() => removeFromCart(item.product.id)}
+                    className="text-[10px] font-light tracking-widest underline cursor-pointer self-start mt-2"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* footer of cart */}
+          <div className="border-t border-black/20 px-5 pt-4 pb-5">
+            <div className="flex justify-between items-center mb-4">
+              <span className="text-[11px] font-light tracking-widest uppercase">
+                Subtotal
+              </span>
+              <span className="text-[11px] font-light tracking-widest">
+                ${totalPrice()}
+              </span>
             </div>
-          ))}
-          {/* TODO: CART TOTAL / SHOPPING BAG BTN / CONTINUE BTN / POLICY (PRADA) <P> TAG */}
-          <button className="add-to-cart-btn">Continue</button>
-          <button className="add-to-cart-btn-reverse">Shopping Bag</button>
-          <p className="text-[10px] text-black/80 font-light">
-            By continuing, I declare that I have read and accept the{" "}
-            <span className="underline cursor-pointer">
-              Purchase Conditions
-            </span>{" "}
-            and understand Trailer&apos;s{" "}
-            <span className="underline cursor-pointer">
-              Privacy and Cookie Policy
-            </span>
-          </p>
+            <button className="add-to-cart-btn w-full">Continue</button>
+            <button className="add-to-cart-btn-reverse w-full mt-2">
+              Shopping Bag
+            </button>
+            <p className="text-[9px] text-black/60 font-light mt-3">
+              By continuing, I declare that I have read and accept the{" "}
+              <span className="underline cursor-pointer">
+                Purchase Conditions
+              </span>{" "}
+              and understand Trailer&apos;s{" "}
+              <span className="underline cursor-pointer">
+                Privacy and Cookie Policy
+              </span>
+            </p>
+          </div>
         </SheetContent>
       </Sheet>
     </div>
