@@ -15,7 +15,16 @@ import Image from "next/image";
 export default function CartSideBar() {
   const [mounted, setMounted] = useState(false);
 
-  const { items, totalItems, removeFromCart, totalPrice } = useCartStore();
+  const {
+    items,
+    addToCart,
+    totalItems,
+    removeFromCart,
+    decreaseQuantity,
+    totalPrice,
+    isCartOpen,
+    setCartOpen,
+  } = useCartStore();
 
   useEffect(() => {
     setMounted(true);
@@ -23,7 +32,7 @@ export default function CartSideBar() {
 
   return (
     <div>
-      <Sheet>
+      <Sheet open={isCartOpen} onOpenChange={setCartOpen}>
         <SheetTrigger asChild>
           <button className="relative cursor-pointer">
             <ShoppingBag size={16} strokeWidth={1.5} />
@@ -77,9 +86,23 @@ export default function CartSideBar() {
                     <h3 className="text-[11px] font-light tracking-widest mt-1">
                       ${item.product.price}
                     </h3>
-                    <h3 className="text-[10px] font-light tracking-widest text-black/50 mt-1">
-                      Qty: {item.quantity}
-                    </h3>
+                    <div className="flex flex-row items-center gap-3 mt-9">
+                      <button
+                        onClick={() => decreaseQuantity(item.product.id)}
+                        className="w-5 h-5 flex items-center justify-center bg-black text-white text-[10px] rounded-full cursor-pointer"
+                      >
+                        -
+                      </button>
+                      <span className="text-[10px] font-light tracking-widest text-black/50">
+                        {item.quantity}
+                      </span>
+                      <button
+                        onClick={() => addToCart(item.product)}
+                        className="w-5 h-5 flex items-center justify-center bg-black text-white text-[10px] rounded-full cursor-pointer"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                   <button
                     onClick={() => removeFromCart(item.product.id)}
@@ -99,7 +122,7 @@ export default function CartSideBar() {
                 Subtotal
               </span>
               <span className="text-[11px] font-light tracking-widest">
-                ${totalPrice()}
+                ${totalPrice().toFixed(2)}
               </span>
             </div>
             <button className="add-to-cart-btn w-full">Continue</button>

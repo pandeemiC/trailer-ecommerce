@@ -11,15 +11,21 @@ export interface CartState {
   items: CartItem[];
   addToCart: (product: Product) => void;
   removeFromCart: (productId: string) => void;
+  decreaseQuantity: (productId: string) => void;
   clearCart: () => void;
   totalItems: () => number;
   totalPrice: () => number;
+  isCartOpen: boolean;
+  setCartOpen: (open: boolean) => void;
 }
 
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
+
+      isCartOpen: false,
+      setCartOpen: (open) => set({ isCartOpen: open }),
 
       addToCart: (product) =>
         set((state) => {
@@ -44,6 +50,17 @@ export const useCartStore = create<CartState>()(
         set((state) => ({
           items: state.items.filter((item) => item.product.id !== productId),
         })),
+
+      decreaseQuantity: (productId: string) =>
+        set((state) => ({
+          items: state.items
+            .map((item) =>
+              item.product.id === productId
+                ? { ...item, quantity: item.quantity - 1 }
+                : item,
+            )
+            .filter((item) => item.quantity > 0),
+        })),
       clearCart: () => set({ items: [] }),
 
       totalItems: () =>
@@ -55,7 +72,10 @@ export const useCartStore = create<CartState>()(
           0,
         ),
     }),
-    { name: "cart" },
+    {
+      name: "cart",
+      partialize: (state) => ({ items: state.items }),
+    },
   ),
 );
 
