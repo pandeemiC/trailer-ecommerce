@@ -115,20 +115,22 @@ const SideBar = () => {
             >
               {activeCategory && navigationData[activeCategory] && (
                 <div className="mt-20">
-                  <Image
-                    src={navigationData[activeCategory].image}
-                    alt={activeCategory}
-                    width={250}
-                    height={300}
-                    className="mb-8 rounded-md"
-                  />
+                  <Link
+                    href={navigationData[activeCategory].basePath}
+                    onClick={handleToggle}
+                  >
+                    <Image
+                      src={navigationData[activeCategory].image}
+                      alt={activeCategory}
+                      width={250}
+                      height={300}
+                      className="mb-8 rounded-md cursor-pointer"
+                    />
+                  </Link>
                   <ul>
                     {navigationData[activeCategory].links.map((link) => {
                       const categoryInfo = navigationData[activeCategory];
-                      const fullHref =
-                        link.href === ""
-                          ? categoryInfo.basePath
-                          : `${categoryInfo.basePath}/${link.href}`;
+                      const fullHref = `${categoryInfo.basePath}/${link.href}`;
 
                       return (
                         <li
@@ -138,6 +140,7 @@ const SideBar = () => {
                           <Link
                             href={fullHref}
                             className="hover:border-b-1 border-black p-1"
+                            onClick={handleToggle}
                           >
                             {link.title}
                           </Link>
