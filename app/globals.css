@@ -120,6 +120,10 @@
     @apply bg-background text-foreground;
   }
 
+  .view-all-container {
+    @apply w-full max-w-[1100px] mx-auto px-10;
+  }
+
   .navitems {
     @apply transition-transform duration-300 ease-in-out text-sm uppercase text-primary hover:border-b border-primary;
   }

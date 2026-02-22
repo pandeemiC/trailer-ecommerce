@@ -18,11 +18,7 @@ export default async function ViewAll({
 
   return (
     <main className="overflow-x-hidden">
-      <section className="px-53 pt-40 pb-20">
-        <h1 className="text-[13px] font-light uppercase tracking-widest mb-10 pl-1">
-          View All
-        </h1>
-
+      <section className="view-all-container mt-50">
         {/* search + filter/sort bar */}
         <div className="flex items-center gap-3 mb-10">
           <input
@@ -38,17 +34,24 @@ export default async function ViewAll({
           </button>
         </div>
 
+        {/* product count */}
+        <p className="text-[10px] font-light tracking-widest text-black/40 uppercase mb-6">
+          {products.length} Products
+        </p>
+
         <div className="grid grid-cols-4 gap-5">
           {products.map((product) => (
             <Link key={product.id} href={`/${category}/view-all/${product.id}`}>
-              <div className="flex flex-col flex-wrap">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  width={300}
-                  height={400}
-                  className="object-cover cursor-pointer"
-                />
+              <div className="group flex flex-col flex-wrap">
+                <div className="overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={300}
+                    height={400}
+                    className="object-cover cursor-pointer transition-transform duration-500 ease-out group-hover:scale-103"
+                  />
+                </div>
                 <div className="product-label cursor-pointer">
                   <h2 className="product-title">{product.name}</h2>
                   <p className="product-price">${product.price}</p>
