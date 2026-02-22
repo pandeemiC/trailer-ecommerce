@@ -22,3 +22,10 @@ export type GalleryImage = {
   image_type: string;
   position: number;
 };
+
+export type Subcategory = {
+  id: string;
+  name: string;
+  slug: string;
+  category_id: string;
+};

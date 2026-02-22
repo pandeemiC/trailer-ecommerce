@@ -1,5 +1,10 @@
 import SortDropdown from "@/components/SortDropdown";
-import { getCategoryBySlug, getAllProductsWithImages } from "@/lib/queries";
+import FilterDropdown from "@/components/FilterDropdown";
+import {
+  getCategoryBySlug,
+  getAllProductsWithImages,
+  getSubCategories,
+} from "@/lib/queries";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,10 +13,10 @@ export default async function ViewAll({
   searchParams,
 }: {
   params: Promise<{ category: string }>;
-  searchParams: Promise<{ sort?: string }>;
+  searchParams: Promise<{ sort?: string; subcategory?: string }>;
 }) {
   const { category } = await params;
-  const { sort } = await searchParams;
+  const { sort, subcategory } = await searchParams;
   const categoryData = await getCategoryBySlug(category);
 
   if (!categoryData) {
@@ -20,6 +25,7 @@ export default async function ViewAll({
 
   const products =
     (await getAllProductsWithImages(categoryData.id, sort)) ?? [];
+  const subcategories = (await getSubCategories(categoryData.id)) ?? [];
 
   return (
     <main className="overflow-x-hidden">
@@ -31,9 +37,7 @@ export default async function ViewAll({
             placeholder="Search products"
             className="flex-1 border-b border-black/15 px-4 py-2.5 text-[11px] font-light tracking-widest uppercase outline-none placeholder:text-black/40"
           />
-          <button className="border border-black/15 px-5 py-2.5 text-[11px] font-light tracking-widest uppercase cursor-pointer hover:bg-black hover:text-white transition-colors duration-200">
-            Filter
-          </button>
+          <FilterDropdown subcategories={subcategories} />
           <SortDropdown />
         </div>
 
