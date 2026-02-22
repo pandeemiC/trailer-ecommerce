@@ -5,7 +5,7 @@ export const navigationData = {
     basePath: "/woman",
     image: "/category-img1.jpg",
     links: [
-      { title: "VIEW ALL", href: "" },
+      { title: "VIEW ALL", href: "view-all" },
       { title: "NEW ARRIVALS", href: "new-arrivals" },
       { title: "BEST SELLERS", href: "best-sellers" },
       { title: "JACKETS", href: "jackets" },
@@ -18,7 +18,7 @@ export const navigationData = {
     basePath: "/man",
     image: "/category-img2.jpg",
     links: [
-      { title: "VIEW ALL", href: "" },
+      { title: "VIEW ALL", href: "view-all" },
       { title: "NEW ARRIVALS", href: "new-arrivals" },
       { title: "BEST SELLERS", href: "best-sellers" },
       { title: "JACKETS", href: "jackets" },
@@ -31,7 +31,7 @@ export const navigationData = {
     basePath: "/kids",
     image: "/category-img3.jpg",
     links: [
-      { title: "VIEW ALL", href: "" },
+      { title: "VIEW ALL", href: "view-all" },
       { title: "NEW ARRIVALS", href: "new-arrivals" },
       { title: "BEST SELLERS", href: "best-sellers" },
       { title: "GIRL | 6-14 YEARS", href: "girl" },
@@ -42,7 +42,7 @@ export const navigationData = {
     basePath: "/home",
     image: "/category-img4.jpg",
     links: [
-      { title: "VIEW ALL", href: "" },
+      { title: "VIEW ALL", href: "view-all" },
       { title: "NEW ARRIVALS", href: "new-arrivals" },
       { title: "BEST SELLERS", href: "best-sellers" },
       { title: "BEDDING", href: "bedding" },
@@ -55,7 +55,7 @@ export const navigationData = {
     basePath: "/fragrance",
     image: "/category-img5.jpg",
     links: [
-      { title: "VIEW ALL", href: "" },
+      { title: "VIEW ALL", href: "view-all" },
       { title: "NEW ARRIVALS", href: "new-arrivals" },
       { title: "BEST SELLERS", href: "best-sellers" },
       { title: "FOR HER", href: "for-her" },

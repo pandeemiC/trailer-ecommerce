@@ -39,6 +39,21 @@ export async function getProducts(categoryId: string) {
   return data;
 }
 
+export async function getAllProductsWithImages(
+  categoryId: string,
+): Promise<Product[] | null> {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*, product_images(*)")
+    .eq("category_id", categoryId);
+
+  if (error) {
+    console.error("failed to fetch all products: ", error.message);
+    return null;
+  }
+  return data as Product[];
+}
+
 export async function getProductsBySubcategory(subcategoryId: string) {
   const { data, error } = await supabase
     .from("product_subcategories")
@@ -98,7 +113,9 @@ export async function getProductsWithImages(
   return data.map((item) => item.products);
 }
 
-export async function getProductById(productId: string): Promise<Product | null> {
+export async function getProductById(
+  productId: string,
+): Promise<Product | null> {
   const { data, error } = await supabase
     .from("products")
     .select("*, product_images(*)")

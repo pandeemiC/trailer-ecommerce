@@ -10,15 +10,9 @@ export const ROUTES = (Object.keys(navigationData) as Category[]).reduce(
   (acc, category) => {
     const { basePath, links } = navigationData[category];
 
-    acc[category] = {
-      all: basePath,
-    };
+    acc[category] = {};
 
     links.forEach((link) => {
-      if (link.href === "") {
-        return;
-      }
-
       const key = toCamelCase(link.title);
       acc[category][key] = `${basePath}/${link.href}`;
     });
