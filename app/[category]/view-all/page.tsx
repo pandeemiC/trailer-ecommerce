@@ -1,20 +1,25 @@
+import SortDropdown from "@/components/SortDropdown";
 import { getCategoryBySlug, getAllProductsWithImages } from "@/lib/queries";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function ViewAll({
   params,
+  searchParams,
 }: {
   params: Promise<{ category: string }>;
+  searchParams: Promise<{ sort?: string }>;
 }) {
   const { category } = await params;
+  const { sort } = await searchParams;
   const categoryData = await getCategoryBySlug(category);
 
   if (!categoryData) {
     return <div>Category Not Found</div>;
   }
 
-  const products = (await getAllProductsWithImages(categoryData.id)) ?? [];
+  const products =
+    (await getAllProductsWithImages(categoryData.id, sort)) ?? [];
 
   return (
     <main className="overflow-x-hidden">
@@ -29,9 +34,7 @@ export default async function ViewAll({
           <button className="border border-black/15 px-5 py-2.5 text-[11px] font-light tracking-widest uppercase cursor-pointer hover:bg-black hover:text-white transition-colors duration-200">
             Filter
           </button>
-          <button className="border border-black/15 px-5 py-2.5 text-[11px] font-light tracking-widest uppercase cursor-pointer hover:bg-black hover:text-white transition-colors duration-200">
-            Sort
-          </button>
+          <SortDropdown />
         </div>
 
         {/* product count */}

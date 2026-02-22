@@ -41,16 +41,38 @@ export async function getProducts(categoryId: string) {
 
 export async function getAllProductsWithImages(
   categoryId: string,
+  sort?: string,
 ): Promise<Product[] | null> {
-  const { data, error } = await supabase
+  let query = supabase
     .from("products")
     .select("*, product_images(*)")
     .eq("category_id", categoryId);
 
+  if (sort === "price-asc") {
+    query = query.order("price", { ascending: true });
+  } else if (sort === "price-desc") {
+    query = query.order("price", { ascending: false });
+  } else if (sort === "name-asc") {
+    query = query.order("name", { ascending: true });
+  }
+
+  const { data, error } = await query;
+
   if (error) {
-    console.error("failed to fetch all products: ", error.message);
+    console.error("Failed to fetch all products: ", error.message);
     return null;
   }
+
+  // FISHER YATES SHUFFLE
+  // standart algorithm for randomizing an array that loops backwards,
+  // swapping each element with a randomly chosen element before it.
+  if (!sort) {
+    for (let i = data.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [data[i], data[j]] = [data[j], data[i]];
+    }
+  }
+
   return data as Product[];
 }
 

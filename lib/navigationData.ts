@@ -65,3 +65,10 @@ export const navigationData = {
     ],
   },
 } as const;
+
+export const sortOptions = [
+  { label: "Recommended", value: "" },
+  { label: "Price: Low to High", value: "price-asc" },
+  { label: "Price: High to Low", value: "price-desc" },
+  { label: "Name: A-Z", value: "name-asc" },
+];
