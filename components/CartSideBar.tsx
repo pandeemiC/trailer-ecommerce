@@ -7,6 +7,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+
 import { ShoppingBag } from "lucide-react";
 import useCartStore from "@/store/useCartStore";
 import { useState, useEffect } from "react";
@@ -14,6 +26,7 @@ import Image from "next/image";
 
 export default function CartSideBar() {
   const [mounted, setMounted] = useState(false);
+  const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
 
   const {
     items,
@@ -88,7 +101,13 @@ export default function CartSideBar() {
                     </h3>
                     <div className="flex flex-row items-center gap-3 mt-9">
                       <button
-                        onClick={() => decreaseQuantity(item.product.id)}
+                        onClick={() => {
+                          if (item.quantity === 1) {
+                            setConfirmRemoveId(item.product.id);
+                          } else {
+                            decreaseQuantity(item.product.id);
+                          }
+                        }}
                         className="w-5 h-5 flex items-center justify-center bg-black text-white text-[10px] rounded-full cursor-pointer"
                       >
                         -
@@ -141,6 +160,35 @@ export default function CartSideBar() {
             </p>
           </div>
         </SheetContent>
+        <AlertDialog
+          open={confirmRemoveId !== null}
+          onOpenChange={(open) => {
+            if (!open) setConfirmRemoveId(null);
+          }}
+        >
+          <AlertDialogContent className="rounded-none">
+            <AlertDialogHeader>
+              <AlertDialogTitle>Remove Item</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to remove this item from your bag?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel className="cursor-pointer rounded-none">
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => {
+                  if (confirmRemoveId) removeFromCart(confirmRemoveId);
+                  setConfirmRemoveId(null);
+                }}
+                className="cursor-pointer rounded-none"
+              >
+                Remove
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </Sheet>
     </div>
   );
