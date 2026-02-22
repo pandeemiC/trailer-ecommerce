@@ -18,10 +18,26 @@ export default async function ViewAll({
 
   return (
     <main className="overflow-x-hidden">
-      <section className="px-53 py-20">
-        <h1 className="text-[13px] font-light uppercase tracking-widest mb-20 pl-1">
+      <section className="px-53 pt-40 pb-20">
+        <h1 className="text-[13px] font-light uppercase tracking-widest mb-10 pl-1">
           View All
         </h1>
+
+        {/* search + filter/sort bar */}
+        <div className="flex items-center gap-3 mb-10">
+          <input
+            type="text"
+            placeholder="Search products"
+            className="flex-1 border-b border-black/15 px-4 py-2.5 text-[11px] font-light tracking-widest uppercase outline-none placeholder:text-black/40"
+          />
+          <button className="border border-black/15 px-5 py-2.5 text-[11px] font-light tracking-widest uppercase cursor-pointer hover:bg-black hover:text-white transition-colors duration-200">
+            Filter
+          </button>
+          <button className="border border-black/15 px-5 py-2.5 text-[11px] font-light tracking-widest uppercase cursor-pointer hover:bg-black hover:text-white transition-colors duration-200">
+            Sort
+          </button>
+        </div>
+
         <div className="grid grid-cols-4 gap-5">
           {products.map((product) => (
             <Link key={product.id} href={`/${category}/view-all/${product.id}`}>
