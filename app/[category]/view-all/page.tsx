@@ -1,5 +1,6 @@
 import SortDropdown from "@/components/SortDropdown";
 import FilterDropdown from "@/components/FilterDropdown";
+import ViewAllSearch from "@/components/ViewAllSearch";
 import {
   getCategoryBySlug,
   getAllProductsWithImages,
@@ -13,10 +14,14 @@ export default async function ViewAll({
   searchParams,
 }: {
   params: Promise<{ category: string }>;
-  searchParams: Promise<{ sort?: string; subcategory?: string }>;
+  searchParams: Promise<{
+    sort?: string;
+    subcategory?: string;
+    search?: string;
+  }>;
 }) {
   const { category } = await params;
-  const { sort, subcategory } = await searchParams;
+  const { sort, subcategory, search } = await searchParams;
   const categoryData = await getCategoryBySlug(category);
 
   if (!categoryData) {
@@ -24,7 +29,12 @@ export default async function ViewAll({
   }
 
   const products =
-    (await getAllProductsWithImages(categoryData.id, sort, subcategory)) ?? [];
+    (await getAllProductsWithImages(
+      categoryData.id,
+      sort,
+      subcategory,
+      search,
+    )) ?? [];
   const subcategories = (await getSubCategories(categoryData.id)) ?? [];
 
   return (
@@ -32,11 +42,7 @@ export default async function ViewAll({
       <section className="view-all-container mt-50">
         {/* search + filter/sort bar */}
         <div className="flex items-center gap-3 mb-10">
-          <input
-            type="text"
-            placeholder="Search products"
-            className="flex-1 border-b border-black/15 px-4 py-2.5 text-[11px] font-light tracking-widest uppercase outline-none placeholder:text-black/40"
-          />
+          <ViewAllSearch />
           <FilterDropdown subcategories={subcategories} />
           <SortDropdown />
         </div>
