@@ -69,8 +69,9 @@ export async function getAllProductsWithImages(
     let products = data.map((item) => item.products);
 
     if (search) {
+      const words = search.toLowerCase().trim().split(/\s+/);
       products = products.filter((p) =>
-        p.name.toLowerCase().includes(search.toLowerCase()),
+        words.every((word) => p.name.toLowerCase().includes(word)),
       );
     }
 
@@ -96,7 +97,10 @@ export async function getAllProductsWithImages(
   }
 
   if (search) {
-    query = query.ilike("name", `%${search}%`);
+    const words = search.trim().split(/\s+/);
+    for (const word of words) {
+      query = query.ilike("name", `%${word}%`);
+    }
   }
 
   const { data, error } = await query;
@@ -235,8 +239,9 @@ export async function searchProducts(
     let products = data.map((item) => item.products);
 
     if (search) {
+      const words = search.toLowerCase().trim().split(/\s+/);
       products = products.filter((p) =>
-        p.name.toLowerCase().includes(search.toLowerCase()),
+        words.every((word) => p.name.toLowerCase().includes(word)),
       );
     }
 
@@ -259,7 +264,10 @@ export async function searchProducts(
   let query = supabase.from("products").select("*, product_images(*)");
 
   if (search) {
-    query = query.ilike("name", `%${search}%`);
+    const words = search.trim().split(/\s+/);
+    for (const word of words) {
+      query = query.ilike("name", `%${word}%`);
+    }
   }
 
   if (categoryId) {
