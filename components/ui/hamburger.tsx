@@ -130,7 +130,9 @@ const SideBar = () => {
                   <ul>
                     {navigationData[activeCategory].links.map((link) => {
                       const categoryInfo = navigationData[activeCategory];
-                      const fullHref = `${categoryInfo.basePath}/${link.href}`;
+                      const fullHref = link.href.startsWith("/")
+                        ? link.href
+                        : `${categoryInfo.basePath}/${link.href}`;
 
                       return (
                         <li

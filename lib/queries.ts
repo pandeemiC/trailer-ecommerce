@@ -202,7 +202,7 @@ export async function getProductById(
 }
 
 export async function searchProducts(
-  search: string,
+  search?: string,
   sort?: string,
   categorySlug?: string,
 ): Promise<Product[] | null> {
@@ -213,10 +213,11 @@ export async function searchProducts(
     categoryId = category.id;
   }
 
-  let query = supabase
-    .from("products")
-    .select("*, product_images(*)")
-    .ilike("name", `%${search}%`);
+  let query = supabase.from("products").select("*, product_images(*)");
+
+  if (search) {
+    query = query.ilike("name", `%${search}%`);
+  }
 
   if (categoryId) {
     query = query.eq("category_id", categoryId);
