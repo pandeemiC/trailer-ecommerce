@@ -205,7 +205,50 @@ export async function searchProducts(
   search?: string,
   sort?: string,
   categorySlug?: string,
+  subcategorySlug?: string,
 ): Promise<Product[] | null> {
+  // If subcategory is selected, query through junction table
+  if (subcategorySlug && categorySlug) {
+    const category = await getCategoryBySlug(categorySlug);
+    if (!category) return null;
+
+    const { data: subData } = await supabase
+      .from("subcategories")
+      .select("id")
+      .eq("slug", subcategorySlug)
+      .eq("category_id", category.id)
+      .single();
+
+    if (!subData) return null;
+
+    const { data, error } = await supabase
+      .from("product_subcategories")
+      .select("products(*, product_images(*))")
+      .eq("subcategory_id", subData.id)
+      .returns<{ products: Product }[]>();
+
+    if (error) {
+      console.error("Failed to search products: ", error.message);
+      return null;
+    }
+
+    let products = data.map((item) => item.products);
+
+    if (search) {
+      products = products.filter((p) =>
+        p.name.toLowerCase().includes(search.toLowerCase()),
+      );
+    }
+
+    if (sort === "price-asc") products.sort((a, b) => a.price - b.price);
+    else if (sort === "price-desc") products.sort((a, b) => b.price - a.price);
+    else if (sort === "name-asc")
+      products.sort((a, b) => a.name.localeCompare(b.name));
+
+    return products;
+  }
+
+  // Otherwise, query products table directly
   let categoryId: string | null = null;
   if (categorySlug) {
     const category = await getCategoryBySlug(categorySlug);

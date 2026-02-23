@@ -1,16 +1,27 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isOpen]);
+
+  function handleSubmit() {
+    if (input.trim()) {
+      router.push(`/search?q=${encodeURIComponent(input.trim())}`);
+      setIsOpen(false);
+      setInput("");
+    }
+  }
 
   return (
     <div className="relative flex items-center">
@@ -41,11 +52,19 @@ export default function SearchBar() {
         <input
           ref={inputRef}
           type="text"
+          value={input}
           placeholder="Search"
           className="w-full text-[11px] font-light tracking-widest uppercase outline-none border-b border-black/30 pb-1 pl-2 pr-8"
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleSubmit();
+          }}
         />
         <button
-          onClick={() => setIsOpen(false)}
+          onClick={() => {
+            setIsOpen(false);
+            setInput("");
+          }}
           className="absolute right-1 text-[11px] font-light cursor-pointer"
         >
           ✕
