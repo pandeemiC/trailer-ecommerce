@@ -1,7 +1,4 @@
-import SortDropdown from "@/components/SortDropdown";
-import FilterDropdown from "@/components/FilterDropdown";
-import SearchPageInput from "@/components/SearchPageInput";
-import CategoryFilter from "@/components/CategoryFilter";
+import DropdownBar from "@/components/DropdownBar";
 import {
   searchProducts,
   getCategories,
@@ -40,17 +37,10 @@ export default async function SearchPage({
   }
 
   return (
-    <main className="overflow-x-hidden">
+    <main>
       <section className="view-all-container mt-50">
         {/* search + category filter + subcategory filter + sort bar */}
-        <div className="flex items-center gap-3 mb-10">
-          <SearchPageInput />
-          <CategoryFilter categories={categories} />
-          {subcategories.length > 0 && (
-            <FilterDropdown subcategories={subcategories} />
-          )}
-          <SortDropdown />
-        </div>
+        <DropdownBar categories={categories} subcategories={subcategories} />
 
         {/* product count */}
         <p className="text-[10px] font-light tracking-widest text-black/40 uppercase mb-6">
