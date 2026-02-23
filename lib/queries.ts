@@ -43,6 +43,7 @@ export async function getAllProductsWithImages(
   categoryId: string,
   sort?: string,
   subcategorySlug?: string,
+  search?: string,
 ): Promise<Product[] | null> {
   if (subcategorySlug) {
     const { data: subData } = await supabase
@@ -65,7 +66,13 @@ export async function getAllProductsWithImages(
       return null;
     }
 
-    const products = data.map((item) => item.products);
+    let products = data.map((item) => item.products);
+
+    if (search) {
+      products = products.filter((p) =>
+        p.name.toLowerCase().includes(search.toLowerCase()),
+      );
+    }
 
     if (sort === "price-asc") products.sort((a, b) => a.price - b.price);
     else if (sort === "price-desc") products.sort((a, b) => b.price - a.price);
@@ -86,6 +93,10 @@ export async function getAllProductsWithImages(
     query = query.order("price", { ascending: false });
   } else if (sort === "name-asc") {
     query = query.order("name", { ascending: true });
+  }
+
+  if (search) {
+    query = query.ilike("name", `%${search}%`);
   }
 
   const { data, error } = await query;
