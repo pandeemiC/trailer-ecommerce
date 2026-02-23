@@ -42,7 +42,39 @@ export async function getProducts(categoryId: string) {
 export async function getAllProductsWithImages(
   categoryId: string,
   sort?: string,
+  subcategorySlug?: string,
 ): Promise<Product[] | null> {
+  if (subcategorySlug) {
+    const { data: subData } = await supabase
+      .from("subcategories")
+      .select("id")
+      .eq("slug", subcategorySlug)
+      .eq("category_id", categoryId)
+      .single();
+
+    if (!subData) return null;
+
+    const { data, error } = await supabase
+      .from("product_subcategories")
+      .select("products(*, product_images(*))")
+      .eq("subcategory_id", subData.id)
+      .returns<{ products: Product }[]>();
+
+    if (error) {
+      console.error("Failed to fetch filtered products", error.message);
+      return null;
+    }
+
+    const products = data.map((item) => item.products);
+
+    if (sort === "price-asc") products.sort((a, b) => a.price - b.price);
+    else if (sort === "price-desc") products.sort((a, b) => b.price - a.price);
+    else if (sort === "name-asc")
+      products.sort((a, b) => a.name.localeCompare(b.name));
+
+    return products;
+  }
+
   let query = supabase
     .from("products")
     .select("*, product_images(*)")
@@ -65,7 +97,7 @@ export async function getAllProductsWithImages(
 
   // FISHER YATES SHUFFLE
   // standart algorithm for randomizing an array that loops backwards,
-  // swapping each element with a randomly chosen element before it.
+  // swapping each element with a randomly chosen element before it.w
   if (!sort) {
     for (let i = data.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

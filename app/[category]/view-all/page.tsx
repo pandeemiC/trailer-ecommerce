@@ -24,7 +24,7 @@ export default async function ViewAll({
   }
 
   const products =
-    (await getAllProductsWithImages(categoryData.id, sort)) ?? [];
+    (await getAllProductsWithImages(categoryData.id, sort, subcategory)) ?? [];
   const subcategories = (await getSubCategories(categoryData.id)) ?? [];
 
   return (
