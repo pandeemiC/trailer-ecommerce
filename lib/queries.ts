@@ -200,3 +200,42 @@ export async function getProductById(
   }
   return data as Product;
 }
+
+export async function searchProducts(
+  search: string,
+  sort?: string,
+  categorySlug?: string,
+): Promise<Product[] | null> {
+  let categoryId: string | null = null;
+  if (categorySlug) {
+    const category = await getCategoryBySlug(categorySlug);
+    if (!category) return null;
+    categoryId = category.id;
+  }
+
+  let query = supabase
+    .from("products")
+    .select("*, product_images(*)")
+    .ilike("name", `%${search}%`);
+
+  if (categoryId) {
+    query = query.eq("category_id", categoryId);
+  }
+
+  if (sort === "price-asc") {
+    query = query.order("price", { ascending: true });
+  } else if (sort === "price-desc") {
+    query = query.order("price", { ascending: false });
+  } else if (sort === "name-asc") {
+    query = query.order("name", { ascending: true });
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error("Failed to search products: ", error.message);
+    return null;
+  }
+
+  return data as Product[];
+}
