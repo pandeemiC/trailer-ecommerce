@@ -110,8 +110,15 @@ export async function getAllProductsWithImages(
   // standart algorithm for randomizing an array that loops backwards,
   // swapping each element with a randomly chosen element before it.w
   if (!sort) {
+    const seed = new Date().toDateString(); // e.g. "Sun Feb 23 2026"
+    let hash = 0;
+    for (let i = 0; i < seed.length; i++) {
+      hash = seed.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
     for (let i = data.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+      hash = (hash * 9301 + 49297) % 233280;
+      const j = Math.abs(hash) % (i + 1);
       [data[i], data[j]] = [data[j], data[i]];
     }
   }
