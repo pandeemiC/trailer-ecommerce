@@ -394,8 +394,8 @@ export default function ShoppingBag() {
                   </span>
                 </summary>
                 <p className="text-[10px] font-light tracking-wider text-black/50 mt-3 leading-5">
-                  Contact our customer service at support@trailer.com or call +1
-                  (800) 123-4567.
+                  Honestly I couldn&apos;t help you if I wanted to but check out
+                  the amazing Stripe feature though.
                 </p>
               </details>
             </div>
