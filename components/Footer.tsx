@@ -1,7 +1,14 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathname = usePathname();
+  const isAuth = pathname === "/login" || pathname === "/signup";
+
+  if (isAuth) return null;
   return (
     <footer className="w-full bg-white mt-20">
       <div className="flex justify-center items-center py-16 border-t border-black/10">
