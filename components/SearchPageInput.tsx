@@ -10,7 +10,7 @@ export default function SearchPageInput() {
   const [input, setInput] = useState(searchParams.get("q") ?? "");
   const isFocused = useRef(false);
 
-  // sync input from url only
+  // Sync input from URL only when not focused (e.g. arriving from navbar)
   useEffect(() => {
     if (!isFocused.current) {
       const q = searchParams.get("q") ?? "";

@@ -23,6 +23,8 @@ import { ShoppingBag } from "lucide-react";
 import useCartStore from "@/store/useCartStore";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function CartSideBar() {
   const [mounted, setMounted] = useState(false);
@@ -39,9 +41,15 @@ export default function CartSideBar() {
     setCartOpen,
   } = useCartStore();
 
+  const pathname = usePathname();
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    setCartOpen(false);
+  }, [pathname, setCartOpen]);
 
   return (
     <div>
@@ -145,9 +153,11 @@ export default function CartSideBar() {
               </span>
             </div>
             <button className="add-to-cart-btn w-full">Continue</button>
-            <button className="add-to-cart-btn-reverse w-full mt-2">
-              Shopping Bag
-            </button>
+            <Link href="/shopping-bag">
+              <button className="add-to-cart-btn-reverse w-full mt-2">
+                Shopping Bag
+              </button>
+            </Link>
             <p className="text-[9px] text-black/60 font-light mt-3">
               By continuing, I declare that I have read and accept the{" "}
               <span className="underline cursor-pointer">
