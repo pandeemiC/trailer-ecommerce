@@ -140,7 +140,14 @@ export default function ShoppingBag() {
               </span>
             </div>
 
-            <button className="w-full py-3.5 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer">
+            <button
+              disabled={totalItems() === 0}
+              className={
+                totalItems() === 0
+                  ? "w-full py-3.5 text-white bg-gray-400 border border-gray-400 uppercase text-[11px] tracking-widest font-light cursor-not-allowed transition-colors"
+                  : "w-full py-3.5 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer"
+              }
+            >
               Proceed to Checkout
             </button>
 

@@ -12,6 +12,9 @@ import CartSideBar from "./CartSideBar";
 const Navbar = () => {
   const pathname = usePathname();
   const isShoppingBag = pathname === "/shopping-bag";
+  const isAuthPage = pathname === "/login" || pathname === "/signup";
+
+  if (isAuthPage) return null;
 
   return (
     <nav className="absolute top-0 w-full z-30 p-5 flex items-center justify-between">

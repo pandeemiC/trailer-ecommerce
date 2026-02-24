@@ -163,4 +163,12 @@
   .add-to-cart-btn-reverse {
     @apply w-full py-3 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer;
   }
+
+  .auth-input {
+    @apply w-full border-b border-black py-3 text-sm tracking-wider outline-none placeholder:text-gray-400 placeholder:uppercase placeholder:text-[11px] placeholder:tracking-widest;
+  }
+
+  .auth-btn {
+    @apply w-full bg-black text-white py-3.5 cursor-pointer text-[11px] tracking-[0.3em] uppercase mt-2 hover:bg-gray-900 transition-colors disabled:opacity-50;
+  }
 }
