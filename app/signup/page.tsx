@@ -17,6 +17,7 @@ export default function SignUpPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -102,7 +103,7 @@ export default function SignUpPage() {
 
             <div className="relative">
               <input
-                type={showPassword ? "text" : "password"}
+                type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -111,10 +112,10 @@ export default function SignUpPage() {
               />
               <button
                 type="button"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black cursor-pointer"
               >
-                {showPassword ? (
+                {showConfirmPassword ? (
                   <AiOutlineEye size={18} />
                 ) : (
                   <AiOutlineEyeInvisible size={18} />
