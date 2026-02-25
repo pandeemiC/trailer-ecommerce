@@ -100,14 +100,14 @@ export default function LoginPage() {
           <div className="flex flex-col gap-3">
             <button
               onClick={() => handleOAuth("google")}
-              className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors"
+              className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
             >
               <FcGoogle size={16} />
               Continue with Google
             </button>
             <button
               onClick={() => handleOAuth("github")}
-              className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors"
+              className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
             >
               <FaGithub size={16} />
               Continue with Github
@@ -116,7 +116,7 @@ export default function LoginPage() {
 
           <p className="text-center mt-12 text-[11px] tracking-wider text-gray-500">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="underline">
+            <Link href="/signup" className="underline cursor-pointer">
               Sign Up
             </Link>
           </p>
