@@ -10,11 +10,13 @@ import Image from "next/image";
 
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -76,23 +78,49 @@ export default function SignUpPage() {
               className="auth-input"
             />
 
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="auth-input"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="auth-input"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black cursor-pointer"
+              >
+                {showPassword ? (
+                  <AiOutlineEye size={18} />
+                ) : (
+                  <AiOutlineEyeInvisible size={18} />
+                )}
+              </button>
+            </div>
 
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              className="auth-input"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                className="auth-input"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black cursor-pointer"
+              >
+                {showPassword ? (
+                  <AiOutlineEye size={18} />
+                ) : (
+                  <AiOutlineEyeInvisible size={18} />
+                )}
+              </button>
+            </div>
 
             <button type="submit" disabled={loading} className="auth-btn">
               {loading ? "Signing Up..." : "Sign Up"}

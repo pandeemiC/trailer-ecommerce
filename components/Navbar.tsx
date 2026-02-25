@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,6 +15,7 @@ import { PiUserCircleLight } from "react-icons/pi";
 const Navbar = () => {
   const [user, setUser] = useState<null | object>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const supabase = createClient();
 
@@ -27,6 +28,20 @@ const Navbar = () => {
     };
     getUser();
   }, [supabase]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const pathname = usePathname();
   const isShoppingBag = pathname === "/shopping-bag";
@@ -60,9 +75,9 @@ const Navbar = () => {
         <SearchBar />
         <div className="flex items-center gap-6 bg-white px-4 py-1 rounded-md">
           {user ? (
-            <div className="relative">
+            <div className="relative" ref={dropdownRef}>
               <button
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 <PiUserCircleLight size={18} />
@@ -95,6 +110,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <button
+                      className="w-full text-left px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100 cursor-pointer"
                       onClick={async () => {
                         await supabase.auth.signOut();
                         setUser(null);
