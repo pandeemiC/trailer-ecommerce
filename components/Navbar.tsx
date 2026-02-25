@@ -1,15 +1,33 @@
 "use client";
 
-import React from "react";
+import { useState, useEffect } from "react";
+import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import trailerLogoLight from "@/public/icons/trailer-logo-light.png";
 import SideBar from "@/components/ui/hamburger";
 import SearchBar from "@/components/SearchBar";
 import CartSideBar from "./CartSideBar";
 
+import { PiUserCircleLight } from "react-icons/pi";
+
 const Navbar = () => {
+  const [user, setUser] = useState<null | object>(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const router = useRouter();
+  const supabase = createClient();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+    };
+    getUser();
+  }, [supabase]);
+
   const pathname = usePathname();
   const isShoppingBag = pathname === "/shopping-bag";
   const isAuthPage = pathname === "/login" || pathname === "/signup";
@@ -41,12 +59,64 @@ const Navbar = () => {
       <div className="flex items-center gap-2 fixed top-5 right-8 z-30">
         <SearchBar />
         <div className="flex items-center gap-6 bg-white px-4 py-1 rounded-md">
-          <Link
-            className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
-            href="/login"
-          >
-            Log In
-          </Link>
+          {user ? (
+            <div className="relative">
+              <button
+                className="flex items-center"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+              >
+                <PiUserCircleLight size={18} />
+              </button>
+              {dropdownOpen && (
+                <ul className="absolute top-8 right-0 bg-white border border-gray-200 shadow-md py-2 min-w-[180px]">
+                  <li>
+                    <Link
+                      href="/account/purchases"
+                      className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100"
+                    >
+                      My Purchases
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/account/details"
+                      className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100"
+                    >
+                      My Details
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/account/settings"
+                      className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100"
+                    >
+                      Settings
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={async () => {
+                        await supabase.auth.signOut();
+                        setUser(null);
+                        setDropdownOpen(false);
+                        router.refresh();
+                      }}
+                    >
+                      Log Out
+                    </button>
+                  </li>
+                </ul>
+              )}
+            </div>
+          ) : (
+            <Link
+              className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
+              href="/login"
+            >
+              Log In
+            </Link>
+          )}
+
           <Link
             className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
             href="/help"
