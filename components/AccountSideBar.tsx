@@ -57,12 +57,16 @@ export default function AccountSideBar({
             </span>
           </Link>
           <SidebarSeparator />
-          <span className="text-[14px] font-medium tracking-wider truncate">
-            {name || "Welcome"}
-          </span>
-          <span className="text-[12px] text-gray-400 tracking-wider truncate">
-            {email}
-          </span>
+          {state === "expanded" && (
+            <>
+              <span className="text-[14px] font-medium tracking-wider truncate">
+                {name || "Welcome"}
+              </span>
+              <span className="text-[12px] text-gray-400 tracking-wider truncate">
+                {email}
+              </span>
+            </>
+          )}
         </div>
       </SidebarHeader>
 
