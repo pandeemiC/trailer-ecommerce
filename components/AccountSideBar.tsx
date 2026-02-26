@@ -66,8 +66,6 @@ export default function AccountSideBar({
         </div>
       </SidebarHeader>
 
-      <SidebarSeparator />
-
       <SidebarContent className="p-2">
         <SidebarMenu className="gap-4">
           {accountLinks.map((link) => (
