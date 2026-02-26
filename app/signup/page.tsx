@@ -23,12 +23,16 @@ export default function SignUpPage() {
   const router = useRouter();
   const supabase = createClient();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    if (password != confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -69,7 +73,7 @@ export default function SignUpPage() {
             <p className="text-red-500 text-[11px] text-center mb-6">{error}</p>
           )}
 
-          <form onSubmit={handleLogin} className="flex flex-col gap-5">
+          <form onSubmit={handleSignUp} className="flex flex-col gap-5">
             <input
               type="email"
               placeholder="E-mail"

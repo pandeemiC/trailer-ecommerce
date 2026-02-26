@@ -20,13 +20,12 @@ const Navbar = () => {
   const supabase = createClient();
 
   useEffect(() => {
-    const getUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user);
-    };
-    getUser();
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
   }, [supabase]);
 
   useEffect(() => {
@@ -46,8 +45,9 @@ const Navbar = () => {
   const pathname = usePathname();
   const isShoppingBag = pathname === "/shopping-bag";
   const isAuthPage = pathname === "/login" || pathname === "/signup";
+  const isAccountPage = pathname === "/account";
 
-  if (isAuthPage) return null;
+  if (isAuthPage || isAccountPage) return null;
 
   return (
     <nav className="absolute top-0 w-full z-30 p-5 flex items-center justify-between">
@@ -80,7 +80,7 @@ const Navbar = () => {
                 className="flex items-center cursor-pointer"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-                <PiUserCircleLight size={18} />
+                <PiUserCircleLight size={20} />
               </button>
               {dropdownOpen && (
                 <ul className="absolute top-8 right-0 bg-white border border-gray-200 shadow-md py-2 min-w-[180px]">
