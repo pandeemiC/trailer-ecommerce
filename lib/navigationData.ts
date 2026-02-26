@@ -72,3 +72,14 @@ export const sortOptions = [
   { label: "Price: High to Low", value: "price-desc" },
   { label: "Name: A-Z", value: "name-asc" },
 ];
+
+export const accountLinks = [
+  {
+    title: "My Purchases",
+    href: "/account/purchases",
+    icon: "PiShoppingBagLight",
+  },
+  { title: "My Details", href: "/account/details", icon: "PiUserLight" },
+  { title: "Settings", href: "/account/settings", icon: "PiGearLight" },
+  { title: "Help", href: "/account/help", icon: "PiQuestionLight" },
+];
