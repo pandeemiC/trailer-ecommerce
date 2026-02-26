@@ -204,7 +204,7 @@ export default function AccountDetails() {
             {loading ? "Saving..." : "Save Changes"}
           </button>
           {saved && (
-            <span className="text-[11px] text-green-600 tracking-wider">
+            <span className="text-[11px] text-green-600  border-green-600 border-1 p-2 rounded-md tracking-wider">
               Changes saved successfully.
             </span>
           )}
