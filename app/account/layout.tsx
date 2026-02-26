@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import AccountSideBar from "@/components/AccountSideBar";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 
 export default async function AccountLayout({
   children,
@@ -17,12 +18,14 @@ export default async function AccountLayout({
     redirect("/login");
   }
   return (
-    <div>
+    <SidebarProvider>
       <AccountSideBar
         email={user.email ?? ""}
         name={user.user_metadata?.full_name ?? user.user_metadata?.name ?? ""}
       />
-      <main className="flex-1 px-20 py-16">{children}</main>
-    </div>
+      <SidebarInset>
+        <main className="px-10 py-6">{children}</main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

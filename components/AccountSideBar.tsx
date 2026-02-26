@@ -14,6 +14,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarSeparator,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 import {
@@ -22,13 +23,15 @@ import {
   PiGearLight,
   PiQuestionLight,
   PiSignOutLight,
+  PiCaretDoubleRightLight,
+  PiCaretDoubleLeftLight,
 } from "react-icons/pi";
 
 const iconMap: Record<string, React.ReactNode> = {
-  PiShoppingBagLight: <PiShoppingBagLight size={18} />,
-  PiUserLight: <PiUserLight size={18} />,
-  PiGearLight: <PiGearLight size={18} />,
-  PiQuestionLight: <PiQuestionLight size={18} />,
+  PiShoppingBagLight: <PiShoppingBagLight size={20} />,
+  PiUserLight: <PiUserLight size={20} />,
+  PiGearLight: <PiGearLight size={20} />,
+  PiQuestionLight: <PiQuestionLight size={20} />,
 };
 
 export default function AccountSideBar({
@@ -42,14 +45,22 @@ export default function AccountSideBar({
   const router = useRouter();
   const supabase = createClient();
 
+  const { toggleSidebar, state } = useSidebar();
+
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="p-4">
-        <div className="flex flex-col gap-1 overflow-hidden">
-          <span className="text-[12px] font-medium tracking-wider truncate">
+        <div className="flex flex-col gap-3 overflow-hidden">
+          <Link href="/">
+            <span className="text-[24px] font-bold tracking-[0.35em] uppercase">
+              TRAILER
+            </span>
+          </Link>
+          <SidebarSeparator />
+          <span className="text-[14px] font-medium tracking-wider truncate">
             {name || "Welcome"}
           </span>
-          <span className="text-[10px] text-gray-400 tracking-wider truncate">
+          <span className="text-[12px] text-gray-400 tracking-wider truncate">
             {email}
           </span>
         </div>
@@ -58,7 +69,7 @@ export default function AccountSideBar({
       <SidebarSeparator />
 
       <SidebarContent className="p-2">
-        <SidebarMenu>
+        <SidebarMenu className="gap-4">
           {accountLinks.map((link) => (
             <SidebarMenuItem key={link.href}>
               <SidebarMenuButton
@@ -68,7 +79,7 @@ export default function AccountSideBar({
               >
                 <Link href={link.href}>
                   {iconMap[link.icon]}{" "}
-                  <span className="text-[11px] tracking-widest uppercase">
+                  <span className="text-[12px] tracking-widest uppercase">
                     {link.title}
                   </span>
                 </Link>
@@ -78,25 +89,36 @@ export default function AccountSideBar({
         </SidebarMenu>
       </SidebarContent>
 
-      <SidebarFooter className="p-2">
+      <SidebarFooter className="p-4 mb-10">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               tooltip="Log Out"
+              className="cursor-pointer"
               onClick={async () => {
                 await supabase.auth.signOut();
                 router.push("/");
                 router.refresh();
               }}
             >
-              <PiSignOutLight size={18} />{" "}
-              <span className="text-[11px] tracking-widest uppercase">
+              <PiSignOutLight size={20} />{" "}
+              <span className="text-[12px] tracking-widest uppercase cursor-pointer">
                 Log Out
               </span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
+      <button
+        onClick={toggleSidebar}
+        className="absolute top-1/2 -right-3 -translate-y-1/2 z-50 bg-white border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center shadow-sm hover:bg-gray-100 cursor-pointer"
+      >
+        {state === "expanded" ? (
+          <PiCaretDoubleLeftLight size={12} />
+        ) : (
+          <PiCaretDoubleRightLight size={12} />
+        )}
+      </button>
     </Sidebar>
   );
 }

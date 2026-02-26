@@ -7,8 +7,9 @@ import { usePathname } from "next/navigation";
 const Footer = () => {
   const pathname = usePathname();
   const isAuth = pathname === "/login" || pathname === "/signup";
+  const isAccountPage = pathname.startsWith("/account");
 
-  if (isAuth) return null;
+  if (isAuth || isAccountPage) return null;
   return (
     <footer className="w-full bg-white mt-20">
       <div className="flex justify-center items-center py-16 border-t border-black/10">
