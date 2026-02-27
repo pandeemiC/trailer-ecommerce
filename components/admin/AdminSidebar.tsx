@@ -42,20 +42,20 @@ export default function AdminSidebar({ email }: { email: string }) {
     <Sidebar collapsible="icon">
       <SidebarHeader className="p-4">
         <div className="flex flex-col gap-3 overflow-hidden">
-          <div className="flex items-center gap-2">
-            <Link href="/">
-              <span className="text-[24px] font-bold tracking-[0.35em] uppercase">
-                TRAILER
-              </span>
-            </Link>
-            <div className="flex items-center gap-1.5 bg-black text-white text-[10px] font-bold tracking-widest uppercase px-2 py-1 rounded-md">
+          <Link href="/">
+            <span className="text-[24px] font-bold tracking-[0.35em] uppercase">
+              TRAILER
+            </span>
+          </Link>
+          {state === "expanded" && (
+            <div className="flex items-center gap-1.5 bg-black text-white text-[10px] font-light tracking-widest uppercase px-2.5 py-1 rounded-lg w-fit mb-2">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
               Admin
             </div>
-          </div>
+          )}
           <SidebarSeparator />
           {state === "expanded" && (
             <span className="text-[12px] text-gray-400 tracking-wider truncate">
