@@ -35,3 +35,13 @@ export type Subcategory = {
   slug: string;
   category_id: string;
 };
+
+export type AdminUser = {
+  id: string;
+  created_at: string;
+};
+
+export type ProductWithSubcategories = Product & {
+  product_subcategories: { subcategory_id: string }[];
+  categories?: { name: string };
+};

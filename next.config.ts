@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "static.zara.net",
       },
+      {
+        protocol: "https",
+        hostname: "fyicaffchtkvyzwvzikx.supabase.co",
+      },
     ],
   },
 };

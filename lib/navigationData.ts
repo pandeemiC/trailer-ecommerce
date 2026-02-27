@@ -237,3 +237,9 @@ export const faqData = [
     ],
   },
 ];
+
+export const adminLinks = [
+  { title: "Dashboard", href: "/admin", icon: "PiChartBarLight" },
+  { title: "Products", href: "/admin/products", icon: "PiPackageLight" },
+  { title: "Categories", href: "/admin/categories", icon: "PiTagLight" },
+];
