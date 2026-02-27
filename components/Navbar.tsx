@@ -18,6 +18,7 @@ const Navbar = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const supabase = createClient();
+  const pathname = usePathname();
 
   useEffect(() => {
     const {
@@ -37,12 +38,14 @@ const Navbar = () => {
         setDropdownOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const pathname = usePathname();
+  useEffect(() => {
+    setDropdownOpen(false);
+  }, [pathname]);
+
   const isShoppingBag = pathname === "/shopping-bag";
   const isAuthPage =
     pathname === "/login" ||
@@ -51,7 +54,6 @@ const Navbar = () => {
   const isAccountPage = pathname.startsWith("/account");
 
   if (isAuthPage || isAccountPage) return null;
-
   return (
     <nav className="absolute top-0 w-full z-30 p-5 flex items-center justify-between">
       <div className="flex items-center gap-5">

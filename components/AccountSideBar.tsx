@@ -103,8 +103,8 @@ export default function AccountSideBar({
                 router.refresh();
               }}
             >
-              <PiSignOutLight size={20} />{" "}
-              <span className="text-[12px] tracking-widest uppercase cursor-pointer">
+              <PiSignOutLight size={20} className="text-red-600" />{" "}
+              <span className="text-[12px] tracking-widest uppercase cursor-pointer text-red-600">
                 Log Out
               </span>
             </SidebarMenuButton>
