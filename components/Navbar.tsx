@@ -44,7 +44,10 @@ const Navbar = () => {
 
   const pathname = usePathname();
   const isShoppingBag = pathname === "/shopping-bag";
-  const isAuthPage = pathname === "/login" || pathname === "/signup";
+  const isAuthPage =
+    pathname === "/login" ||
+    pathname === "/signup" ||
+    pathname === "auth/reset-password";
   const isAccountPage = pathname.startsWith("/account");
 
   if (isAuthPage || isAccountPage) return null;

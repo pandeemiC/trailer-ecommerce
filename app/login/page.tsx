@@ -15,7 +15,10 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [forgotMode, setForgotMode] = useState(false);
+
   const router = useRouter();
   const supabase = createClient();
 
@@ -47,6 +50,18 @@ export default function LoginPage() {
     });
   };
 
+  const handleForgotPassword = async () => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/auth/callback`,
+    });
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setMessage("Check your email for a password reset link.");
+    }
+  };
+
   return (
     <div className="flex min-h-screen">
       {/* left */}
@@ -65,61 +80,102 @@ export default function LoginPage() {
             <p className="text-red-500 text-[11px] text-center mb-6">{error}</p>
           )}
 
-          <form onSubmit={handleLogin} className="flex flex-col gap-5">
-            <input
-              type="email"
-              placeholder="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="auth-input"
-            />
+          {forgotMode ? (
+            <div className="flex flex-col gap-5">
+              <input
+                type="email"
+                placeholder="E-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="auth-input"
+              />
 
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="auth-input"
-            />
+              {message && (
+                <p className="text-[11px] text-green-600 tracking-wider">
+                  {message}
+                </p>
+              )}
 
-            <button type="submit" disabled={loading} className="auth-btn">
-              {loading ? "Logging in..." : "Log In"}
-            </button>
-          </form>
+              <button onClick={handleForgotPassword} className="auth-btn">
+                Send Reset Link
+              </button>
 
-          <div className="flex items-center gap-4 my-8">
-            <hr className="flex-1 border-gray-300" />
-            <span className="text-[10px] text-gray-400 uppercase tracking-wider">
-              or
-            </span>
-            <hr className="flex-1 border-gray-300" />
-          </div>
+              <p
+                onClick={() => {
+                  setForgotMode(false);
+                  setMessage("");
+                  setError("");
+                }}
+                className="text-[11px] text-gray-400 tracking-wider cursor-pointer hover:text-black transition-colors"
+              >
+                Back to Login
+              </p>
+            </div>
+          ) : (
+            <>
+              <form onSubmit={handleLogin} className="flex flex-col gap-5">
+                <input
+                  type="email"
+                  placeholder="E-mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="auth-input"
+                />
 
-          <div className="flex flex-col gap-3">
-            <button
-              onClick={() => handleOAuth("google")}
-              className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
-            >
-              <FcGoogle size={16} />
-              Continue with Google
-            </button>
-            <button
-              onClick={() => handleOAuth("github")}
-              className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
-            >
-              <FaGithub size={16} />
-              Continue with Github
-            </button>
-          </div>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="auth-input"
+                />
+                <p
+                  onClick={() => setForgotMode(true)}
+                  className="text-[11px] text-gray-400 tracking-wider cursor-pointer hover:text-black transition-colors"
+                >
+                  Forgot your password?
+                </p>
+                <button type="submit" disabled={loading} className="auth-btn">
+                  {loading ? "Logging in..." : "Log In"}
+                </button>
+              </form>
 
-          <p className="text-center mt-12 text-[11px] tracking-wider text-gray-500">
-            Don&apos;t have an account?{" "}
-            <Link href="/signup" className="underline cursor-pointer">
-              Sign Up
-            </Link>
-          </p>
+              <div className="flex items-center gap-4 my-8">
+                <hr className="flex-1 border-gray-300" />
+                <span className="text-[10px] text-gray-400 uppercase tracking-wider">
+                  or
+                </span>
+                <hr className="flex-1 border-gray-300" />
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={() => handleOAuth("google")}
+                  className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
+                >
+                  <FcGoogle size={16} />
+                  Continue with Google
+                </button>
+                <button
+                  onClick={() => handleOAuth("github")}
+                  className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
+                >
+                  <FaGithub size={16} />
+                  Continue with Github
+                </button>
+              </div>
+
+              <p className="text-center mt-12 text-[11px] tracking-wider text-gray-500">
+                Don&apos;t have an account?{" "}
+                <Link href="/signup" className="underline cursor-pointer">
+                  Sign Up
+                </Link>
+              </p>
+            </>
+          )}
         </div>
       </div>
 
