@@ -27,7 +27,7 @@ export default function AccountSettings() {
     const getPrefs = async () => {
       const {
         data: { user },
-      } = await supabase.getUser();
+      } = await supabase.auth.getUser();
       if (user) {
         const prefs = user.user_metadata?.notifications ?? {};
         setOrderEmails(prefs.orderEmails ?? true);
