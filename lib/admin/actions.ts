@@ -173,3 +173,89 @@ export async function deleteProduct(productId: string) {
   revalidatePath("/admin/products");
   return { success: true };
 }
+
+//             //
+// CAT ACTIONS //
+//             //
+
+export async function createCategory(name: string) {
+  const supbase = await verifyAdmin();
+  const slug = name.toLowerCase().replace(/\s+/g, "-");
+
+  const { error } = await supbase.from("categories").insert({ name, slug });
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/categories");
+  return { success: true };
+}
+
+export async function updateCategory(id: string, name: string) {
+  const supabase = await verifyAdmin();
+  const slug = name.toLowerCase().replace(/\s+/g, "-");
+
+  const { error } = await supabase
+    .from("categories")
+    .update({ name, slug })
+    .eq("id", id);
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/categories");
+  return { success: true };
+}
+
+export async function deleteCategory(id: string) {
+  const supabase = await verifyAdmin();
+
+  const { error } = await supabase.from("categories").delete().eq("id", id);
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/categories");
+  return { success: true };
+}
+
+//        //
+// SUBCAT //
+//        //
+
+export async function createSubcategory(name: string, categoryId: string) {
+  const supabase = await verifyAdmin();
+  const slug = name.toLowerCase().replace(/\s+/g, "-");
+
+  const { error } = await supabase
+    .from("subcategories")
+    .insert({ name, slug, category_id: categoryId });
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/categories");
+  return { success: true };
+}
+
+export async function updateSubcategory(id: string, name: string) {
+  const supabase = await verifyAdmin();
+  const slug = name.toLowerCase().replace(/\s+/g, "-");
+
+  const { error } = await supabase
+    .from("subcategories")
+    .update({ name, slug })
+    .eq("id", id);
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/categories");
+  return { success: true };
+}
+
+export async function deleteSubcategory(id: string) {
+  const supabase = await verifyAdmin();
+
+  const { error } = await supabase.from("subcategories").delete().eq("id", id);
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/categories");
+  return { success: true };
+}
