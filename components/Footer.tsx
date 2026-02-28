@@ -8,8 +8,9 @@ const Footer = () => {
   const pathname = usePathname();
   const isAuth = pathname === "/login" || pathname === "/signup";
   const isAccountPage = pathname.startsWith("/account");
+  const isAdminPage = pathname.startsWith("/admin");
 
-  if (isAuth || isAccountPage) return null;
+  if (isAuth || isAccountPage || isAdminPage) return null;
   return (
     <footer className="w-full bg-white mt-20">
       <div className="flex justify-center items-center py-16 border-t border-black/10">

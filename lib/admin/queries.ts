@@ -42,3 +42,57 @@ export async function getAdminProducts(): Promise<
 
   return data as ProductWithSubcategories[];
 }
+
+export async function getAdminProductsById(
+  productId: string,
+): Promise<ProductWithSubcategories | null> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("products")
+    .select(
+      "*, product_images(*), product_subcategories(subcategory_id), categories(name)",
+    )
+    .eq("id", productId)
+    .single();
+
+  if (error) {
+    console.error("Failed to fetch product: ", error.message);
+    return null;
+  }
+
+  return data as ProductWithSubcategories;
+}
+
+export async function getAdminSubcategories() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("subcategories")
+    .select("*")
+    .order("name");
+
+  if (error) {
+    console.error("Failed to fetch subcategories: ", error.message);
+    return null;
+  }
+
+  return data;
+}
+
+export async function getRecentProducts() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("products")
+    .select("*, product_images(*), categories(name)")
+    .order("created_at", { ascending: false })
+    .limit(5);
+
+  if (error) {
+    console.error("Faled to fetch recent products: ", error.message);
+    return null;
+  }
+
+  return data;
+}
