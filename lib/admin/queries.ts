@@ -1,6 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
 import { ProductWithSubcategories } from "../types";
-import { supabase } from "../supabase";
 
 export async function getAdminStats() {
   const supabase = await createClient();
@@ -32,7 +31,7 @@ export async function getAdminProducts(): Promise<
   const { data, error } = await supabase
     .from("products")
     .select(
-      "*, product_images(*), products_subcategories(subcategory_id), categories(name)",
+      "*, product_images(*), product_subcategories(subcategory_id), categories(name)",
     )
     .order("created_at", { ascending: false });
 

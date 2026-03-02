@@ -118,7 +118,7 @@ export async function updateProduct(
   if (error) throw new Error(error.message);
 
   // replacement of current images
-  await supabase.from("prouct_images").delete().eq("product_id", productId);
+  await supabase.from("product_images").delete().eq("product_id", productId);
 
   if (formData.gallery_images.length > 0) {
     const { error: imgError } = await supabase.from("product_images").insert(
@@ -179,10 +179,10 @@ export async function deleteProduct(productId: string) {
 //             //
 
 export async function createCategory(name: string) {
-  const supbase = await verifyAdmin();
+  const supabase = await verifyAdmin();
   const slug = name.toLowerCase().replace(/\s+/g, "-");
 
-  const { error } = await supbase.from("categories").insert({ name, slug });
+  const { error } = await supabase.from("categories").insert({ name, slug });
 
   if (error) throw new Error(error.message);
 

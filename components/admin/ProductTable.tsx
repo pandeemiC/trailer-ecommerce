@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { ProductWithSubcategories } from "@/lib/types";
 import { deleteProduct } from "@/lib/admin/actions";
@@ -44,7 +46,7 @@ export default function ProductTable({
 
       {/* table */}
       <div className="border border-gray-200">
-        <div className="grid grid-cols-[60px_1fr_1fr_100px_120px_80px] gap-4 px-4 py-3 border-b border-grary-200 bg-gray-50">
+        <div className="grid grid-cols-[60px_1fr_1fr_100px_120px_80px] gap-4 px-4 py-3 border-b border-gray-200 bg-gray-50">
           <span className="text-[10px] tracking-widest uppercase text-gray-400">
             Image
           </span>
@@ -102,7 +104,7 @@ export default function ProductTable({
                 <button
                   onClick={() => handleDelete(product.id)}
                   disabled={deleting === product.id}
-                  className="p-1.5 hover:bg-red-50 rounded transition-colors text-color-500 cursor-pointer disabled:opacity-50"
+                  className="p-1.5 hover:bg-red-50 rounded transition-colors text-red-600 cursor-pointer disabled:opacity-50"
                 >
                   <PiTrashLight size={17} />
                 </button>

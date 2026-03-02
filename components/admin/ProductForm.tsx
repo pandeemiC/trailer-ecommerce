@@ -28,7 +28,7 @@ export default function ProductForm({
   const isEditing = !!product;
 
   const [name, setName] = useState(product?.name ?? "");
-  const [price, setPrice] = useState(product?.price?.toString());
+  const [price, setPrice] = useState(product?.price?.toString() ?? "");
   const [description, setDescription] = useState(product?.description ?? "");
   const [categoryId, setCategoryId] = useState(product?.category_id ?? "");
   const [featuredType, setFeaturedType] = useState(

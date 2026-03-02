@@ -93,9 +93,9 @@ export default async function AdminDashboard() {
           {recentProducts && recentProducts.length > 0 ? (
             recentProducts.map((product) => (
               <Link
-                key={product.key}
+                key={product.id}
                 href={`/admin/products/${product.id}/edit`}
-                className="grid grid-cols-[60px_1fr_1fr_100px]"
+                className="grid grid-cols-[60px_1fr_1fr_100px] gap-4 px-4 items-center border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"
               >
                 <div className="w-[40px] h-[50px] relative">
                   <Image

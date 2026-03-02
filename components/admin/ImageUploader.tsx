@@ -99,7 +99,7 @@ export default function ImageUploader({
         <PiUploadSimpleLight size={24} className="mx-auto mb-2 text-gray-400" />
         <p className="text-[12px] tracking-wider text-gray-400">
           {uploading
-            ? "Uplading..."
+            ? "Uploading..."
             : "Drag & drop images here, or click to browse"}
         </p>
 

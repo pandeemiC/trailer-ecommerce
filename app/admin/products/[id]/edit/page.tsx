@@ -17,7 +17,7 @@ export default async function EditProductPage({
   const categories = await getAdminCategories();
   const subcategories = await getAdminSubcategories();
 
-  if (product) {
+  if (!product) {
     redirect("/admin/products");
   }
   return (

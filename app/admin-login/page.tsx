@@ -1,17 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [checking, setChecking] = useState(true);
 
   const router = useRouter();
   const supabase = createClient();
+
+  useEffect(() => {
+    const checkExistingSession = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        const { data: admin } = await supabase
+          .from("admin_users")
+          .select("id")
+          .eq("id", user.id)
+          .single();
+
+        if (admin) {
+          router.push("/admin");
+          router.refresh();
+          return;
+        }
+      }
+
+      setChecking(false);
+    };
+    checkExistingSession();
+  }, [supabase, router]);
+
+  const handleOAuth = async (provider: "google" | "github") => {
+    await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback?next=/admin`,
+      },
+    });
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,6 +92,16 @@ export default function AdminLoginPage() {
     router.push("/admin");
     router.refresh();
   };
+
+  if (checking) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <span className="text-[12px] tracking-widest uppercase text-gray-400">
+          Verifying...
+        </span>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
@@ -101,6 +148,31 @@ export default function AdminLoginPage() {
             {loading ? "Authenticating..." : "Access Dashboard"}
           </button>
         </form>
+
+        <div className="flex items-center gap-4 my-8">
+          <div className="flex-1 h-px bg-gray-200" />
+          <span className="text-[10px] tracking-widest uppercase text-gray-400">
+            or
+          </span>
+          <div className="flex-1 h-px bg-gray-200" />
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <button
+            onClick={() => handleOAuth("google")}
+            className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
+          >
+            <FcGoogle size={16} />
+            Continue with Google
+          </button>
+          <button
+            onClick={() => handleOAuth("github")}
+            className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
+          >
+            <FaGithub size={16} />
+            Continue with Github
+          </button>
+        </div>
 
         <p className="text-center mt-8 text-[10px] tracking-wider text-gray-300">
           Authorized personnel only
