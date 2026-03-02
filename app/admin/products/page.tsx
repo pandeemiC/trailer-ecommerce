@@ -14,7 +14,7 @@ export default async function AdminProductsPage() {
         <Link href="/admin/products/new">Add Product</Link>
       </div>
 
-      <ProductTable />
+      <ProductTable products={products ?? []} />
     </div>
   );
 }
