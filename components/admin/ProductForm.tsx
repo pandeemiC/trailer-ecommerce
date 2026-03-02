@@ -173,8 +173,86 @@ export default function ProductForm({
           <label className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 block">
             Subcategories
           </label>
+          <Select
+            isMulti
+            options={subcategoryOptions}
+            value={subcategoryOptions.filter((opt) =>
+              selectedSubcategories.includes(opt.value),
+            )}
+            onChange={(selected) =>
+              setSelectedSubcategories(selected.map((s) => s.value))
+            }
+            placeholder="Select subcategories..."
+            styles={{
+              control: (base) => ({
+                ...base,
+                borderRadius: 0,
+                borderColor: "#e5e7eb",
+                boxShadow: "none",
+                minHeight: "42px",
+                fontSize: "12px",
+                letterSpacing: "0.05em",
+                "&:hover": { borderColor: "#000" },
+              }),
+              option: (base, optionState) => ({
+                ...base,
+                fontSize: "12px",
+                letterSpacing: "0.05em",
+                backgroundColor: optionState.isFocused ? "#f3f4f6" : "white",
+                color: "#000",
+              }),
+              placeholder: (base) => ({
+                ...base,
+                fontSize: "12px",
+                color: "#9ca3af",
+                letterSpacing: "0.05em",
+              }),
+            }}
+          />
         </div>
       )}
+
+      {/* featured type */}
+      <div className="mb-8">
+        <label className="text-[10px] tracking-widest uppercase text-gray-400 mb-1 block">
+          Featured Type
+        </label>
+        <select
+          value={featuredType}
+          onChange={(e) => setFeaturedType(e.target.value)}
+          className="auth-input"
+        >
+          <option value="">None</option>
+          <option value="hero">Hero</option>
+          <option value="featured">Featured</option>
+          <option value="hero_bottom">Hero Bottom</option>
+        </select>
+      </div>
+
+      {/* image */}
+      <div className="mb-8">
+        <label className="text-[10px] tracking-widest uppercase text-gray-400 mb-2 block">
+          Product Images
+        </label>
+        <ImageUploader existingImages={images} onImagesChange={setImages} />
+        <p className="text-[10px] text-gray-400 tracking-wider mt-2">
+          The first image will be used as the main product image.
+        </p>
+      </div>
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-[200px] py-3 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer disabled:opacity-50"
+      >
+        {loading
+          ? isEditing
+            ? "Updating..."
+            : "Creating..."
+          : isEditing
+            ? "Update Product"
+            : "Create Product"}
+      </button>
     </form>
   );
 }
