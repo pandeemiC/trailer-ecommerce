@@ -53,8 +53,9 @@ const Navbar = () => {
     pathname === "auth/reset-password";
   const isAccountPage = pathname.startsWith("/account");
   const isAdminPage = pathname.startsWith("/admin");
+  const isAdminLogin = pathname === "/admin-login";
 
-  if (isAuthPage || isAccountPage || isAdminPage) return null;
+  if (isAuthPage || isAccountPage || isAdminPage || isAdminLogin) return null;
   return (
     <nav className="absolute top-0 w-full z-30 p-5 flex items-center justify-between">
       <div className="flex items-center gap-5">
