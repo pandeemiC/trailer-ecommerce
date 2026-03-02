@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { ProductWithSubcategories } from "../types";
+import { supabase } from "../supabase";
 
 export async function getAdminStats() {
   const supabase = await createClient();
@@ -62,6 +63,21 @@ export async function getAdminProductsById(
   }
 
   return data as ProductWithSubcategories;
+}
+
+export async function getAdminCategories() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("categories")
+    .select("*")
+    .order("name");
+
+  if (error) {
+    console.error("Failed to fetch categories: ", error.message);
+    return null;
+  }
+  return data;
 }
 
 export async function getAdminSubcategories() {
