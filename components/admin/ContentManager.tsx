@@ -50,6 +50,19 @@ export default function ContentManager({ sections }: ContentManagerProps) {
 
   const [loading, setLoading] = useState(false);
 
+  const handleDelete = async (id: string) => {
+    if (!confirm("Delete this section?")) return;
+    setLoading(true);
+
+    try {
+      await deleteSection(id);
+      router.refresh();
+    } catch (err) {
+      console.error("Failed to delete section: ", err);
+    }
+    setLoading(false);
+  };
+
   if (isAdding || editingSection) {
     return;
   }
