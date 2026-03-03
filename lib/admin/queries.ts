@@ -111,3 +111,18 @@ export async function getRecentProducts() {
 
   return data;
 }
+
+export async function getHomepageSections() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("homepage_section")
+    .select("*, homepage_section_images(*)")
+    .order("position", { ascending: true });
+
+  if (error) {
+    console.error("Failed to fetch homepage sections: ", error.message);
+    return null;
+  }
+  return data;
+}
