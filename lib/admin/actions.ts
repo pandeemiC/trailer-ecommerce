@@ -259,3 +259,15 @@ export async function deleteSubcategory(id: string) {
   revalidatePath("/admin/categories");
   return { success: true };
 }
+
+//           //
+//  CONTENT  //
+//           //
+
+export async function createSection() {}
+
+export async function updateSection() {}
+
+export async function deleteSection() {}
+
+export async function reorderSection() {}
