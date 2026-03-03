@@ -24,10 +24,12 @@ import {
   PiSignOutLight,
   PiCaretDoubleRightLight,
   PiCaretDoubleLeftLight,
+  PiLayoutLight,
 } from "react-icons/pi";
 
 const iconMap: Record<string, React.ReactNode> = {
   PiChartBarLight: <PiChartBarLight size={20} />,
+  PiLayoutLight: <PiLayoutLight size={20} />,
   PiPackageLight: <PiPackageLight size={20} />,
   PiTagLight: <PiTagLight size={20} />,
 };

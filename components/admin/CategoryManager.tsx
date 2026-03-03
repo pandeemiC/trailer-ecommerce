@@ -329,8 +329,9 @@ export default function CategoryManager({
                               setEditingSubcategoryId(sc.id);
                               setEditingSubcategoryName(sc.name);
                             }}
+                            className="p-1.5 hover:bg-gray-200 rounded transition-colors cursor-pointer"
                           >
-                            <PiPencilSimpleLight size={15} />{" "}
+                            <PiPencilSimpleLight size={15} />
                           </button>
                           <button
                             onClick={() => handleDeleteSubcategory(sc.id)}

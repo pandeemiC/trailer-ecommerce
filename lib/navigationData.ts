@@ -240,6 +240,7 @@ export const faqData = [
 
 export const adminLinks = [
   { title: "Dashboard", href: "/admin", icon: "PiChartBarLight" },
+  { title: "Content", href: "/admin/content", icon: "PiLayoutLight" },
   { title: "Products", href: "/admin/products", icon: "PiPackageLight" },
   { title: "Categories", href: "/admin/categories", icon: "PiTagLight" },
 ];
