@@ -116,7 +116,7 @@ export async function getHomepageSections(): Promise<HomepageSection[] | null> {
   const supabase = await createClient();
 
   const { data, error } = await supabase
-    .from("homepage_section")
+    .from("homepage_sections")
     .select("*, homepage_section_images(*)")
     .order("position", { ascending: true });
 
