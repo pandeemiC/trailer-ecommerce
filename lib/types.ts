@@ -45,3 +45,24 @@ export type ProductWithSubcategories = Product & {
   product_subcategories: { subcategory_id: string }[];
   categories?: { name: string };
 };
+
+export type HomepageSection = {
+  id: string;
+  position: number;
+  section_type: "duo" | "full" | "editorial";
+  title: string | null;
+  subtitle: string | null;
+  description: string | null;
+  created_at: string;
+  homepage_section_images: HomepageSectionImage[];
+};
+
+export type HomepageSectionImage = {
+  id: string;
+  section_id: string;
+  url: string;
+  alt: string;
+  href: string;
+  position: number;
+  text_side: string | null;
+};

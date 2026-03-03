@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import { ProductWithSubcategories } from "../types";
+import { ProductWithSubcategories, HomepageSection } from "../types";
 
 export async function getAdminStats() {
   const supabase = await createClient();
@@ -112,7 +112,7 @@ export async function getRecentProducts() {
   return data;
 }
 
-export async function getHomepageSections() {
+export async function getHomepageSections(): Promise<HomepageSection[] | null> {
   const supabase = await createClient();
 
   const { data, error } = await supabase
