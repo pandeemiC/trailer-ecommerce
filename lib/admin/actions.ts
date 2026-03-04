@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { verify } from "crypto";
 import { revalidatePath } from "next/cache";
 
 //verification for admin
@@ -264,7 +265,60 @@ export async function deleteSubcategory(id: string) {
 //  CONTENT  //
 //           //
 
-export async function createSection() {}
+export async function createSection(formData: {
+  section_type: string;
+  title: string | null;
+  subtitle: string | null;
+  description: string | null;
+  images: {
+    url: string;
+    alt: string;
+    href: string;
+    position: number;
+    text_side: string | null;
+  }[];
+}) {
+  const supabase = await verifyAdmin();
+
+  const { count } = await supabase
+    .from("homepage_sections")
+    .select("*", { count: "exact", head: true });
+
+  const { data: section, error } = await supabase
+    .from("homepage_sections")
+    .insert({
+      section_type: formData.section_type,
+      title: formData.title,
+      subtitle: formData.subtitle,
+      description: formData.description,
+      position: (count ?? 0) + 1,
+    })
+    .select()
+    .single();
+
+  if (error) throw new Error(error.message);
+
+  // inserting images
+  if (formData.images.length > 0) {
+    const { error: imgError } = await supabase
+      .from("homepage_section_images")
+      .insert(
+        formData.images.map((img) => ({
+          section_id: section.id,
+          url: img.url,
+          alt: img.alt,
+          href: img.href,
+          position: img.position,
+          text_side: img.text_side,
+        })),
+      );
+    if (imgError) throw new Error(imgError.message);
+  }
+
+  revalidatePath("/admin/content");
+  revalidatePath("/");
+  return { success: true };
+}
 
 export async function updateSection() {}
 
