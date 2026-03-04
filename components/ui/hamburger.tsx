@@ -1,15 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { navigationData, type Category } from "@/lib/navigationData";
+import { createClient } from "@/lib/supabase/client";
+import { NavCategory } from "@/lib/types";
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isContentLoaded, setIsContentLoaded] = useState(true);
-  const [activeCategory, setActiveCategory] = useState<Category>("WOMAN");
+
+  const [categories, setCategories] = useState<NavCategory[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>("");
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const supabase = createClient();
+      const { data } = await supabase
+        .from("categories")
+        .select("*, subcategories(*)")
+        .order("name");
+
+      if (data) {
+        setCategories(data);
+        setActiveCategory(data[0]?.slug ?? "");
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const handleToggle = () => {
     if (isOpen) {
@@ -27,12 +46,12 @@ const SideBar = () => {
     }
   };
 
-  const handleCategoryClick = (category: Category) => {
-    if (activeCategory !== category) {
+  const handleCategoryClick = (slug: string) => {
+    if (activeCategory !== slug) {
       setIsContentLoaded(false);
       setTimeout(() => {
         setIsContentLoaded(true);
-        setActiveCategory(category);
+        setActiveCategory(slug);
       }, 300);
     }
   };
@@ -91,17 +110,17 @@ const SideBar = () => {
             {/* left side south side */}
             <div className="w-1/3 p-6 flex flex-row justify-center items-center mb-[170px]">
               <ul className="space-y-4 tracking-widest">
-                {(Object.keys(navigationData) as Category[]).map((category) => (
-                  <li key={category}>
+                {categories.map((cat) => (
+                  <li key={cat.id}>
                     <button
-                      onClick={() => handleCategoryClick(category)}
+                      onClick={() => handleCategoryClick(cat.slug)}
                       className={`uppercase text-lg font-light cursor-pointer transition-colors duration-300 ${
-                        activeCategory === category
+                        activeCategory === cat.slug
                           ? "border-b-1 border-black"
                           : ""
                       }`}
                     >
-                      {category}
+                      {cat.name}
                     </button>
                   </li>
                 ))}
@@ -113,45 +132,53 @@ const SideBar = () => {
                 isContentLoaded ? "opacity-100" : "opacity-0"
               }`}
             >
-              {activeCategory && navigationData[activeCategory] && (
-                <div className="mt-20">
-                  <Link
-                    href={navigationData[activeCategory].basePath}
-                    onClick={handleToggle}
-                  >
-                    <Image
-                      src={navigationData[activeCategory].image}
-                      alt={activeCategory}
-                      width={250}
-                      height={300}
-                      className="mb-8 rounded-md cursor-pointer"
-                    />
-                  </Link>
-                  <ul>
-                    {navigationData[activeCategory].links.map((link) => {
-                      const categoryInfo = navigationData[activeCategory];
-                      const fullHref = link.href.startsWith("/")
-                        ? link.href
-                        : `${categoryInfo.basePath}/${link.href}`;
-
-                      return (
+              {(() => {
+                const activeCat = categories.find(
+                  (c) => c.slug === activeCategory,
+                );
+                if (!activeCat) return null;
+                return (
+                  <div className="mt-20">
+                    <Link
+                      href={`/${activeCat.slug}`}
+                      onClick={handleToggle}
+                    >
+                      <Image
+                        src={activeCat.image || "/category-img1.jpg"}
+                        alt={activeCat.name}
+                        width={250}
+                        height={300}
+                        className="mb-8 rounded-md cursor-pointer"
+                      />
+                    </Link>
+                    <ul>
+                      <li className="mb-5 font-light tracking-widest text-md">
+                        <Link
+                          href={`/search?category=${activeCat.slug}`}
+                          className="hover:border-b-1 border-black p-1"
+                          onClick={handleToggle}
+                        >
+                          VIEW ALL
+                        </Link>
+                      </li>
+                      {activeCat.subcategories.map((sub) => (
                         <li
-                          key={link.title}
+                          key={sub.id}
                           className="mb-5 font-light tracking-widest text-md"
                         >
                           <Link
-                            href={fullHref}
+                            href={`/${activeCat.slug}/${sub.slug}`}
                             className="hover:border-b-1 border-black p-1"
                             onClick={handleToggle}
                           >
-                            {link.title}
+                            {sub.name}
                           </Link>
                         </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })()}
             </div>
           </div>
         </div>

@@ -66,3 +66,11 @@ export type HomepageSectionImage = {
   position: number;
   text_side: string | null;
 };
+
+export type NavCategory = {
+  id: string;
+  name: string;
+  slug: string;
+  image: string | null;
+  subcategories: { id: string; name: string; slug: string }[];
+};
