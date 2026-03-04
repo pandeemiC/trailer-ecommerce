@@ -377,6 +377,32 @@ export async function updateSection(
   return { success: true };
 }
 
-export async function deleteSection() {}
+export async function deleteSection(sectionId: string) {
+  const supabase = await verifyAdmin();
+  // supabase cascade delete function
+  const { error } = await supabase
+    .from("homepage_sections")
+    .delete()
+    .eq("id", sectionId);
 
-export async function reorderSection() {}
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/content");
+  revalidatePath("/");
+  return { success: true };
+}
+
+export async function reorderSection(sectionId: string, newPosition: number) {
+  const supabase = await verifyAdmin();
+
+  const { error } = await supabase
+    .from("homepage_sections")
+    .update({ position: newPosition })
+    .eq("id", sectionId);
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/content");
+  revalidatePath("/");
+  return { success: true };
+}
