@@ -23,6 +23,7 @@ export default async function Home() {
                 alt={img.alt}
                 width={520}
                 height={620}
+                quality={100}
                 className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
               />
             </Link>
@@ -48,6 +49,7 @@ export default async function Home() {
               height={1080}
               className="w-full h-auto shadow-md"
               priority
+              quality={90}
             />
             <FixedTrailer />
           </Link>
@@ -81,7 +83,8 @@ export default async function Home() {
               alt={images[0].alt}
               width={420}
               height={620}
-              className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
+              quality={100}
+              className="shadow-md object-cover"
             />
           </Link>
         )}
@@ -95,6 +98,7 @@ export default async function Home() {
           alt={images[1].alt}
           width={720}
           height={620}
+          quality={100}
           className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
         />
       </Link>

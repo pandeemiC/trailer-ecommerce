@@ -72,7 +72,7 @@ const Navbar = () => {
               width={270}
               height={180}
               priority
-              className="fixed top-0 left-40 z-30 min-2xl:w-[420px]"
+              className="fixed top-0 left-52 z-30 min-2xl:w-[320px]"
             />
           )}
         </Link>
@@ -142,7 +142,7 @@ const Navbar = () => {
 
           <Link
             className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
-            href="/help"
+            href="/account/help"
           >
             Help
           </Link>

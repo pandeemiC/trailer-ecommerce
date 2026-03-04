@@ -105,7 +105,7 @@ const SideBar = () => {
           <div
             className={`fixed top-0 left-0 h-full bg-white transition-opacity duration-800 ease-in-out z-20 ${
               isOpen && !isAnimating ? "opacity-100" : "opacity-0"
-            } w-full md:w-[600px] 2xl:w-[900px] flex`}
+            } w-full md:w-[600px] 2xl:w-[650px] flex`}
           >
             {/* left side south side */}
             <div className="w-1/3 p-6 flex flex-row justify-center items-center mb-[170px]">
@@ -139,10 +139,7 @@ const SideBar = () => {
                 if (!activeCat) return null;
                 return (
                   <div className="mt-20">
-                    <Link
-                      href={`/${activeCat.slug}`}
-                      onClick={handleToggle}
-                    >
+                    <Link href={`/${activeCat.slug}`} onClick={handleToggle}>
                       <Image
                         src={activeCat.image || "/category-img1.jpg"}
                         alt={activeCat.name}
