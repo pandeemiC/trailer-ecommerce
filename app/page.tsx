@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ShrinkingImageContainer from "@/components/ShrinkingImageContainer";
+import FixedTrailer from "@/components/FixedTrailer";
 
 import { getHomepageSections } from "@/lib/admin/queries";
 import { HomepageSection } from "@/lib/types";
@@ -35,18 +36,23 @@ export default async function Home() {
     const img = section.homepage_section_images[0];
     if (!img) return null;
     return (
-      <ShrinkingImageContainer>
-        <section className="relative h-300 w-screen">
+      <>
+        {/* <ShrinkingImageContainer> */}
+        <FixedTrailer />
+        <section className="full-section-trigger w-screen">
           <Link href={img.href || "#"}>
             <Image
               src={img.url}
               alt={img.alt}
-              fill
-              className="object-cover shadow-md"
+              width={1920}
+              height={1080}
+              className="w-full h-auto shadow-md"
+              priority
             />
           </Link>
         </section>
-      </ShrinkingImageContainer>
+        {/* </ShrinkingImageContainer> */}
+      </>
     );
   }
 
