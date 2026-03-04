@@ -15,7 +15,7 @@ export default async function Home() {
     );
     return (
       <ShrinkingImageContainer>
-        <section className="flex justify-center items-center py-2 overflow-auto">
+        <section className="flex justify-center items-center py-20 overflow-auto">
           {images.map((img) => (
             <Link key={img.id} href={img.href || "#"}>
               <Image
@@ -99,7 +99,7 @@ export default async function Home() {
           width={720}
           height={620}
           quality={100}
-          className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
+          className="shadow-md object-cover"
         />
       </Link>
     );

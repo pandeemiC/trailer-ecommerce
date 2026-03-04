@@ -12,7 +12,7 @@ const Footer = () => {
 
   if (isAuth || isAccountPage || isAdminPage) return null;
   return (
-    <footer className="w-full bg-white mt-20">
+    <footer className="w-full bg-white">
       <div className="flex justify-center items-center py-16 border-t border-black/10">
         <div className="flex flex-col items-center gap-4">
           <h3 className="text-[11px] font-light tracking-widest uppercase">
