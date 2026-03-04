@@ -63,7 +63,7 @@ export default function ContentManager({ sections }: ContentManagerProps) {
     setLoading(false);
   };
 
-  const handleMoveUp = (async = (section: HomepageSection[], index: number) => {
+  const handleMoveUp = async (section: HomepageSection, index: number) => {
     if (index === 0) return;
     setLoading(true);
 
@@ -76,7 +76,7 @@ export default function ContentManager({ sections }: ContentManagerProps) {
       console.error("Failed to reorder: ", err);
     }
     setLoading(false);
-  });
+  };
 
   const handleMoveDown = async (section: HomepageSection, index: number) => {
     if (index === sections.length - 1) return;
@@ -112,7 +112,7 @@ export default function ContentManager({ sections }: ContentManagerProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
     const formData = {
       section_type: sectionType,
@@ -127,15 +127,15 @@ export default function ContentManager({ sections }: ContentManagerProps) {
 
     try {
       if (editingSection) {
-        await updateSection(editingSection.id, formData),
+        await updateSection(editingSection.id, formData);
       } else {
         await createSection(formData);
       }
       setIsAdding(false);
       setEditingSection(null);
-      router.refresh()
+      router.refresh();
     } catch (err) {
-      console.error("Failed to save section: ", err)
+      console.error("Failed to save section: ", err);
     }
     setLoading(false);
   };
@@ -155,9 +155,7 @@ export default function ContentManager({ sections }: ContentManagerProps) {
             <select
               value={sectionType}
               onChange={(e) =>
-                setSectionType(
-                  (e.target.value as "duo") || "full" || "editorial",
-                )
+                setSectionType(e.target.value as "duo" | "full" | "editorial")
               }
               className="auth-input"
             >
@@ -305,9 +303,15 @@ export default function ContentManager({ sections }: ContentManagerProps) {
                 : editingSection
                   ? "Update Section"
                   : "Create Section"}
-              ;
             </button>
-            <button className="px-6 py-3 border border-gray-200 text-[11px] tracking-widest uppercase cursor-pointer hover:border-black transition-colors">
+            <button
+              type="button"
+              onClick={() => {
+                setIsAdding(false);
+                setEditingSection(null);
+              }}
+              className="px-6 py-3 border border-gray-200 text-[11px] tracking-widest uppercase cursor-pointer hover:border-black transition-colors"
+            >
               Cancel
             </button>
           </div>
@@ -379,7 +383,7 @@ export default function ContentManager({ sections }: ContentManagerProps) {
                 </button>
                 {/* delete button */}
                 <button
-                  onClick={() => handleDelete(section)}
+                  onClick={() => handleDelete(section.id)}
                   disabled={loading}
                   className="p-1.5 hover:bg-red-50 rounded transition-colors text-red-600 cursor-pointer disabled:opacity-50"
                 >
