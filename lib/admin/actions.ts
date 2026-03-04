@@ -178,30 +178,38 @@ export async function deleteProduct(productId: string) {
 // CAT ACTIONS //
 //             //
 
-export async function createCategory(name: string) {
-  const supabase = await verifyAdmin();
-  const slug = name.toLowerCase().replace(/\s+/g, "-");
-
-  const { error } = await supabase.from("categories").insert({ name, slug });
-
-  if (error) throw new Error(error.message);
-
-  revalidatePath("/admin/categories");
-  return { success: true };
-}
-
-export async function updateCategory(id: string, name: string) {
+export async function createCategory(name: string, image: string | null) {
   const supabase = await verifyAdmin();
   const slug = name.toLowerCase().replace(/\s+/g, "-");
 
   const { error } = await supabase
     .from("categories")
-    .update({ name, slug })
+    .insert({ name, slug, image });
+
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/admin/categories");
+  revalidatePath("/");
+  return { success: true };
+}
+
+export async function updateCategory(
+  id: string,
+  name: string,
+  image: string | null,
+) {
+  const supabase = await verifyAdmin();
+  const slug = name.toLowerCase().replace(/\s+/g, "-");
+
+  const { error } = await supabase
+    .from("categories")
+    .update({ name, slug, image })
     .eq("id", id);
 
   if (error) throw new Error(error.message);
 
   revalidatePath("/admin/categories");
+  revalidatePath("/");
   return { success: true };
 }
 
