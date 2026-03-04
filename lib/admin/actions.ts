@@ -320,7 +320,62 @@ export async function createSection(formData: {
   return { success: true };
 }
 
-export async function updateSection() {}
+export async function updateSection(
+  sectionId: string,
+  formData: {
+    section_type: string;
+    title: string | null;
+    subtitle: string | null;
+    description: string | null;
+    images: {
+      url: string;
+      alt: string;
+      href: string;
+      position: number;
+      text_side: string | null;
+    }[];
+  },
+) {
+  const supabase = await verifyAdmin();
+
+  const { error } = await supabase
+    .from("homepage_sections")
+    .update({
+      section_type: formData.section_type,
+      title: formData.title,
+      subtitle: formData.subtitle,
+      description: formData.description,
+    })
+    .eq("id", sectionId);
+
+  if (error) throw new Error(error.message);
+
+  // deleting and reinserting
+  await supabase
+    .from("homepage_section_images")
+    .delete()
+    .eq("section_id", sectionId);
+
+  if (formData.images.length > 0) {
+    const { error: imgError } = await supabase
+      .from("homepage_section_images")
+      .insert(
+        formData.images.map((img) => ({
+          section_id: sectionId,
+          url: img.url,
+          alt: img.alt,
+          href: img.href,
+          position: img.position,
+          text_side: img.text_side,
+        })),
+      );
+    if (imgError) throw new Error(imgError.message);
+  }
+
+  revalidatePath("/admin/content");
+  revalidatePath("/");
+  return { success: true };
+}
 
 export async function deleteSection() {}
 
