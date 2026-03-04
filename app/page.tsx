@@ -2,179 +2,138 @@ import Image from "next/image";
 import Link from "next/link";
 import ShrinkingImageContainer from "@/components/ShrinkingImageContainer";
 
-import perfumeModel1 from "@/public/perfume-model-1.jpg";
-import perfume1 from "@/public/perfume-1.jpg";
-import fragrance1 from "@/public/category-img5.jpg";
-import maleModel1 from "@/public/male-model1.jpg";
-import maleModel2 from "@/public/male-model2.jpg";
-import womanDressModel1 from "@/public/woman-dress-model1.jpg";
-import womanDressModel2 from "@/public/woman-dress-model2.jpg";
-import womanDressModel3 from "@/public/woman-dress-model3.jpg";
-import womanDressModel4 from "@/public/woman-dress-model4.jpg";
-import womanDressModel5 from "@/public/woman-dress-model5.jpg";
-import womanModel1 from "@/public/women-model1.jpg";
-import womanModel2 from "@/public/women-model2.jpg";
+import { getHomepageSections } from "@/lib/admin/queries";
+import { HomepageSection } from "@/lib/types";
 
-export default function Home() {
-  return (
-    <main className="w-full overflow-x-hidden">
-      {/* IMAGE CONTAINER */}
+export default async function Home() {
+  const sections = await getHomepageSections();
+
+  function DuoSection({ section }: { section: HomepageSection }) {
+    const images = section.homepage_section_images.sort(
+      (a, b) => a.position - b.position,
+    );
+    return (
       <ShrinkingImageContainer>
         <section className="flex justify-center items-center py-10 overflow-auto">
-          <Link href="fragrance">
-            <Image
-              src={perfumeModel1}
-              alt="PerfumeModel"
-              width={490}
-              height={620}
-              className="grayscale shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
-            />
-          </Link>
-          <Link href="fragrance/for-her">
-            <Image
-              src={perfume1}
-              alt="Perfume"
-              width={490}
-              height={620}
-              className="grayscale shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
-            />
-          </Link>
-        </section>
-      </ShrinkingImageContainer>
-
-      <ShrinkingImageContainer>
-        <section className="flex justify-center items-center py-10 overflow-auto">
-          <div className="flex flex-col justify-center items-center mr-30 font-light text-sm tracking-widest">
-            <h1 className="font-bold text-2xl">The Zebra Collection Edit</h1>
-            <h3 className="mb-10 p-2">Photography by Daniel Archer</h3>
-            <p className="p-2">Summer Zebra Collection of 2025</p>
-            <p className="p-2 mb-10">Talents / Me, Myself and I</p>
-            <Link href="woman/new-arrivals">
+          {images.map((img) => (
+            <Link key={img.id} href={img.href || "#"}>
               <Image
-                src={womanDressModel5}
-                alt="WomanModel"
-                width={420}
+                src={img.url}
+                alt={img.alt}
+                width={520}
                 height={620}
-                className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
+                className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
               />
             </Link>
-          </div>
-          <Link href="woman/best-sellers">
-            <Image
-              src={womanDressModel4}
-              alt="WomanModel2"
-              width={720}
-              height={620}
-              className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
-            />
-          </Link>
+          ))}
         </section>
       </ShrinkingImageContainer>
+    );
+  }
 
-      {/* FULL IMAGE CONTAINER */}
+  function FullSection({ section }: { section: HomepageSection }) {
+    const img = section.homepage_section_images[0];
+    if (!img) return null;
+    return (
       <ShrinkingImageContainer>
         <section className="relative h-300 w-screen">
-          <Link href="fragrance">
+          <Link href={img.href || "#"}>
             <Image
-              src={fragrance1}
-              alt="Fragrance"
-              fill
-              className="object-cover shadow-md"
-              priority
-            />
-          </Link>
-        </section>
-      </ShrinkingImageContainer>
-
-      <ShrinkingImageContainer>
-        <section className="flex justify-center items-center py-10 overflow-auto">
-          <Link href="woman/dresses">
-            <Image
-              src={womanDressModel1}
-              alt="Woman Dress Model Alt"
-              width={520}
-              height={620}
-              className="shadow-md object-cover"
-            />
-          </Link>
-          <Link href="woman/dresses">
-            <Image
-              src={womanDressModel2}
-              alt="Woman Dress Model Alt"
-              width={520}
-              height={620}
-              className="shadow-md object-cover"
-            />
-          </Link>
-        </section>
-      </ShrinkingImageContainer>
-
-      <ShrinkingImageContainer>
-        <section className="relative h-450 w-screen">
-          <Link href="woman/jackets">
-            <Image
-              src={womanDressModel3}
-              alt="Woman Dress Model Full"
+              src={img.url}
+              alt={img.alt}
               fill
               className="object-cover shadow-md"
             />
           </Link>
         </section>
       </ShrinkingImageContainer>
+    );
+  }
 
-      <ShrinkingImageContainer>
-        <section className="flex justify-center items-center py-10 overflow-auto">
-          <Link href="woman/tops">
+  function EditorialSection({ section }: { section: HomepageSection }) {
+    const images = section.homepage_section_images.sort(
+      (a, b) => a.position - b.position,
+    );
+    const textSide = images[0]?.text_side || "left";
+
+    const textBlock = (
+      <div
+        className={`flex flex-col justify-center items-center ${textSide === "left" ? "mr-30" : "ml-30"} font-light text-sm tracking-widest`}
+      >
+        {section.title && (
+          <h1 className="font-bold text-2xl">{section.title}</h1>
+        )}
+        {section.subtitle && <h3 className="mb-10 p-2">{section.subtitle}</h3>}
+        {section.description && (
+          <p className="p-2 mb-10">{section.description}</p>
+        )}
+        {images[0] && (
+          <Link href={images[0].href || "#"}>
             <Image
-              src={womanModel2}
-              alt="WomanModel2"
-              width={620}
-              height={620}
-              className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
-            />
-          </Link>
-          <Link href="woman/tops">
-            <Image
-              src={womanModel1}
-              alt="WomanModel"
-              width={620}
+              src={images[0].url}
+              alt={images[0].alt}
+              width={420}
               height={620}
               className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
             />
           </Link>
-        </section>
-      </ShrinkingImageContainer>
+        )}
+      </div>
+    );
 
+    const sideImage = images[1] && (
+      <Link href={images[1].href || "#"}>
+        <Image
+          src={images[1].url}
+          alt={images[1].alt}
+          width={720}
+          height={620}
+          className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
+        />
+      </Link>
+    );
+
+    return (
       <ShrinkingImageContainer>
         <section className="flex justify-center items-center py-10 overflow-auto">
-          <Link href="man/linen">
-            <Image
-              src={maleModel1}
-              alt="WomanModel2"
-              width={720}
-              height={620}
-              className="shadow-md min-2xl:w-[720px] min-2xl:h-[950px] object-cover"
-            />
-          </Link>
-          <div className="flex flex-col justify-center items-center ml-30 font-light text-sm tracking-widest">
-            <h1 className="font-bold text-2xl">The Embroidery Edit</h1>
-            <h3 className="mb-10 p-2">Photography by Daniel Archer</h3>
-            <p className="p-2">Summer Embroidery Collection of 2025</p>
-            <p className="p-2 mb-10">Talents / Me, Myself and I</p>
-            <Link href="man">
-              <Image
-                src={maleModel2}
-                alt="WomanModel"
-                width={420}
-                height={620}
-                className="shadow-md min-2xl:w-[820px] min-2xl:h-[950px] object-cover"
-              />
-            </Link>
-          </div>
+          {textSide === "left" ? (
+            <>
+              {textBlock}
+              {sideImage}
+            </>
+          ) : (
+            <>
+              {sideImage}
+              {textBlock}
+            </>
+          )}
         </section>
       </ShrinkingImageContainer>
-
-      {/* NEWSLETTER */}
+    );
+  }
+  return (
+    <main className="w-full overflow-x-hidden">
+      {sections && sections.length > 0 ? (
+        sections.map((section) => {
+          switch (section.section_type) {
+            case "duo":
+              return <DuoSection key={section.id} section={section} />;
+            case "full":
+              return <FullSection key={section.id} section={section} />;
+            case "editorial":
+              return <EditorialSection key={section.id} section={section} />;
+            default:
+              return null;
+          }
+        })
+      ) : (
+        <div className="h-screen flex items-center justify-center">
+          <p className="text-[12px] tracking-wider text-gray-400">
+            Homepage content coming soon.. Refer to admin panel.
+          </p>
+        </div>
+      )}
+      {/* newsletter */}
     </main>
   );
 }
