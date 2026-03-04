@@ -38,7 +38,7 @@ export default async function Home() {
     return (
       <>
         {/* <ShrinkingImageContainer> */}
-        <FixedTrailer />
+
         <section className="full-section-trigger w-screen">
           <Link href={img.href || "#"}>
             <Image
@@ -49,6 +49,7 @@ export default async function Home() {
               className="w-full h-auto shadow-md"
               priority
             />
+            <FixedTrailer />
           </Link>
         </section>
         {/* </ShrinkingImageContainer> */}
@@ -67,7 +68,7 @@ export default async function Home() {
         className={`flex flex-col justify-center items-center ${textSide === "left" ? "mr-30" : "ml-30"} font-light text-sm tracking-widest`}
       >
         {section.title && (
-          <h1 className="font-bold text-2xl">{section.title}</h1>
+          <h1 className="font-bold text-2xl mb-10">{section.title}</h1>
         )}
         {section.subtitle && <h3 className="mb-10 p-2">{section.subtitle}</h3>}
         {section.description && (

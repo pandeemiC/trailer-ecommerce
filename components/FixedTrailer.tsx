@@ -11,7 +11,7 @@ export default function FixedTrailer() {
         const anyVisible = entries.some((entry) => entry.isIntersecting);
         setIsVisible(anyVisible);
       },
-      { threshold: 0, rootMargin: "0px 0px -10% 0px" }, // Trigger when at least 10% of the section is visible
+      { threshold: 0.5, rootMargin: "0px 0px -10% 0px" }, // Trigger when at least 10% of the section is visible
     );
 
     // Look for all elements with this specific class
