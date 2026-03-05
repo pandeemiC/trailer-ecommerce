@@ -184,7 +184,7 @@ export default async function CategoryPage({
 
   return (
     <main className="relative max-w-[1400px] mx-auto px-8 md:px-16 lg:px-20 pt-32 pb-20">
-      <h1 className="absolute text-[42px] md:text-[70px] font-light tracking-widest text-black/90 uppercase z-10 left-0 top-32 flex flex-col leading-none">
+      <h1 className="absolute text-[42px] md:text-[70px] font-light tracking-widest text-black/10 italic uppercase z-10 left-0 top-32 flex flex-col leading-none">
         {categoryData.name.split("").map((letter: string, i: number) => (
           <span key={i}>{letter}</span>
         ))}
