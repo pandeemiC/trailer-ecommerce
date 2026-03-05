@@ -37,7 +37,7 @@ function renderTile(
     );
   }
 
-  // No image fallback — gray placeholder
+  // grey placeholder
   if (!tile.image) {
     return (
       <Link
