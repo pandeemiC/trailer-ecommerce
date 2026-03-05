@@ -497,38 +497,97 @@ export default function CategoryManager({
                     {editingSubcategoryId === sc.id ? (
                       <form
                         onSubmit={handleUpdateSubcategory}
-                        className="flex gap-2 flex-1"
+                        className="flex-1"
                       >
-                        <input
-                          type="text"
-                          value={editingSubcategoryName}
-                          onChange={(e) =>
-                            setEditingSubcategoryName(e.target.value)
-                          }
-                          autoFocus
-                          className="auth-input flex-1"
-                        />
-                        <button
-                          type="submit"
-                          disabled={loading}
-                          className="px-3 py-1 bg-black text-white text-[10px] tracking-widest uppercase cursor-pointer disabled:opacity-50"
-                        >
-                          Save
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setEditingSubcategoryId(null);
-                            setEditingSubcategoryImage(null);
-                          }}
-                          className="px-3 py-1 border border-gray-200 text-[10px] tracking-widest uppercase cursor-pointer"
-                        >
-                          Cancel
-                        </button>
+                        <div className="flex gap-2 mb-2">
+                          <input
+                            type="text"
+                            value={editingSubcategoryName}
+                            onChange={(e) =>
+                              setEditingSubcategoryName(e.target.value)
+                            }
+                            autoFocus
+                            className="auth-input flex-1"
+                          />
+                          <button
+                            type="submit"
+                            disabled={loading || uploading}
+                            className="px-3 py-1 bg-black text-white text-[10px] tracking-widest uppercase cursor-pointer disabled:opacity-50"
+                          >
+                            Save
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setEditingSubcategoryId(null);
+                              setEditingSubcategoryImage(null);
+                            }}
+                            className="px-3 py-1 border border-gray-200 text-[10px] tracking-widest uppercase cursor-pointer"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          {editingSubcategoryImage ? (
+                            <div className="relative w-[50px] h-[50px]">
+                              <Image
+                                src={editingSubcategoryImage}
+                                alt="Subcategory"
+                                fill
+                                className="object-cover rounded"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => setEditingSubcategoryImage(null)}
+                                className="absolute -top-1 -right-1 bg-white rounded-full w-4 h-4 flex items-center justify-center shadow cursor-pointer"
+                              >
+                                <PiXLight size={10} />
+                              </button>
+                            </div>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() =>
+                                editSubFileInputRef.current?.click()
+                              }
+                              disabled={uploading}
+                              className="flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors cursor-pointer"
+                            >
+                              <PiUploadSimpleLight size={14} />
+                              {uploading ? "Uploading..." : "Add Image"}
+                            </button>
+                          )}
+                          <input
+                            ref={editSubFileInputRef}
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={async (e) => {
+                              const file = e.target.files?.[0];
+                              if (!file) return;
+                              const url = await uploadImage(
+                                file,
+                                "subcategories",
+                              );
+                              if (url) setEditingSubcategoryImage(url);
+                              e.target.value = "";
+                            }}
+                          />
+                        </div>
                       </form>
                     ) : (
                       <>
-                        <span className="text-[12px] tracking-wider">
+                        <span className="text-[12px] tracking-wider flex items-center gap-2">
+                          {sc.image && (
+                            <div className="relative w-[30px] h-[30px] shrink-0">
+                              <Image
+                                src={sc.image}
+                                alt={sc.name}
+                                fill
+                                className="object-cover rounded"
+                              />
+                            </div>
+                          )}
                           {sc.name}
                         </span>
                         <div className="flex items-center gap-1">
