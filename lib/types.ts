@@ -35,6 +35,7 @@ export type Subcategory = {
   name: string;
   slug: string;
   category_id: string;
+  image: string | null;
 };
 
 export type AdminUser = {

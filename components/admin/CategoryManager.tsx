@@ -35,6 +35,8 @@ export default function CategoryManager({
   const supabase = createClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const editFileInputRef = useRef<HTMLInputElement>(null);
+  const subFileInputRef = useRef<HTMLInputElement>(null);
+  const editSubFileInputRef = useRef<HTMLInputElement>(null);
 
   // states
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
@@ -59,9 +61,19 @@ export default function CategoryManager({
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
 
-  const uploadImage = async (file: File): Promise<string | null> => {
+  const [newSubcategoryImage, setNewSubcategoryImage] = useState<string | null>(
+    null,
+  );
+  const [editingSubcategoryImage, setEditingSubcategoryImage] = useState<
+    string | null
+  >(null);
+
+  const uploadImage = async (
+    file: File,
+    folder: string = "categories",
+  ): Promise<string | null> => {
     setUploading(true);
-    const fileName = `categories/${Date.now()}-${file.name}`;
+    const fileName = `${folder}/${Date.now()}-${file.name}`;
     const { error } = await supabase.storage
       .from("product-images")
       .upload(fileName, file);
@@ -148,8 +160,13 @@ export default function CategoryManager({
     setLoading(true);
 
     try {
-      await createSubcategory(newSubcategoryName.trim(), selectedCategoryId);
+      await createSubcategory(
+        newSubcategoryName.trim(),
+        selectedCategoryId,
+        newSubcategoryImage,
+      );
       setNewSubcategoryName("");
+      setNewSubcategoryImage(null);
       router.refresh();
     } catch (err) {
       console.error("Failed to create new subcategory: ", err);
@@ -166,9 +183,11 @@ export default function CategoryManager({
       await updateSubcategory(
         editingSubcategoryId,
         editingSubcategoryName.trim(),
+        editingSubcategoryImage,
       );
       setEditingSubcategoryId(null);
       setEditingSubcategoryName("");
+      setEditingSubcategoryImage(null);
       router.refresh();
     } catch (err) {
       console.error("Failed to update subcategory: ", err);
@@ -268,10 +287,7 @@ export default function CategoryManager({
                 className={`flex items-center justify-between px-4 py-3 border-b border-gray-100 last:border-b-0 transition-colors ${selectedCategoryId === cat.id ? "bg-gray-50 border-l-2 border-l-black" : "hover:bg-gray-50"}`}
               >
                 {editingCategoryId === cat.id ? (
-                  <form
-                    onSubmit={handleUpdateCategory}
-                    className="flex-1"
-                  >
+                  <form onSubmit={handleUpdateCategory} className="flex-1">
                     <div className="flex gap-2 mb-2">
                       <input
                         type="text"
@@ -409,21 +425,65 @@ export default function CategoryManager({
             </h2>
 
             {/* add subcat */}
-            <form onSubmit={handleAddSubcategory} className="flex gap-2 mb-6">
-              <input
-                type="text"
-                onChange={(e) => setNewSubcategoryName(e.target.value)}
-                value={newSubcategoryName}
-                placeholder="New subcategory name.."
-                className="auth-input flex-1"
-              />
-              <button
-                type="submit"
-                disabled={loading || !newSubcategoryName.trim()}
-                className="px-4 py-2 bg-black text-white text-[11px] tracking-widest uppercase hover:bg-black/80 transition-colors cursor-pointer disabled:opacity-50"
-              >
-                Add
-              </button>
+            <form onSubmit={handleAddSubcategory} className="mb-6">
+              <div className="flex gap-2 mb-2">
+                <input
+                  type="text"
+                  onChange={(e) => setNewSubcategoryName(e.target.value)}
+                  value={newSubcategoryName}
+                  placeholder="New subcategory name.."
+                  className="auth-input flex-1"
+                />
+                <button
+                  type="submit"
+                  disabled={loading || !newSubcategoryName.trim()}
+                  className="px-4 py-2 bg-black text-white text-[11px] tracking-widest uppercase hover:bg-black/80 transition-colors cursor-pointer disabled:opacity-50"
+                >
+                  Add
+                </button>
+              </div>
+              <div className="flex items-center gap-3">
+                {newSubcategoryImage ? (
+                  <div className="relative w-[60px] h-[60px]">
+                    <Image
+                      src={newSubcategoryImage}
+                      alt="Subcategory Preview"
+                      fill
+                      className="object-cover rounded"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setNewSubcategoryImage(null)}
+                      className="absolute -top-1 -right-1 bg-white rounded-full w-4 h-4 flex items-center justify-center shadow cursor-pointer"
+                    >
+                      <PiXLight size={10} />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    disabled={uploading}
+                    onClick={() => subFileInputRef.current?.click()}
+                    className="flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors cursor-pointer"
+                  >
+                    <PiUploadSimpleLight size={14} />
+                    {uploading ? "Uploading..." : "Add Image"}
+                  </button>
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  ref={subFileInputRef}
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    const url = await uploadImage(file, "subcategories");
+                    if (url) setNewSubcategoryImage(url);
+                    e.target.value = "";
+                  }}
+                />
+              </div>
             </form>
 
             {/* subcat list */}
@@ -457,7 +517,10 @@ export default function CategoryManager({
                         </button>
                         <button
                           type="button"
-                          onClick={() => setEditingSubcategoryId(null)}
+                          onClick={() => {
+                            setEditingSubcategoryId(null);
+                            setEditingSubcategoryImage(null);
+                          }}
                           className="px-3 py-1 border border-gray-200 text-[10px] tracking-widest uppercase cursor-pointer"
                         >
                           Cancel
@@ -473,6 +536,7 @@ export default function CategoryManager({
                             onClick={() => {
                               setEditingSubcategoryId(sc.id);
                               setEditingSubcategoryName(sc.name);
+                              setEditingSubcategoryImage(sc.image);
                             }}
                             className="p-1.5 hover:bg-gray-200 rounded transition-colors cursor-pointer"
                           >

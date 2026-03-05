@@ -228,32 +228,42 @@ export async function deleteCategory(id: string) {
 // SUBCAT //
 //        //
 
-export async function createSubcategory(name: string, categoryId: string) {
+export async function createSubcategory(
+  name: string,
+  categoryId: string,
+  image: string | null = null,
+) {
   const supabase = await verifyAdmin();
   const slug = name.toLowerCase().replace(/\s+/g, "-");
 
   const { error } = await supabase
     .from("subcategories")
-    .insert({ name, slug, category_id: categoryId });
+    .insert({ name, slug, category_id: categoryId, image });
 
   if (error) throw new Error(error.message);
 
   revalidatePath("/admin/categories");
+  revalidatePath("/[category]", "page");
   return { success: true };
 }
 
-export async function updateSubcategory(id: string, name: string) {
+export async function updateSubcategory(
+  id: string,
+  name: string,
+  image: string | null = null,
+) {
   const supabase = await verifyAdmin();
   const slug = name.toLowerCase().replace(/\s+/g, "-");
 
   const { error } = await supabase
     .from("subcategories")
-    .update({ name, slug })
+    .update({ name, slug, image })
     .eq("id", id);
 
   if (error) throw new Error(error.message);
 
   revalidatePath("/admin/categories");
+  revalidatePath("/[category]", "page");
   return { success: true };
 }
 
@@ -265,6 +275,7 @@ export async function deleteSubcategory(id: string) {
   if (error) throw new Error(error.message);
 
   revalidatePath("/admin/categories");
+  revalidatePath("/[category]", "page");
   return { success: true };
 }
 
