@@ -151,6 +151,15 @@ const SideBar = () => {
                     <ul>
                       <li className="mb-5 font-light tracking-widest text-md">
                         <Link
+                          href={`/${activeCat.slug}`}
+                          className="hover:border-b-1 border-black p-1"
+                          onClick={handleToggle}
+                        >
+                          OVERVIEW
+                        </Link>
+                      </li>
+                      <li className="mb-5 font-light tracking-widest text-md">
+                        <Link
                           href={`/search?category=${activeCat.slug}`}
                           className="hover:border-b-1 border-black p-1"
                           onClick={handleToggle}
