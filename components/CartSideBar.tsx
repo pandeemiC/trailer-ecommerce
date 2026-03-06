@@ -173,17 +173,18 @@ export default function CartSideBar() {
                 ${totalPrice().toFixed(2)}
               </span>
             </div>
-            <button
-              className={
-                totalItems() === 0 || loading
-                  ? "w-full py-3 text-white bg-gray-400 border border-gray-400 uppercase text-[11px] tracking-widest font-light cursor-not-allowed transition-colors"
-                  : "w-full py-3.5 text-black bg-white border border-black uppercase text-[11px] tracking-widest font-light hover:bg-gray-50 transition-colors cursor-pointer"
-              }
-              disabled={totalItems() === 0 || loading}
-              onClick={handleCheckout}
-            >
-              Continue
-            </button>
+            <Link href="/checkout">
+              <button
+                className={
+                  totalItems() === 0 || loading
+                    ? "w-full py-3 text-white bg-gray-400 border border-gray-400 uppercase text-[11px] tracking-widest font-light cursor-not-allowed transition-colors"
+                    : "w-full py-3.5 text-black bg-white border border-black uppercase text-[11px] tracking-widest font-light hover:bg-gray-50 transition-colors cursor-pointer"
+                }
+                disabled={totalItems() === 0 || loading}
+              >
+                Continue
+              </button>
+            </Link>
             <Link href="/shopping-bag">
               <button className="add-to-cart-btn-reverse w-full mt-2">
                 Shopping Bag

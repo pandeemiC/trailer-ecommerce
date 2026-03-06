@@ -162,18 +162,18 @@ export default function ShoppingBag() {
                 ${totalPrice().toFixed(2)}
               </span>
             </div>
-
-            <button
-              disabled={totalItems() === 0 || loading}
-              onClick={handleCheckout}
-              className={
-                totalItems() === 0 || loading
-                  ? "w-full py-3.5 text-white bg-gray-400 border border-gray-400 uppercase text-[11px] tracking-widest font-light cursor-not-allowed transition-colors"
-                  : "w-full py-3.5 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer"
-              }
-            >
-              {loading ? "Redirecting..." : "Proceed To Checkout"}
-            </button>
+            <Link href="/checkout">
+              <button
+                disabled={totalItems() === 0 || loading}
+                className={
+                  totalItems() === 0 || loading
+                    ? "w-full py-3.5 text-white bg-gray-400 border border-gray-400 uppercase text-[11px] tracking-widest font-light cursor-not-allowed transition-colors"
+                    : "w-full py-3.5 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer"
+                }
+              >
+                {loading ? "Redirecting..." : "Proceed To Checkout"}
+              </button>
+            </Link>
 
             {/* payment icons */}
             <div className="flex items-center gap-3 mt-1">
