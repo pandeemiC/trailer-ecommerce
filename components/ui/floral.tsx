@@ -123,8 +123,9 @@ const FloralSVG = ({ className }: { className?: string }) => (
 const Floral = () => {
   const pathname = usePathname();
   const isAuth = pathname === "/login" || pathname === "/signup";
+  const isCheckoutPage = pathname.startsWith("/checkout");
 
-  if (isAuth) return null;
+  if (isAuth || isCheckoutPage) return null;
   return (
     <div className="fixed inset-0 z-50 pointer-events-none text-black/[0.08]">
       {/* Bottom-left: pushed right so stem is hidden, only leaves peek in */}

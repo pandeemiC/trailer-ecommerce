@@ -146,15 +146,61 @@ export default function CheckoutPage() {
 
   return (
     <main className="min-h-screen relative">
-      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+      <div className="fixed inset-0 flex items-center justify-center mt-50 pointer-events-none z-0">
+        <Image
+          src={trailerLogo}
+          alt=""
+          width={800}
+          height={600}
+          className="opacity-[0.03]"
+        />
+      </div>
+
+      <div className="relative z-10 border-b border-black/10 py-6 flex justify-center">
         <Link href="/">
-          <Image
-            src={trailerLogo}
-            alt="Trailer Logo"
-            width={180}
-            height={120}
-          />
+          <Image src={trailerLogo} alt="Trailer" width={180} height={120} />
         </Link>
+      </div>
+
+      {/* progression */}
+      <div className="relative z-10 max-w-xl mx-auto pt-8 pb-4 px-4">
+        <div className="flex items-center justify-between">
+          {["Personal", "Shipping", "Summary", "Payment"].map((label, i) => (
+            <div
+              key={label}
+              className="flex items-center flex-1 last:flex-none"
+            >
+              <button
+                onClick={() => {
+                  if (i + 1 < step) setStep(i + 1);
+                }}
+                className="flex flex-col items-center gap-1.5"
+              >
+                <div
+                  className={`w-3 h-3 rounded-full border-2 transition-colors ${
+                    i + 1 <= step
+                      ? "bg-black border-black"
+                      : "bg-white border-black/20"
+                  }`}
+                />
+                <span
+                  className={`text-[9px] tracking-[0.2em] uppercase ${
+                    i + 1 <= step ? "text-black" : "text-black/30"
+                  }`}
+                >
+                  {label}
+                </span>
+              </button>
+              {i < 3 && (
+                <div
+                  className={`flex-1 h-[1px] mx-3 mt-[-14px] ${
+                    i + 1 < step ? "bg-black" : "bg-black/15"
+                  }`}
+                />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );
