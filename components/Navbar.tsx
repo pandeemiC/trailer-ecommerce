@@ -54,9 +54,17 @@ const Navbar = () => {
   const isAccountPage = pathname.startsWith("/account");
   const isAdminPage = pathname.startsWith("/admin");
   const isAdminLogin = pathname === "/admin-login";
+  const isCheckoutPage = pathname.startsWith("/checkout");
   const isCatPage = /^\/[^/]+$/.test(pathname) && !isShoppingBag && !isAuthPage;
 
-  if (isAuthPage || isAccountPage || isAdminPage || isAdminLogin) return null;
+  if (
+    isAuthPage ||
+    isAccountPage ||
+    isAdminPage ||
+    isAdminLogin ||
+    isCheckoutPage
+  )
+    return null;
 
   return (
     <nav className="absolute top-0 w-full z-30 p-5 flex items-center justify-between">

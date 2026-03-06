@@ -9,10 +9,9 @@ const Footer = () => {
   const isAuth = pathname === "/login" || pathname === "/signup";
   const isAccountPage = pathname.startsWith("/account");
   const isAdminPage = pathname.startsWith("/admin");
-  const isCheckoutSuccessPage = pathname.startsWith("/checkout");
+  const isCheckoutPage = pathname.startsWith("/checkout");
 
-  if (isAuth || isAccountPage || isAdminPage || isCheckoutSuccessPage)
-    return null;
+  if (isAuth || isAccountPage || isAdminPage || isCheckoutPage) return null;
   return (
     <footer className="w-full bg-white">
       <div className="flex justify-center items-center py-16 border-t border-black/10">
