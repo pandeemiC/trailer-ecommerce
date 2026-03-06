@@ -6,7 +6,7 @@ export async function createCheckoutSession(
   items: { name: string; price: number; quantity: number; image: string }[],
   shipping: { method: string; cost: number },
 ) {
-  const origin = "http://localhost:3000";
+  const origin = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
   const line_items = items.map((item) => ({
     price_data: {
