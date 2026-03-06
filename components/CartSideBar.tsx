@@ -53,25 +53,6 @@ export default function CartSideBar() {
     setCartOpen(false);
   }, [pathname, setCartOpen]);
 
-  const handleCheckout = async () => {
-    setLoading(true);
-    try {
-      const url = await createCheckoutSession(
-        items.map((item) => ({
-          name: item.product.name,
-          price: item.product.price,
-          quantity: item.quantity,
-          image: item.product.image,
-        })),
-      );
-      if (url) window.location.href = url;
-    } catch (err) {
-      console.error("Checkout failed: ", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div>
       <Sheet open={isCartOpen} onOpenChange={setCartOpen}>
