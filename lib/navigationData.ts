@@ -248,5 +248,5 @@ export const adminLinks = [
 export const SHIPPING_OPTIONS = [
   { id: "standard", name: "Standard Shipping", cost: 0, time: "7-10 Days" },
   { id: "express", name: "Express Shipping", cost: 9.99, time: "2-3 Days" },
-  { id: "dhl", name: "DHL Shipping", cost: 24.99, time: "7-10 Days" },
+  { id: "dhl", name: "DHL Shipping", cost: 24.99, time: "1-3 Minutes" },
 ];
