@@ -131,5 +131,31 @@ export default function CheckoutPage() {
       .map((c) => String.fromCodePoint(127397 + c.charCodeAt(0)))
       .join("");
 
-  return <div>CheckoutPage</div>;
+  const countryOptions = countryList.getData().map((c) => ({
+    value: c.code,
+    label: `${getFlagEmoji(c.code)} ${c.name}`,
+  }));
+
+  const selectedShipping = SHIPPING_OPTIONS.find(
+    (s) => s.id === shippingMethod,
+  )!;
+  const shippingCost = selectedShipping.cost;
+  const total = totalPrice() + shippingCost;
+
+  if (!mounted) return null;
+
+  return (
+    <main className="min-h-screen relative">
+      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-0">
+        <Link href="/">
+          <Image
+            src={trailerLogo}
+            alt="Trailer Logo"
+            width={180}
+            height={120}
+          />
+        </Link>
+      </div>
+    </main>
+  );
 }
