@@ -67,5 +67,41 @@ export default function CheckoutPage() {
     checkUser();
   }, [supabase]);
 
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAuthError("");
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (error) {
+      setAuthError(error.message);
+    } else {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        setUser(user);
+        const meta = user.user_metadata;
+        setFirstName(meta?.first_name ?? "");
+        setLastName(meta?.last_name ?? "");
+        const addy = meta?.address ?? {};
+        setStreet(addy.street ?? "");
+        setCity(addy.city ?? "");
+        setState(addy.state ?? "");
+        setZip(addy.zip ?? "");
+        setCountry(addy.country ?? "");
+      }
+      setStep(2);
+    }
+  };
+
+  const handleOAuth = async (provider: "google" | "github") => {
+    await supabase.auth.signInWithOAuth({
+      provider,
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
+    });
+  };
+
   return <div>CheckoutPage</div>;
 }
