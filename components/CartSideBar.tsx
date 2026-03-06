@@ -19,6 +19,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
+import { createCheckoutSession } from "@/lib/checkout/actions";
 import { ShoppingBag } from "lucide-react";
 import useCartStore from "@/store/useCartStore";
 import { useState, useEffect } from "react";
@@ -29,6 +30,7 @@ import { usePathname } from "next/navigation";
 export default function CartSideBar() {
   const [mounted, setMounted] = useState(false);
   const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const {
     items,

@@ -12,6 +12,8 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
+import { createCheckoutSession } from "@/lib/checkout/actions";
+
 import useCartStore from "@/store/useCartStore";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -30,9 +32,30 @@ export default function ShoppingBag() {
   const [mounted, setMounted] = useState(false);
   const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleCheckout = async () => {
+    setLoading(true);
+    try {
+      const url = await createCheckoutSession(
+        items.map((item) => ({
+          name: item.product.name,
+          price: item.product.price,
+          quantity: item.quantity,
+          image: item.product.image,
+        })),
+      );
+      if (url) window.location.href = url;
+    } catch (err) {
+      console.error("Checkout failed: ", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!mounted) return null;
 
@@ -141,14 +164,15 @@ export default function ShoppingBag() {
             </div>
 
             <button
-              disabled={totalItems() === 0}
+              disabled={totalItems() === 0 || loading}
+              onClick={handleCheckout}
               className={
-                totalItems() === 0
+                totalItems() === 0 || loading
                   ? "w-full py-3.5 text-white bg-gray-400 border border-gray-400 uppercase text-[11px] tracking-widest font-light cursor-not-allowed transition-colors"
                   : "w-full py-3.5 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer"
               }
             >
-              Proceed to Checkout
+              {loading ? "Redirecting..." : "Proceed To Checkout"}
             </button>
 
             {/* payment icons */}
