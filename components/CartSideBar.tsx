@@ -53,6 +53,25 @@ export default function CartSideBar() {
     setCartOpen(false);
   }, [pathname, setCartOpen]);
 
+  const handleCheckout = async () => {
+    setLoading(true);
+    try {
+      const url = await createCheckoutSession(
+        items.map((item) => ({
+          name: item.product.name,
+          price: item.product.price,
+          quantity: item.quantity,
+          image: item.product.image,
+        })),
+      );
+      if (url) window.location.href = url;
+    } catch (err) {
+      console.error("Checkout failed: ", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <Sheet open={isCartOpen} onOpenChange={setCartOpen}>
@@ -154,7 +173,17 @@ export default function CartSideBar() {
                 ${totalPrice().toFixed(2)}
               </span>
             </div>
-            <button className="add-to-cart-btn w-full">Continue</button>
+            <button
+              className={
+                totalItems() === 0 || loading
+                  ? "w-full py-3 text-white bg-gray-400 border border-gray-400 uppercase text-[11px] tracking-widest font-light cursor-not-allowed transition-colors"
+                  : "w-full py-3.5 text-black bg-white border border-black uppercase text-[11px] tracking-widest font-light hover:bg-gray-50 transition-colors cursor-pointer"
+              }
+              disabled={totalItems() === 0 || loading}
+              onClick={handleCheckout}
+            >
+              Continue
+            </button>
             <Link href="/shopping-bag">
               <button className="add-to-cart-btn-reverse w-full mt-2">
                 Shopping Bag
