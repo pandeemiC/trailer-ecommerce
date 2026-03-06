@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import Link from "next/link";
 import AccountSideBar from "@/components/AccountSideBar";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 

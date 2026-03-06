@@ -15,9 +15,6 @@ export default async function SearchProductPage({
     return <div>Product Not Found</div>;
   }
 
-  const heroImage = productData.product_images.find(
-    (img) => img.image_type === "hero",
-  );
   const galleryImages = productData.product_images.filter(
     (img) => img.image_type === "gallery",
   );
