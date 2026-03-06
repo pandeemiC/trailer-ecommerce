@@ -39,5 +39,33 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (user) {
+        setUser(user);
+        setEmail(user.email ?? "");
+        // prefill
+        const meta = user.user_metadata;
+        setFirstName(meta?.first_name ?? "");
+        setLastName(meta?.last_name ?? "");
+        const addy = meta?.address ?? {};
+        setStreet(addy.street ?? "");
+        setCity(addy.city ?? "");
+        setState(addy.state ?? "");
+        setZip(addy.zip ?? "");
+        setCountry(addy.country ?? "");
+        setStep(2);
+      }
+    };
+    checkUser();
+  }, [supabase]);
+
   return <div>CheckoutPage</div>;
 }
