@@ -103,5 +103,26 @@ export default function CheckoutPage() {
     });
   };
 
+  const handleCheckout = async () => {
+    setLoading(true);
+    try {
+      const selected = SHIPPING_OPTIONS.find((s) => s.id === shippingMethod)!;
+      const url = await createCheckoutSession(
+        items.map((item) => ({
+          name: item.product.name,
+          price: item.product.price,
+          quantity: item.quantity,
+          image: item.product.image,
+        })),
+        { method: selected.name, cost: selected.cost },
+      );
+      if (url) window.location.href = url;
+    } catch (err) {
+      console.error("Checkout failed: ", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return <div>CheckoutPage</div>;
 }
