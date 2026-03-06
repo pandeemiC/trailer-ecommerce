@@ -124,5 +124,12 @@ export default function CheckoutPage() {
     }
   };
 
+  const getFlagEmoji = (code: string) =>
+    code
+      .toUpperCase()
+      .split("")
+      .map((c) => String.fromCodePoint(127397 + c.charCodeAt(0)))
+      .join("");
+
   return <div>CheckoutPage</div>;
 }
