@@ -57,17 +57,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ received: true });
     }
 
-    const orderItems = lineItems.data.map((item) => {
-      const product = item.price?.product as Stripe.Product;
+    const orderItems = lineItems.data
+      .filter((item) => !item.description?.includes("Shipping"))
+      .map((item) => {
+        const product = item.price?.product as Stripe.Product;
 
-      return {
-        order_id: order.id,
-        product_name: item.description,
-        product_image: product?.images?.[0] || "",
-        price: item.amount_total,
-        quantity: item.quantity,
-      };
-    });
+        return {
+          order_id: order.id,
+          product_name: item.description,
+          product_image: product?.images?.[0] || "",
+          price: item.amount_total,
+          quantity: item.quantity,
+        };
+      });
 
     const { error: itemsError } = await supabase
       .from("order_items")

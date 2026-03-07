@@ -1,6 +1,14 @@
-import { mockOrder } from "@/lib/navigationData";
+import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import Image from "next/image";
+
+type OrderItem = {
+  id: string;
+  product_name: string;
+  product_image: string;
+  price: number;
+  quantity: number;
+};
 
 function getStatusStyle(status: string) {
   switch (status) {
@@ -15,14 +23,29 @@ function getStatusStyle(status: string) {
   }
 }
 
-export default function AccountPurchases() {
+export default async function AccountPurchases() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { data: orders, error } = await supabase
+    .from("orders")
+    .select("*, order_items(*)")
+    .eq("user_email", user?.email ?? "")
+    .order("created_at", { ascending: false });
+  if (!orders) {
+    console.error("Failed to allocate the email to order: ", error.message);
+    return null;
+  }
+
   return (
     <div>
       <h1 className="text-[18px] md:text-[22px] font-light tracking-[0.2em] uppercase mb-10">
         My Purchases
       </h1>
 
-      {mockOrder.length === 0 ? (
+      {!orders || orders.length === 0 ? (
         <div>
           <p></p>
           <Link href="/">
@@ -33,7 +56,7 @@ export default function AccountPurchases() {
         </div>
       ) : (
         <div className="flex flex-col gap-8">
-          {mockOrder.map((order) => (
+          {orders.map((order) => (
             <div key={order.id} className="border border-gray-200">
               {/* contents */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-4 sm:px-6 py-4 bg-gray-50">
@@ -50,7 +73,11 @@ export default function AccountPurchases() {
                       Date
                     </p>
                     <p className="text-[12px] tracking-wider mt-1">
-                      {order.date}
+                      {new Date(order.created_at).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
                     </p>
                   </div>
 
@@ -59,7 +86,7 @@ export default function AccountPurchases() {
                       Total
                     </p>
                     <p className="text-[12px] tracking-wider mt-1">
-                      ${order.total.toFixed(2)}
+                      ${(order.total / 100).toFixed(2)}
                     </p>
                   </div>
                 </div>
@@ -71,30 +98,29 @@ export default function AccountPurchases() {
               </div>
 
               <div className="divide-y divide-gray-100">
-                {order.items.map((item, index) => (
+                {order.order_items.map((item: OrderItem, index: number) => (
                   <div
                     key={index}
                     className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 px-4 sm:px-6 py-4"
                   >
                     <Image
-                      src={item.image}
-                      alt={item.name}
+                      src={item.product_image}
+                      alt={item.product_name}
                       width={160}
                       height={200}
                       className="flex-shrink-0"
                     />
                     <div className="flex-1">
                       <p className="text-[12px] tracking-wider uppercase">
-                        {item.name}
+                        {item.product_name}
                       </p>
                       <p className="text-[11px] text-gray-400 tracking-wider mt-5">
-                        Size: {item.size} | Color: {item.color} | Qty:{" "}
-                        {item.quantity}
+                        Qty: {item.quantity}
                       </p>
                     </div>
 
                     <p className="text-[12px] tracking-wider">
-                      ${item.price.toFixed(2)}
+                      ${(item.price / 100).toFixed(2)}
                     </p>
                   </div>
                 ))}

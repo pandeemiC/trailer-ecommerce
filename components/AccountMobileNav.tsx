@@ -11,7 +11,7 @@ export default function AccountMobileNav() {
   const router = useRouter();
 
   return (
-    <div className="md:hidden fixed top-0 left-0 w-full z-20 pb-10">
+    <div className="md:hidden fixed top-0 left-0 w-full z-20">
       <div className="bg-white flex items-center justify-between px-5 py-3 border-b border-black/10">
         <div className="w-8" />
         <Link
