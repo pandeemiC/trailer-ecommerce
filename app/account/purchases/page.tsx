@@ -46,8 +46,10 @@ export default async function AccountPurchases() {
       </h1>
 
       {!orders || orders.length === 0 ? (
-        <div>
-          <p></p>
+        <div className="flex flex-col items-center justify-center gap-12 min-h-[400px]">
+          <p className="text-[16px] tracking-wider font-light text-gray-400">
+            You don&apos;t have any orders yet.
+          </p>
           <Link href="/">
             <button className="w-[200px] py-3 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer">
               Continue Shopping
