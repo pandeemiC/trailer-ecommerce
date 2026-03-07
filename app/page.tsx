@@ -123,7 +123,7 @@ export default async function Home() {
     );
   }
   return (
-    <main className="w-full overflow-x-hidden">
+    <main className="w-full overflow-x-hidden pt-[52px] md:pt-0">
       {sections && sections.length > 0 ? (
         sections.map((section) => {
           switch (section.section_type) {

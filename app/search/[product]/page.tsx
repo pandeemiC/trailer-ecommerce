@@ -45,7 +45,6 @@ export default async function SearchProductPage({
 
             <hr className="my-10" />
 
-            {/* Add to cart */}
             <AddToCartButton product={productData} />
 
             <hr className="my-10" />
