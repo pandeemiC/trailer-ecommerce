@@ -21,24 +21,26 @@ export default function DropdownBar({
   }
 
   return (
-    <div className="flex items-center gap-3 mb-10">
+    <div className="flex flex-col gap-3 mb-10">
       <SearchPageInput />
-      <CategoryFilter
-        categories={categories}
-        isOpen={activeDropdown === "category"}
-        onToggle={() => handleToggle("category")}
-      />
-      {subcategories.length > 0 && (
-        <FilterDropdown
-          subcategories={subcategories}
-          isOpen={activeDropdown === "filter"}
-          onToggle={() => handleToggle("filter")}
+      <div className="flex flex-wrap items-center gap-3">
+        <CategoryFilter
+          categories={categories}
+          isOpen={activeDropdown === "category"}
+          onToggle={() => handleToggle("category")}
         />
-      )}
-      <SortDropdown
-        isOpen={activeDropdown === "sort"}
-        onToggle={() => handleToggle("sort")}
-      />
+        {subcategories.length > 0 && (
+          <FilterDropdown
+            subcategories={subcategories}
+            isOpen={activeDropdown === "filter"}
+            onToggle={() => handleToggle("filter")}
+          />
+        )}
+        <SortDropdown
+          isOpen={activeDropdown === "sort"}
+          onToggle={() => handleToggle("sort")}
+        />
+      </div>
     </div>
   );
 }

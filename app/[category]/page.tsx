@@ -183,14 +183,26 @@ export default async function CategoryPage({
   const tiles: Tile[] = [...subcategories, "view-all"];
 
   return (
-    <main className="relative max-w-[1400px] mx-auto px-8 md:px-16 lg:px-20 pt-32 pb-20">
-      <h1 className="absolute text-[42px] md:text-[70px] font-light tracking-widest text-black/10 italic uppercase z-10 left-0 top-32 flex flex-col leading-none">
+    <main className="relative max-w-[1400px] mx-auto px-4 md:px-16 lg:px-20 pt-20 md:pt-32 pb-20">
+      <h1 className="hidden md:flex absolute text-[70px] font-light tracking-widest text-black/10 italic uppercase z-10 left-0 top-32 flex-col leading-none">
         {categoryData.name.split("").map((letter: string, i: number) => (
           <span key={i}>{letter}</span>
         ))}
       </h1>
 
-      <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-2 gap-3 md:hidden">
+        {tiles.map((tile, idx) =>
+          renderTile(
+            tile,
+            category,
+            tile === "view-all" ? "aspect-[2/1]" : "aspect-[3/4]",
+            tile === "view-all" ? "col-span-2" : "",
+            idx,
+          ),
+        )}
+      </div>
+
+      <div className="hidden md:flex flex-col gap-4">
         {renderBentoRows(tiles, category, subcategories)}
       </div>
     </main>

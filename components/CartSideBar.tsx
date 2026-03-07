@@ -68,7 +68,7 @@ export default function CartSideBar() {
         </SheetTrigger>
         <SheetContent
           side="right"
-          className="flex flex-col bg-white h-full !border-none !w-[425px] !max-w-none !p-0 !gap-0"
+          className="flex flex-col bg-white h-full !border-none !w-full sm:!w-[425px] !max-w-none !p-0 !gap-0"
         >
           <SheetHeader className="p-5 pb-3">
             <SheetTitle className="text-[11px] font-light tracking-widest uppercase text-left">

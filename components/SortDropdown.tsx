@@ -38,7 +38,7 @@ export default function SortDropdown({
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-1 bg-white border border-black/10 z-50 min-w-[200px]">
+        <div className="absolute left-0 top-full mt-1 bg-white border border-black/10 z-50 min-w-[200px]">
           {sortOptions.map((option) => (
             <button
               key={option.value}

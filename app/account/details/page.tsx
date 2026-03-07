@@ -87,7 +87,7 @@ export default function AccountDetails() {
 
   return (
     <div>
-      <h1 className="text-[22px] font-light tracking-[0.2em] uppercase mb-10">
+      <h1 className="text-[18px] md:text-[22px] font-light tracking-[0.2em] uppercase mb-10">
         My Details
       </h1>
 
@@ -97,7 +97,7 @@ export default function AccountDetails() {
           Personal Information
         </h2>
 
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <input
             type="text"
             placeholder="First Name"
@@ -137,7 +137,7 @@ export default function AccountDetails() {
           className="auth-input mb-4"
         />
 
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <input
             type="text"
             placeholder="City"
@@ -154,7 +154,7 @@ export default function AccountDetails() {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <input
             type="text"
             placeholder="Zip / Postal Code"
@@ -199,7 +199,7 @@ export default function AccountDetails() {
           <button
             type="submit"
             disabled={loading}
-            className="w-[200px] py-3 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer disabled:opacity-50"
+            className="w-full sm:w-[200px] py-3 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer disabled:opacity-50"
           >
             {loading ? "Saving..." : "Save Changes"}
           </button>

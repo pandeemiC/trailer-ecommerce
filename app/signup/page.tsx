@@ -56,9 +56,9 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex flex-col md:flex-row min-h-screen">
       {/* left */}
-      <div className="w-1/2 flex flex-col items-center justify-center px-20">
+      <div className="w-full md:w-1/2 flex flex-col items-center justify-center px-6 md:px-20 py-12 md:py-0">
         <div className="w-full max-w-sm">
           <Link href="/">
             <Image
@@ -167,7 +167,7 @@ export default function SignUpPage() {
       </div>
 
       {/* right */}
-      <div className="w-1/2 relative">
+      <div className="hidden md:block md:w-1/2 relative">
         <Image
           src={authImg}
           alt="Trailer Image"

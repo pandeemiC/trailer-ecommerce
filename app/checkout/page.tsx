@@ -194,7 +194,7 @@ export default function CheckoutPage() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-8 md:px-16 pt-8 pb-20 flex gap-16">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 md:px-16 pt-8 pb-20 flex flex-col lg:flex-row gap-8 lg:gap-16">
         <div className="flex-1">
           {step === 1 && (
             <div>
@@ -202,7 +202,7 @@ export default function CheckoutPage() {
                 Personal Details
               </h2>
 
-              <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 {/* Sign In box */}
                 <button
                   onClick={() => setAuthMode("signin")}
@@ -327,7 +327,7 @@ export default function CheckoutPage() {
               </h2>
 
               <div className="max-w-lg">
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   <input
                     type="text"
                     placeholder="First Name"
@@ -352,7 +352,7 @@ export default function CheckoutPage() {
                   className="auth-input mb-4"
                 />
 
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   <input
                     type="text"
                     placeholder="City"
@@ -369,7 +369,7 @@ export default function CheckoutPage() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                   <input
                     type="text"
                     placeholder="Zip / Postal Code"
@@ -418,7 +418,7 @@ export default function CheckoutPage() {
                   Shipping Method
                 </h3>
 
-                <div className="grid grid-cols-3 gap-3 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
                   {SHIPPING_OPTIONS.map((option) => (
                     <button
                       key={option.id}
@@ -473,7 +473,6 @@ export default function CheckoutPage() {
                   </button>
                 </div>
 
-                {/* Address */}
                 <div className="flex justify-between items-start border-b border-black/10 pb-4">
                   <div>
                     <h3 className="text-[10px] tracking-[0.2em] uppercase text-black/40 mb-1">
@@ -497,7 +496,6 @@ export default function CheckoutPage() {
                   </button>
                 </div>
 
-                {/* Shipping Method */}
                 <div className="flex justify-between items-start border-b border-black/10 pb-4">
                   <div>
                     <h3 className="text-[10px] tracking-[0.2em] uppercase text-black/40 mb-1">
@@ -518,7 +516,6 @@ export default function CheckoutPage() {
                   </button>
                 </div>
 
-                {/* Items */}
                 <div>
                   <h3 className="text-[10px] tracking-[0.2em] uppercase text-black/40 mb-3">
                     Items
@@ -552,7 +549,6 @@ export default function CheckoutPage() {
                   ))}
                 </div>
 
-                {/* Totals */}
                 <div className="space-y-2 pt-2">
                   <div className="flex justify-between">
                     <span className="text-[10px] tracking-wider text-black/50 uppercase">
@@ -597,7 +593,7 @@ export default function CheckoutPage() {
         </div>
 
         {/* summary bar */}
-        <div className="w-[300px] sticky top-8 self-start">
+        <div className="w-full lg:w-[300px] lg:sticky lg:top-8 lg:self-start order-first lg:order-last">
           <h3 className="text-[11px] tracking-[0.2em] uppercase mb-6">
             Your Order
           </h3>

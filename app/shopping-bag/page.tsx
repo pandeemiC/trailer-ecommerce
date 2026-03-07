@@ -41,10 +41,10 @@ export default function ShoppingBag() {
   if (!mounted) return null;
 
   return (
-    <main className="h-screen pt-20">
-      <div className="flex h-full px-20">
+    <main className="h-screen pt-20 overflow-x-hidden">
+      <div className="flex flex-col md:flex-row h-full px-4 md:px-20">
         {/* LEFT  */}
-        <div className="flex-1 overflow-y-auto pt-10 pr-16">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden pt-6 md:pt-10 pr-0 md:pr-16">
           <h2 className="text-[13px] font-light tracking-widest uppercase mb-10">
             Shopping bag ({totalItems()})
           </h2>
@@ -63,23 +63,25 @@ export default function ShoppingBag() {
           ) : (
             <div className="flex flex-col divide-y divide-black/10">
               {items.map((item) => (
-                <div key={item.product.id} className="flex gap-6 py-6">
-                  <Image
-                    src={item.product.image}
-                    alt={item.product.name}
-                    width={240}
-                    height={160}
-                    className="object-cover"
-                  />
+                <div key={item.product.id} className="flex gap-4 md:gap-6 py-6 min-w-0">
+                  <div className="w-[100px] md:w-[240px] shrink-0">
+                    <Image
+                      src={item.product.image}
+                      alt={item.product.name}
+                      width={240}
+                      height={160}
+                      className="object-cover w-full h-auto"
+                    />
+                  </div>
 
                   {/* detaisl */}
-                  <div className="flex-1 flex flex-col justify-between">
+                  <div className="flex-1 min-w-0 flex flex-col justify-between">
                     {/* title */}
-                    <div className="flex justify-between">
-                      <h3 className="text-[13px] font-light tracking-widest uppercase">
+                    <div className="flex justify-between gap-2">
+                      <h3 className="text-[11px] md:text-[13px] font-light tracking-widest uppercase truncate">
                         {item.product.name}
                       </h3>
-                      <span className="text-[13px] font-light tracking-widest">
+                      <span className="text-[11px] md:text-[13px] font-light tracking-widest shrink-0">
                         ${(item.product.price * item.quantity).toFixed(2)}
                       </span>
                     </div>
@@ -133,7 +135,7 @@ export default function ShoppingBag() {
         </div>
 
         {/* RIGHT */}
-        <div className="w-[350px] sticky top-50 self-start pt-10 pl-10 border-l border-black/10">
+        <div className="w-full md:w-[350px] md:sticky md:top-50 md:self-start pt-6 md:pt-10 pl-0 md:pl-10 border-t md:border-t-0 md:border-l border-black/10">
           <div className="flex flex-col gap-6">
             <div className="flex justify-between">
               <span className="text-[11px] font-light tracking-widest uppercase">

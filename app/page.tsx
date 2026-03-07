@@ -67,7 +67,7 @@ export default async function Home() {
 
     const textBlock = (
       <div
-        className={`flex flex-col justify-center items-center ${textSide === "left" ? "mr-30" : "ml-30"} font-light text-sm tracking-widest`}
+        className={`flex flex-col justify-center items-center ${textSide === "left" ? "mr-4 md:mr-30" : "ml-4 md:ml-30"} font-light text-sm tracking-widest`}
       >
         {section.title && (
           <h1 className="font-bold text-2xl mb-10">{section.title}</h1>
@@ -106,7 +106,7 @@ export default async function Home() {
 
     return (
       <ShrinkingImageContainer>
-        <section className="flex justify-center items-center py-10 overflow-auto">
+        <section className="flex flex-col md:flex-row justify-center items-center py-10 px-4 md:px-0 overflow-auto gap-6 md:gap-0">
           {textSide === "left" ? (
             <>
               {textBlock}

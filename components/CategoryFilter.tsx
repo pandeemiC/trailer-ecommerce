@@ -40,7 +40,7 @@ export default function CategoryFilter({
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-1 bg-white border border-black/10 z-50 min-w-[200px]">
+        <div className="absolute left-0 top-full mt-1 bg-white border border-black/10 z-50 min-w-[200px]">
           <button
             onClick={() => handleCategory("")}
             className={`block w-full text-left px-4 py-3 text-[11px] font-light tracking-widest uppercase cursor-pointer hover:bg-black/5 transition-colors ${

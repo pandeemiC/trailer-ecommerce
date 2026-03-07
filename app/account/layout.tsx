@@ -23,7 +23,7 @@ export default async function AccountLayout({
         name={user.user_metadata?.full_name ?? user.user_metadata?.name ?? ""}
       />
       <SidebarInset>
-        <main className="px-10 py-6">{children}</main>
+        <main className="px-4 md:px-10 py-6">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );

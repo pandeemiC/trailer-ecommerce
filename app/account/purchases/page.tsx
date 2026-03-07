@@ -18,7 +18,7 @@ function getStatusStyle(status: string) {
 export default function AccountPurchases() {
   return (
     <div>
-      <h1 className="text-[22px] font-light tracking-[0.2em] uppercase mb-10">
+      <h1 className="text-[18px] md:text-[22px] font-light tracking-[0.2em] uppercase mb-10">
         My Purchases
       </h1>
 
@@ -36,8 +36,8 @@ export default function AccountPurchases() {
           {mockOrder.map((order) => (
             <div key={order.id} className="border border-gray-200">
               {/* contents */}
-              <div className="flex items-center justify-between px-6 py-4 bg-gray-50">
-                <div className="flex items-center gap-8">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-4 sm:px-6 py-4 bg-gray-50">
+                <div className="flex flex-wrap items-center gap-4 sm:gap-8">
                   <div>
                     <p className="text-[10px] text-gray-400">Order</p>
                     <p className="text-[12px] tracking-wider mt-1">
@@ -74,7 +74,7 @@ export default function AccountPurchases() {
                 {order.items.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-6 px-6 py-4"
+                    className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 px-4 sm:px-6 py-4"
                   >
                     <Image
                       src={item.image}

@@ -28,6 +28,7 @@ export default async function SearchPage({
     name: string;
     slug: string;
     category_id: string;
+    image: string | null;
   }[] = [];
   if (category) {
     const categoryData = await getCategoryBySlug(category);
@@ -38,7 +39,7 @@ export default async function SearchPage({
 
   return (
     <main>
-      <section className="view-all-container mt-50">
+      <section className="view-all-container mt-20 md:mt-50">
         {/* search + category filter + subcategory filter + sort bar */}
         <DropdownBar categories={categories} subcategories={subcategories} />
 
@@ -47,7 +48,7 @@ export default async function SearchPage({
           {products.length} Products
         </p>
 
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-5">
           {products.map((product) => (
             <Link key={product.id} href={`/search/${product.id}`}>
               <div className="group flex flex-col flex-wrap">

@@ -29,9 +29,9 @@ export default async function ProductPage({
   return (
     <main className="overflow-x-hidden">
       {productData && (
-        <section className="flex flex-row px-40 py-16 gap-10">
+        <section className="flex flex-col md:flex-row px-4 md:px-20 lg:px-40 py-8 md:py-16 gap-6 md:gap-10">
           {/* left hero */}
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             <Image
               src={productData.image}
               alt={productData.name}
@@ -42,7 +42,7 @@ export default async function ProductPage({
           </div>
 
           {/* right info */}
-          <div className="w-1/2 sticky top-0 h-screen flex flex-col justify-center px-20">
+          <div className="w-full md:w-1/2 md:sticky md:top-0 md:h-screen flex flex-col justify-center px-0 md:px-20">
             <div className="flex flex-col gap-4">
               <h1 className="product-page-title text-[15px] text-shadow-3xl/50">
                 {productData.name}
@@ -80,7 +80,7 @@ export default async function ProductPage({
         </section>
       )}
 
-      <hr className="mb-15 mx-40" />
+      <hr className="mb-15 mx-4 md:mx-20 lg:mx-40" />
 
       <GalleryLightbox images={galleryImages} productName={productData.name} />
     </main>
