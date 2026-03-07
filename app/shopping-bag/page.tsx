@@ -12,8 +12,6 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-import { createCheckoutSession } from "@/lib/checkout/actions";
-
 import useCartStore from "@/store/useCartStore";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -63,7 +61,10 @@ export default function ShoppingBag() {
           ) : (
             <div className="flex flex-col divide-y divide-black/10">
               {items.map((item) => (
-                <div key={item.product.id} className="flex gap-4 md:gap-6 py-6 min-w-0">
+                <div
+                  key={item.product.id}
+                  className="flex gap-4 md:gap-6 py-6 min-w-0"
+                >
                   <div className="w-[100px] md:w-[240px] shrink-0">
                     <Image
                       src={item.product.image}
