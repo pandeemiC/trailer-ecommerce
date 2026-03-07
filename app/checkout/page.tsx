@@ -116,6 +116,7 @@ export default function CheckoutPage() {
           image: item.product.image,
         })),
         { method: selected.name, cost: selected.cost },
+        email,
       );
       if (url) window.location.href = url;
     } catch (err) {
@@ -203,7 +204,6 @@ export default function CheckoutPage() {
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                {/* Sign In box */}
                 <button
                   onClick={() => setAuthMode("signin")}
                   className={`p-6 border text-left transition-colors ${
@@ -220,7 +220,6 @@ export default function CheckoutPage() {
                   </p>
                 </button>
 
-                {/* Guest box */}
                 <button
                   onClick={() => setAuthMode("guest")}
                   className={`p-6 border text-left transition-colors ${

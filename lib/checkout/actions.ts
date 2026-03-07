@@ -5,6 +5,7 @@ import { stripe } from "@/lib/stripe";
 export async function createCheckoutSession(
   items: { name: string; price: number; quantity: number; image: string }[],
   shipping: { method: string; cost: number },
+  email: string,
 ) {
   const origin = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -37,7 +38,11 @@ export async function createCheckoutSession(
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     line_items,
-    success_url: `${origin}/checkout/success`,
+    metadata: {
+      user_email: email,
+      shipping_method: shipping.method,
+    },
+    success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/checkout`,
   });
 
