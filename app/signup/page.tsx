@@ -95,7 +95,7 @@ export default function SignUpPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black cursor-pointer"
+                className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black dark:hover:text-white cursor-pointer"
               >
                 {showPassword ? (
                   <AiOutlineEye size={18} />
@@ -117,7 +117,7 @@ export default function SignUpPage() {
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black cursor-pointer"
+                className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black dark:hover:text-white cursor-pointer"
               >
                 {showConfirmPassword ? (
                   <AiOutlineEye size={18} />
@@ -133,24 +133,24 @@ export default function SignUpPage() {
           </form>
 
           <div className="flex items-center gap-4 my-8">
-            <hr className="flex-1 border-gray-300" />
+            <hr className="flex-1 border-gray-300 dark:border-neutral-700" />
             <span className="text-[10px] text-gray-400 uppercase tracking-wider">
               or
             </span>
-            <hr className="flex-1 border-gray-300" />
+            <hr className="flex-1 border-gray-300 dark:border-neutral-700" />
           </div>
 
           <div className="flex flex-col gap-3">
             <button
               onClick={() => handleOAuth("google")}
-              className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
+              className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
             >
               <FcGoogle size={16} />
               Continue with Google
             </button>
             <button
               onClick={() => handleOAuth("github")}
-              className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
+              className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
             >
               <FaGithub size={16} />
               Continue with Github

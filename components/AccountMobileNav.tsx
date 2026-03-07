@@ -12,7 +12,7 @@ export default function AccountMobileNav() {
 
   return (
     <div className="md:hidden fixed top-0 left-0 w-full z-20">
-      <div className="bg-white flex items-center justify-between px-5 py-3 border-b border-black/10">
+      <div className="bg-white dark:bg-neutral-800 flex items-center justify-between px-5 py-3 border-b border-black/10 dark:border-white/10">
         <div className="w-8" />
         <Link
           href="/"
@@ -29,11 +29,11 @@ export default function AccountMobileNav() {
           }}
           className="cursor-pointer"
         >
-          <PiSignOutLight size={20} className="text-black/50" />
+          <PiSignOutLight size={20} className="text-black/50 dark:text-white/50" />
         </button>
       </div>
 
-      <nav className="bg-white border-b border-black/10">
+      <nav className="bg-white dark:bg-neutral-800 border-b border-black/10 dark:border-white/10">
         <div className="flex overflow-x-auto no-scrollbar">
           {accountLinks.map((link) => (
             <Link
@@ -41,8 +41,8 @@ export default function AccountMobileNav() {
               href={link.href}
               className={`shrink-0 px-5 py-3 text-[11px] tracking-[0.2em] uppercase whitespace-nowrap transition-colors ${
                 pathname === link.href
-                  ? "text-black border-b-2 border-black font-medium"
-                  : "text-black/40 font-light"
+                  ? "text-black dark:text-white border-b-2 border-black dark:border-white font-medium"
+                  : "text-black/40 dark:text-white/40 font-light"
               }`}
             >
               {link.title}

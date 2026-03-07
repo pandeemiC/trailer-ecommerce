@@ -148,7 +148,7 @@ export default function CheckoutPage() {
 
   return (
     <main className="min-h-screen relative">
-      <div className="relative z-10 border-b border-black/10 py-6 flex justify-center">
+      <div className="relative z-10 border-b border-black/10 dark:border-white/10 py-6 flex justify-center">
         <Link href="/">
           <Image src={trailerLogo} alt="Trailer" width={180} height={120} />
         </Link>
@@ -171,13 +171,13 @@ export default function CheckoutPage() {
                 <div
                   className={`w-3 h-3 rounded-full border-2 transition-colors ${
                     i + 1 <= step
-                      ? "bg-black border-black"
-                      : "bg-white border-black/20"
+                      ? "bg-black dark:bg-white border-black dark:border-white"
+                      : "bg-white dark:bg-neutral-800 border-black/20 dark:border-white/20"
                   }`}
                 />
                 <span
                   className={`text-[9px] tracking-[0.2em] uppercase ${
-                    i + 1 <= step ? "text-black" : "text-black/30"
+                    i + 1 <= step ? "text-black dark:text-white" : "text-black/30 dark:text-white/30"
                   }`}
                 >
                   {label}
@@ -186,7 +186,7 @@ export default function CheckoutPage() {
               {i < 3 && (
                 <div
                   className={`flex-1 h-[1px] mx-3 mt-[-14px] ${
-                    i + 1 < step ? "bg-black" : "bg-black/15"
+                    i + 1 < step ? "bg-black dark:bg-white" : "bg-black/15 dark:bg-white/15"
                   }`}
                 />
               )}
@@ -208,14 +208,14 @@ export default function CheckoutPage() {
                   onClick={() => setAuthMode("signin")}
                   className={`p-6 border text-left transition-colors ${
                     authMode === "signin"
-                      ? "border-black"
-                      : "border-black/15 hover:border-black/30"
+                      ? "border-black dark:border-white"
+                      : "border-black/15 dark:border-white/15 hover:border-black/30 dark:hover:border-white/30"
                   }`}
                 >
                   <span className="text-[11px] tracking-[0.2em] uppercase font-light">
                     Sign In
                   </span>
-                  <p className="text-[10px] text-black/40 tracking-wider mt-1">
+                  <p className="text-[10px] text-black/40 dark:text-white/40 tracking-wider mt-1">
                     Use your existing account
                   </p>
                 </button>
@@ -224,14 +224,14 @@ export default function CheckoutPage() {
                   onClick={() => setAuthMode("guest")}
                   className={`p-6 border text-left transition-colors ${
                     authMode === "guest"
-                      ? "border-black"
-                      : "border-black/15 hover:border-black/30"
+                      ? "border-black dark:border-white"
+                      : "border-black/15 dark:border-white/15 hover:border-black/30 dark:hover:border-white/30"
                   }`}
                 >
                   <span className="text-[11px] tracking-[0.2em] uppercase font-light">
                     Continue as Guest
                   </span>
-                  <p className="text-[10px] text-black/40 tracking-wider mt-1">
+                  <p className="text-[10px] text-black/40 dark:text-white/40 tracking-wider mt-1">
                     No account needed
                   </p>
                 </button>
@@ -266,23 +266,23 @@ export default function CheckoutPage() {
                   </form>
 
                   <div className="flex items-center gap-4 my-6">
-                    <hr className="flex-1 border-gray-300" />
+                    <hr className="flex-1 border-gray-300 dark:border-neutral-700" />
                     <span className="text-[10px] text-gray-400 uppercase tracking-wider">
                       or
                     </span>
-                    <hr className="flex-1 border-gray-300" />
+                    <hr className="flex-1 border-gray-300 dark:border-neutral-700" />
                   </div>
 
                   <div className="flex flex-col gap-3">
                     <button
                       onClick={() => handleOAuth("google")}
-                      className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
+                      className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
                     >
                       <FcGoogle size={16} /> Continue with Google
                     </button>
                     <button
                       onClick={() => handleOAuth("github")}
-                      className="flex items-center justify-center gap-3 w-full border border-black py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
+                      className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
                     >
                       <FaGithub size={16} /> Continue with Github
                     </button>
@@ -424,14 +424,14 @@ export default function CheckoutPage() {
                       onClick={() => setShippingMethod(option.id)}
                       className={`p-5 border text-left transition-colors cursor-pointer ${
                         shippingMethod === option.id
-                          ? "border-black"
-                          : "border-black/15 hover:border-black/30"
+                          ? "border-black dark:border-white"
+                          : "border-black/15 dark:border-white/15 hover:border-black/30 dark:hover:border-white/30"
                       }`}
                     >
                       <span className="text-[10px] tracking-[0.2em] uppercase block">
                         {option.name}
                       </span>
-                      <span className="text-[10px] text-black/40 tracking-wider mt-1 block">
+                      <span className="text-[10px] text-black/40 dark:text-white/40 tracking-wider mt-1 block">
                         {option.cost === 0
                           ? "Free"
                           : `$${option.cost.toFixed(2)}`}{" "}
@@ -457,9 +457,9 @@ export default function CheckoutPage() {
 
               <div className="max-w-lg space-y-6">
                 {/* Personal */}
-                <div className="flex justify-between items-start border-b border-black/10 pb-4">
+                <div className="flex justify-between items-start border-b border-black/10 dark:border-white/10 pb-4">
                   <div>
-                    <h3 className="text-[10px] tracking-[0.2em] uppercase text-black/40 mb-1">
+                    <h3 className="text-[10px] tracking-[0.2em] uppercase text-black/40 dark:text-white/40 mb-1">
                       Contact
                     </h3>
                     <p className="text-[12px] tracking-wider">{email}</p>
@@ -472,18 +472,18 @@ export default function CheckoutPage() {
                   </button>
                 </div>
 
-                <div className="flex justify-between items-start border-b border-black/10 pb-4">
+                <div className="flex justify-between items-start border-b border-black/10 dark:border-white/10 pb-4">
                   <div>
-                    <h3 className="text-[10px] tracking-[0.2em] uppercase text-black/40 mb-1">
+                    <h3 className="text-[10px] tracking-[0.2em] uppercase text-black/40 dark:text-white/40 mb-1">
                       Shipping Address
                     </h3>
                     <p className="text-[12px] tracking-wider">
                       {firstName} {lastName}
                     </p>
-                    <p className="text-[12px] tracking-wider text-black/60">
+                    <p className="text-[12px] tracking-wider text-black/60 dark:text-white/60">
                       {street}
                     </p>
-                    <p className="text-[12px] tracking-wider text-black/60">
+                    <p className="text-[12px] tracking-wider text-black/60 dark:text-white/60">
                       {city}, {state} {zip}
                     </p>
                   </div>
@@ -495,9 +495,9 @@ export default function CheckoutPage() {
                   </button>
                 </div>
 
-                <div className="flex justify-between items-start border-b border-black/10 pb-4">
+                <div className="flex justify-between items-start border-b border-black/10 dark:border-white/10 pb-4">
                   <div>
-                    <h3 className="text-[10px] tracking-[0.2em] uppercase text-black/40 mb-1">
+                    <h3 className="text-[10px] tracking-[0.2em] uppercase text-black/40 dark:text-white/40 mb-1">
                       Shipping Method
                     </h3>
                     <p className="text-[12px] tracking-wider">
@@ -522,7 +522,7 @@ export default function CheckoutPage() {
                   {items.map((item) => (
                     <div
                       key={item.product.id}
-                      className="flex gap-4 py-3 border-b border-black/5"
+                      className="flex gap-4 py-3 border-b border-black/5 dark:border-white/5"
                     >
                       <Image
                         src={item.product.image}
@@ -536,7 +536,7 @@ export default function CheckoutPage() {
                           <p className="text-[11px] tracking-wider uppercase">
                             {item.product.name}
                           </p>
-                          <p className="text-[10px] text-black/40 tracking-wider">
+                          <p className="text-[10px] text-black/40 dark:text-white/40 tracking-wider">
                             Qty: {item.quantity}
                           </p>
                         </div>
@@ -550,7 +550,7 @@ export default function CheckoutPage() {
 
                 <div className="space-y-2 pt-2">
                   <div className="flex justify-between">
-                    <span className="text-[10px] tracking-wider text-black/50 uppercase">
+                    <span className="text-[10px] tracking-wider text-black/50 dark:text-white/50 uppercase">
                       Subtotal
                     </span>
                     <span className="text-[11px] tracking-wider">
@@ -558,7 +558,7 @@ export default function CheckoutPage() {
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[10px] tracking-wider text-black/50 uppercase">
+                    <span className="text-[10px] tracking-wider text-black/50 dark:text-white/50 uppercase">
                       Shipping
                     </span>
                     <span className="text-[11px] tracking-wider">
@@ -567,7 +567,7 @@ export default function CheckoutPage() {
                         : `$${shippingCost.toFixed(2)}`}
                     </span>
                   </div>
-                  <div className="flex justify-between pt-2 border-t border-black/10">
+                  <div className="flex justify-between pt-2 border-t border-black/10 dark:border-white/10">
                     <span className="text-[11px] tracking-[0.2em] uppercase">
                       Total
                     </span>
@@ -611,7 +611,7 @@ export default function CheckoutPage() {
                   <p className="text-[10px] tracking-wider uppercase">
                     {item.product.name}
                   </p>
-                  <p className="text-[10px] text-black/40 tracking-wider">
+                  <p className="text-[10px] text-black/40 dark:text-white/40 tracking-wider">
                     Qty: {item.quantity}
                   </p>
                   <p className="text-[10px] tracking-wider">
@@ -622,9 +622,9 @@ export default function CheckoutPage() {
             ))}
           </div>
 
-          <div className="border-t border-black/10 mt-6 pt-4 space-y-2">
+          <div className="border-t border-black/10 dark:border-white/10 mt-6 pt-4 space-y-2">
             <div className="flex justify-between">
-              <span className="text-[10px] tracking-wider text-black/50 uppercase">
+              <span className="text-[10px] tracking-wider text-black/50 dark:text-white/50 uppercase">
                 Subtotal
               </span>
               <span className="text-[10px] tracking-wider">
@@ -632,14 +632,14 @@ export default function CheckoutPage() {
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[10px] tracking-wider text-black/50 uppercase">
+              <span className="text-[10px] tracking-wider text-black/50 dark:text-white/50 uppercase">
                 Shipping
               </span>
               <span className="text-[10px] tracking-wider">
                 {shippingCost === 0 ? "Free" : `$${shippingCost.toFixed(2)}`}
               </span>
             </div>
-            <div className="flex justify-between pt-2 border-t border-black/10">
+            <div className="flex justify-between pt-2 border-t border-black/10 dark:border-white/10">
               <span className="text-[11px] tracking-[0.2em] uppercase">
                 Total
               </span>

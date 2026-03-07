@@ -79,11 +79,11 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.22 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.28 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.28 0 0);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
@@ -102,7 +102,7 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.24 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
@@ -129,7 +129,7 @@
   }
 
   .product-label {
-    @apply mt-3 text-black/70 font-light;
+    @apply mt-3 text-black/70 dark:text-white/70 font-light;
   }
 
   .product-title {
@@ -149,29 +149,38 @@
   }
 
   .product-page-description {
-    @apply text-[12px] uppercase tracking-widest text-black/80 font-light;
+    @apply text-[12px] uppercase tracking-widest text-black/80 dark:text-white/80 font-light;
   }
 
   .product-page-extras {
-    @apply text-[12px] uppercase tracking-widest text-black font-light cursor-pointer;
+    @apply text-[12px] uppercase tracking-widest text-black dark:text-white font-light cursor-pointer;
   }
 
   .add-to-cart-btn {
-    @apply w-full py-3 bg-white border border-black uppercase text-[11px] tracking-widest font-light hover:bg-gray-100 transition-colors cursor-pointer;
+    @apply w-full py-3 bg-white dark:bg-white/10 border border-black dark:border-white/20 dark:text-white uppercase text-[11px] tracking-widest font-light hover:bg-gray-100 dark:hover:bg-white/20 transition-colors cursor-pointer;
   }
 
   .add-to-cart-btn-reverse {
-    @apply w-full py-3 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer;
+    @apply w-full py-3 text-white dark:text-black bg-black dark:bg-white border border-black dark:border-white uppercase text-[11px] tracking-widest font-light hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer;
   }
 
   .auth-input {
-    @apply w-full border-b border-black py-3 text-sm tracking-wider outline-none placeholder:text-gray-400 placeholder:uppercase placeholder:text-[11px] placeholder:tracking-widest;
+    @apply w-full border-b border-black dark:border-white/30 py-3 text-sm tracking-wider outline-none dark:text-white dark:bg-transparent placeholder:text-gray-400 placeholder:uppercase placeholder:text-[11px] placeholder:tracking-widest;
   }
 
   .auth-btn {
-    @apply w-full bg-black text-white py-3.5 cursor-pointer text-[11px] tracking-[0.3em] uppercase mt-2 hover:bg-gray-900 transition-colors disabled:opacity-50;
+    @apply w-full bg-black dark:bg-white text-white dark:text-black py-3.5 cursor-pointer text-[11px] tracking-[0.3em] uppercase mt-2 hover:bg-gray-900 dark:hover:bg-gray-100 transition-colors disabled:opacity-50;
   }
 
+}
+
+.watermark-text {
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.15);
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .watermark-text {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
 }
 
 .no-scrollbar::-webkit-scrollbar {

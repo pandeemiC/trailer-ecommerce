@@ -158,7 +158,7 @@ export default function GalleryLightbox({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
           showCloseButton={false}
-          className="!fixed !inset-0 !max-w-none !w-full !h-full !translate-x-0 !translate-y-0 !top-0 !left-0 !rounded-none !border-none !bg-white/95 !p-0 !gap-0 !overflow-hidden"
+          className="!fixed !inset-0 !max-w-none !w-full !h-full !translate-x-0 !translate-y-0 !top-0 !left-0 !rounded-none !border-none !bg-white/95 dark:!bg-neutral-800/95 !p-0 !gap-0 !overflow-hidden"
         >
           <VisuallyHidden.Root>
             <DialogTitle>{productName} Gallery</DialogTitle>
@@ -182,7 +182,7 @@ export default function GalleryLightbox({
                   }}
                   className={`cursor-pointer transition-opacity ${
                     activeIndex === index
-                      ? "opacity-100 ring-1 ring-black"
+                      ? "opacity-100 ring-1 ring-black dark:ring-white"
                       : "opacity-40 hover:opacity-70"
                   }`}
                   onClick={() => handleThumbClick(index)}
@@ -248,14 +248,14 @@ export default function GalleryLightbox({
 
             <div
               ref={mobileThumbsRef}
-              className="h-[80px] shrink-0 overflow-x-auto flex items-center gap-2 px-3 bg-white/90 border-t border-black/10"
+              className="h-[80px] shrink-0 overflow-x-auto flex items-center gap-2 px-3 bg-white/90 dark:bg-neutral-800/90 border-t border-black/10 dark:border-white/10"
             >
               {images.map((img, index) => (
                 <div
                   key={img.id}
                   className={`cursor-pointer transition-opacity shrink-0 ${
                     activeIndex === index
-                      ? "opacity-100 ring-1 ring-black"
+                      ? "opacity-100 ring-1 ring-black dark:ring-white"
                       : "opacity-40"
                   }`}
                   onClick={() => handleMobileThumbClick(index)}

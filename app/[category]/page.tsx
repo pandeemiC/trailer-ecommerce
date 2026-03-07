@@ -45,7 +45,7 @@ function renderTile(
         href={`/${categorySlug}/${tile.slug}`}
         className={`${colClass} relative ${aspectClass} overflow-hidden group bg-gray-100 flex items-end p-6 md:p-8`}
       >
-        <span className="text-black/60 text-[13px] md:text-[15px] tracking-[0.3em] uppercase font-normal">
+        <span className="text-black/60 dark:text-white text-[13px] md:text-[15px] tracking-[0.3em] uppercase font-normal">
           {tile.name}
         </span>
       </Link>
@@ -100,7 +100,7 @@ function renderBentoRows(
                   <li key={sc.id}>
                     <Link
                       href={`/${categorySlug}/${sc.slug}`}
-                      className="text-[10px] md:text-[12px] tracking-[0.25em] uppercase font-light hover:tracking-[0.4em] transition-all duration-300 text-black/60 hover:text-black text-center"
+                      className="text-[10px] md:text-[12px] tracking-[0.25em] uppercase font-light hover:tracking-[0.4em] transition-all duration-300 text-black/60 dark:text-white hover:text-black text-center"
                     >
                       {sc.name}
                     </Link>
@@ -109,7 +109,7 @@ function renderBentoRows(
                 <li>
                   <Link
                     href={`/search?category=${categorySlug}`}
-                    className="text-[10px] md:text-[12px] tracking-[0.25em] uppercase font-light hover:tracking-[0.4em] transition-all duration-300 text-black/60 hover:text-black border-b border-black/20 pb-1 inline-block"
+                    className="text-[10px] md:text-[12px] dark:text-white tracking-[0.25em] uppercase font-light hover:tracking-[0.4em] transition-all duration-300 text-black/60 hover:text-black border-b border-black/20 pb-1 inline-block"
                   >
                     View All
                   </Link>

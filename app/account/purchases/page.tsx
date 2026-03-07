@@ -13,13 +13,13 @@ type OrderItem = {
 function getStatusStyle(status: string) {
   switch (status) {
     case "Delivered":
-      return "bg-green-50 text-green-700";
+      return "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400";
     case "In Transit":
-      return "bg-blue-50 text-blue-700";
+      return "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400";
     case "Processing":
-      return "bg-yellow-50 text-yellow-700";
+      return "bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400";
     default:
-      return "bg-gray-50 text-gray-700";
+      return "bg-gray-50 text-gray-700 dark:bg-neutral-800 dark:text-gray-400";
   }
 }
 
@@ -51,7 +51,7 @@ export default async function AccountPurchases() {
             You don&apos;t have any orders yet.
           </p>
           <Link href="/">
-            <button className="w-[200px] py-3 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer">
+            <button className="w-[200px] py-3 text-white dark:text-black bg-black dark:bg-white border border-black dark:border-white uppercase text-[11px] tracking-widest font-light hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer">
               Continue Shopping
             </button>
           </Link>
@@ -59,9 +59,9 @@ export default async function AccountPurchases() {
       ) : (
         <div className="flex flex-col gap-8">
           {orders.map((order) => (
-            <div key={order.id} className="border border-gray-200">
+            <div key={order.id} className="border border-gray-200 dark:border-neutral-700">
               {/* contents */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-4 sm:px-6 py-4 bg-gray-50">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-4 sm:px-6 py-4 bg-gray-50 dark:bg-neutral-800">
                 <div className="flex flex-wrap items-center gap-4 sm:gap-8">
                   <div>
                     <p className="text-[10px] text-gray-400">Order</p>
@@ -99,7 +99,7 @@ export default async function AccountPurchases() {
                 </span>
               </div>
 
-              <div className="divide-y divide-gray-100">
+              <div className="divide-y divide-gray-100 dark:divide-neutral-800">
                 {order.order_items.map((item: OrderItem, index: number) => (
                   <div
                     key={index}

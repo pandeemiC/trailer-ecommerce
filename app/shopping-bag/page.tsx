@@ -49,17 +49,17 @@ export default function ShoppingBag() {
 
           {items.length === 0 ? (
             <div className="flex flex-col items-center mt-20 gap-5">
-              <p className="text-[11px] font-light tracking-widest uppercase text-black/50">
+              <p className="text-[11px] font-light tracking-widest uppercase text-black/50 dark:text-white/50">
                 Your shopping bag is empty
               </p>
               <Link href="/">
-                <button className="w-[200px] py-3 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer">
+                <button className="w-[200px] py-3 text-white dark:text-black bg-black dark:bg-white border border-black dark:border-white uppercase text-[11px] tracking-widest font-light hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer">
                   Continue Shopping
                 </button>
               </Link>
             </div>
           ) : (
-            <div className="flex flex-col divide-y divide-black/10">
+            <div className="flex flex-col divide-y divide-black/10 dark:divide-white/10">
               {items.map((item) => (
                 <div
                   key={item.product.id}
@@ -88,10 +88,10 @@ export default function ShoppingBag() {
                     </div>
 
                     {/* qty */}
-                    <p className="text-[11px] font-light uppercase text-black/30">
+                    <p className="text-[11px] font-light uppercase text-black/30 dark:text-white/30">
                       Trailer BOFA Collection
                     </p>
-                    <p className="text-[10px] font-light tracking-widest text-black/50 uppercase">
+                    <p className="text-[10px] font-light tracking-widest text-black/50 dark:text-white/50 uppercase">
                       Qty: {item.quantity}
                     </p>
 
@@ -99,12 +99,12 @@ export default function ShoppingBag() {
                     <div className="flex items-center gap-4">
                       <button
                         onClick={() => setConfirmRemoveId(item.product.id)}
-                        className="text-[10px] font-light tracking-widest uppercase underline underline-offset-4 cursor-pointer hover:text-black/50 transition-colors"
+                        className="text-[10px] font-light tracking-widest uppercase underline underline-offset-4 cursor-pointer hover:text-black/50 dark:hover:text-white/50 transition-colors"
                       >
                         Remove
                       </button>
 
-                      <div className="flex items-center border border-black/15">
+                      <div className="flex items-center border border-black/15 dark:border-white/15">
                         <button
                           onClick={() => {
                             if (item.quantity === 1) {
@@ -113,7 +113,7 @@ export default function ShoppingBag() {
                               decreaseQuantity(item.product.id);
                             }
                           }}
-                          className="px-3 py-1 text-[11px] font-light cursor-pointer hover:bg-black/5 transition-colors"
+                          className="px-3 py-1 text-[11px] font-light cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
                         >
                           -
                         </button>
@@ -122,7 +122,7 @@ export default function ShoppingBag() {
                         </span>
                         <button
                           onClick={() => addToCart(item.product)}
-                          className="px-3 py-1 text-[11px] font-light cursor-pointer hover:bg-black/5 transition-colors"
+                          className="px-3 py-1 text-[11px] font-light cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
                         >
                           +
                         </button>
@@ -136,7 +136,7 @@ export default function ShoppingBag() {
         </div>
 
         {/* RIGHT */}
-        <div className="w-full md:w-[350px] md:sticky md:top-50 md:self-start pt-6 md:pt-10 pl-0 md:pl-10 border-t md:border-t-0 md:border-l border-black/10">
+        <div className="w-full md:w-[350px] md:sticky md:top-50 md:self-start pt-6 md:pt-10 pl-0 md:pl-10 border-t md:border-t-0 md:border-l border-black/10 dark:border-white/10">
           <div className="flex flex-col gap-6">
             <div className="flex justify-between">
               <span className="text-[11px] font-light tracking-widest uppercase">
@@ -152,7 +152,7 @@ export default function ShoppingBag() {
                 className={
                   totalItems() === 0 || loading
                     ? "w-full py-3.5 text-white bg-gray-400 border border-gray-400 uppercase text-[11px] tracking-widest font-light cursor-not-allowed transition-colors"
-                    : "w-full py-3.5 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer"
+                    : "w-full py-3.5 text-white dark:text-black bg-black dark:bg-white border border-black dark:border-white uppercase text-[11px] tracking-widest font-light hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer"
                 }
               >
                 {loading ? "Redirecting..." : "Proceed To Checkout"}
@@ -374,7 +374,7 @@ export default function ShoppingBag() {
             </div>
 
             {/* faq */}
-            <div className="flex flex-col gap-4 mt-1 border-t border-black/10 pt-6">
+            <div className="flex flex-col gap-4 mt-1 border-t border-black/10 dark:border-white/10 pt-6">
               <details className="group">
                 <summary className="text-[10px] font-light tracking-widest uppercase cursor-pointer list-none flex justify-between items-center">
                   Shipping & Returns
@@ -382,7 +382,7 @@ export default function ShoppingBag() {
                     +
                   </span>
                 </summary>
-                <p className="text-[10px] font-light tracking-wider text-black/50 mt-3 leading-5">
+                <p className="text-[10px] font-light tracking-wider text-black/50 dark:text-white/50 mt-3 leading-5">
                   Free standard shipping on all orders. Returns accepted within
                   30 days of purchase.
                 </p>
@@ -395,7 +395,7 @@ export default function ShoppingBag() {
                     +
                   </span>
                 </summary>
-                <p className="text-[10px] font-light tracking-wider text-black/50 mt-3 leading-5">
+                <p className="text-[10px] font-light tracking-wider text-black/50 dark:text-white/50 mt-3 leading-5">
                   We accept Visa, Mastercard, American Express, PayPal, and
                   Apple Pay.
                 </p>
@@ -408,7 +408,7 @@ export default function ShoppingBag() {
                     +
                   </span>
                 </summary>
-                <p className="text-[10px] font-light tracking-wider text-black/50 mt-3 leading-5">
+                <p className="text-[10px] font-light tracking-wider text-black/50 dark:text-white/50 mt-3 leading-5">
                   Honestly I couldn&apos;t help you if I wanted to but check out
                   the amazing Stripe feature though.
                 </p>

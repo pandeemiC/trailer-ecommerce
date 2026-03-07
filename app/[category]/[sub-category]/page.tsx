@@ -46,11 +46,7 @@ export default async function SubCategoryPage({
           {subcategory_data.name.split("").map((letter: string, i: number) => (
             <span
               key={i}
-              className="text-[clamp(80px,9vw,130px)] font-extralight uppercase leading-none tracking-widest"
-              style={{
-                WebkitTextStroke: "1px rgba(0, 0, 0, 0.15)",
-                WebkitTextFillColor: "transparent",
-              }}
+              className="text-[clamp(80px,9vw,130px)] font-extralight uppercase leading-none tracking-widest watermark-text"
             >
               {letter}
             </span>

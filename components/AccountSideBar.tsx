@@ -113,7 +113,7 @@ export default function AccountSideBar({
       </SidebarFooter>
       <button
         onClick={toggleSidebar}
-        className="absolute top-1/2 -right-3 -translate-y-1/2 z-50 bg-white border border-gray-200 rounded-full w-6 h-6 flex items-center justify-center shadow-sm hover:bg-gray-100 cursor-pointer"
+        className="absolute top-1/2 -right-3 -translate-y-1/2 z-50 bg-white dark:bg-neutral-700 border border-gray-200 dark:border-neutral-600 rounded-full w-6 h-6 flex items-center justify-center shadow-sm hover:bg-gray-100 dark:hover:bg-neutral-600 cursor-pointer"
       >
         {state === "expanded" ? (
           <PiCaretDoubleLeftLight size={12} />

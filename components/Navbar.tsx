@@ -11,6 +11,7 @@ import SearchBar from "@/components/SearchBar";
 import CartSideBar from "./CartSideBar";
 
 import { PiUserCircleLight } from "react-icons/pi";
+import DarkModeToggle from "./DarkModeToggle";
 
 const Navbar = () => {
   const [user, setUser] = useState<null | object>(null);
@@ -55,6 +56,7 @@ const Navbar = () => {
   const isAdminPage = pathname.startsWith("/admin");
   const isAdminLogin = pathname === "/admin-login";
   const isCheckoutPage = pathname.startsWith("/checkout");
+  const isSearchPage = pathname.startsWith("/search");
   const isCatPage = /^\/[^/]+$/.test(pathname) && !isShoppingBag && !isAuthPage;
 
   if (
@@ -67,7 +69,7 @@ const Navbar = () => {
     return null;
 
   return (
-    <nav className="fixed top-0 w-full z-30 bg-white md:bg-transparent shadow-sm md:shadow-none">
+    <nav className="fixed top-0 w-full z-30 bg-white dark:bg-neutral-800 md:bg-transparent md:dark:bg-transparent shadow-sm md:shadow-none">
       <div className="flex md:hidden items-center justify-between px-3 py-3">
         <div className="flex-1 flex justify-start">
           <SideBar />
@@ -78,7 +80,7 @@ const Navbar = () => {
           </span>
         </Link>
         <div className="flex-1 flex justify-end">
-          <div className="bg-white px-3 py-1 rounded-md">
+          <div className="bg-white dark:bg-neutral-700 px-3 py-1 rounded-md">
             <CartSideBar />
           </div>
         </div>
@@ -88,7 +90,7 @@ const Navbar = () => {
         <div className="flex items-center gap-5">
           <SideBar />
           <Link href="/">
-            {isShoppingBag || isCatPage ? (
+            {isShoppingBag || isCatPage || isSearchPage ? (
               <span className="fixed top-5.5 left-50 z-30 text-[34px] font-medium tracking-[0.35em] uppercase">
                 TRAILER
               </span>
@@ -107,7 +109,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-2 fixed top-5 right-8 z-30">
           <SearchBar />
-          <div className="flex items-center gap-6 bg-white px-4 py-1 rounded-md">
+          <div className="flex items-center gap-6 bg-white dark:bg-neutral-700 px-4 py-1 rounded-md">
             {user ? (
               <div className="relative" ref={dropdownRef}>
                 <button
@@ -117,11 +119,11 @@ const Navbar = () => {
                   <PiUserCircleLight size={20} />
                 </button>
                 {dropdownOpen && (
-                  <ul className="absolute top-8 right-0 bg-white border border-gray-200 shadow-md py-2 min-w-[180px]">
+                  <ul className="absolute top-8 right-0 bg-white dark:bg-neutral-700 border border-gray-200 dark:border-neutral-600 shadow-md py-2 min-w-[180px]">
                     <li>
                       <Link
                         href="/account/purchases"
-                        className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100"
+                        className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600"
                       >
                         My Purchases
                       </Link>
@@ -129,7 +131,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         href="/account/details"
-                        className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100"
+                        className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600"
                       >
                         My Details
                       </Link>
@@ -137,14 +139,14 @@ const Navbar = () => {
                     <li>
                       <Link
                         href="/account/settings"
-                        className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100"
+                        className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600"
                       >
                         Settings
                       </Link>
                     </li>
                     <li>
                       <button
-                        className="w-full text-left px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100 cursor-pointer"
+                        className="w-full text-left px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600 cursor-pointer"
                         onClick={async () => {
                           await supabase.auth.signOut();
                           setUser(null);
@@ -160,7 +162,7 @@ const Navbar = () => {
               </div>
             ) : (
               <Link
-                className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
+                className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black dark:border-white transition-all duration-100"
                 href="/login"
               >
                 Log In
@@ -168,11 +170,12 @@ const Navbar = () => {
             )}
 
             <Link
-              className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black transition-all duration-100"
+              className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black dark:border-white transition-all duration-100"
               href="/account/help"
             >
               Help
             </Link>
+            <DarkModeToggle />
             <CartSideBar />
           </div>
         </div>

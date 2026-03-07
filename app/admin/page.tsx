@@ -45,7 +45,7 @@ export default async function AdminDashboard() {
           <Link
             key={stat.label}
             href={stat.href}
-            className="border border-gray-200 p-6 hover:border-black transition-colors"
+            className="border border-gray-200 dark:border-neutral-700 dark:bg-neutral-800 p-6 hover:border-black dark:hover:border-white transition-colors"
           >
             <div className="flex items-center justify-between mb-4">
               <span className="text-[11px] tracking-widest uppercase text-gray-400">
@@ -66,15 +66,15 @@ export default async function AdminDashboard() {
           </h2>
           <Link
             href="/admin/products"
-            className="text-[11px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors"
+            className="text-[11px] tracking-widest uppercase text-gray-400 hover:text-black dark:hover:text-white transition-colors"
           >
             View All
           </Link>
         </div>
 
-        <div className="border border-gray-200">
+        <div className="border border-gray-200 dark:border-neutral-700">
           {/* table header */}
-          <div className="grid grid-cols-[60px_1fr_1fr_100px] gap-4 px-4 py-3 border-b border-gray-200 bg-gray-50">
+          <div className="grid grid-cols-[60px_1fr_1fr_100px] gap-4 px-4 py-3 border-b border-gray-200 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800">
             <span className="text-[10px] tracking-widest uppercase text-gray-400">
               Image
             </span>
@@ -95,7 +95,7 @@ export default async function AdminDashboard() {
               <Link
                 key={product.id}
                 href={`/admin/products/${product.id}/edit`}
-                className="grid grid-cols-[60px_1fr_1fr_100px] gap-4 px-4 items-center border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"
+                className="grid grid-cols-[60px_1fr_1fr_100px] gap-4 px-4 items-center border-b border-gray-100 dark:border-neutral-700 last:border-b-0 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
               >
                 <div className="w-[40px] h-[50px] relative">
                   <Image

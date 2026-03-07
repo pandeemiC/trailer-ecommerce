@@ -78,7 +78,7 @@ const SideBar = () => {
         >
           {/* top line */}
           <span
-            className={`block w-[40px] md:w-[70px] h-[2px] bg-black transition-all duration-300 ease-in-out ${
+            className={`block w-[40px] md:w-[70px] h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out ${
               isOpen
                 ? "rotate-45 translate-y-[14px] md:translate-y-[22px]"
                 : "rotate-0 translate-y-0"
@@ -86,13 +86,13 @@ const SideBar = () => {
           />
           {/* middle line */}
           <span
-            className={`block w-[40px] md:w-[70px] my-[12px] md:my-[20px] h-[2px] bg-black transition-all duration-300 ease-in-out ${
+            className={`block w-[40px] md:w-[70px] my-[12px] md:my-[20px] h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out ${
               isOpen ? "opacity-0" : "opacity-100"
             }`}
           />
           {/* bottom line */}
           <span
-            className={`block w-[40px] md:w-[70px] h-[2px] bg-black transition-all duration-300 ease-in-out ${
+            className={`block w-[40px] md:w-[70px] h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out ${
               isOpen
                 ? "-rotate-45 -translate-y-[14px] md:-translate-y-[22px]"
                 : "rotate-0 translate-y-0"
@@ -104,20 +104,20 @@ const SideBar = () => {
       {(isOpen || isAnimating) && (
         <div>
           <div
-            className={`fixed inset-0 bg-white/70 z-0 transition-opacity duration-800 ease-in-out ${
+            className={`fixed inset-0 bg-white/70 dark:bg-black/70 z-0 transition-opacity duration-800 ease-in-out ${
               isOpen && !isAnimating ? "opacity-100" : "opacity-0"
             }`}
             onClick={handleToggle}
           ></div>
 
           <div
-            className={`fixed top-0 left-0 md:h-[100px] 2xl:h-[150px] bg-white border-none transition-opacity duration-800 ease-in-out z-20 w-full ${
+            className={`fixed top-0 left-0 md:h-[100px] 2xl:h-[150px] bg-white dark:bg-neutral-800 border-none transition-opacity duration-800 ease-in-out z-20 w-full ${
               isOpen && !isAnimating ? "opacity-100" : "opacity-0"
             }`}
           ></div>
 
           <div
-            className={`fixed top-0 left-0 h-full bg-white transition-opacity duration-800 ease-in-out z-20 ${
+            className={`fixed top-0 left-0 h-full bg-white dark:bg-neutral-800 transition-opacity duration-800 ease-in-out z-20 ${
               isOpen && !isAnimating ? "opacity-100" : "opacity-0"
             } w-full md:w-[600px] 2xl:w-[650px] flex`}
           >
@@ -130,7 +130,7 @@ const SideBar = () => {
                       onClick={() => handleCategoryClick(cat.slug)}
                       className={`uppercase text-lg font-light cursor-pointer transition-colors duration-300 ${
                         activeCategory === cat.slug
-                          ? "border-b-1 border-black"
+                          ? "border-b-1 border-black dark:border-white"
                           : ""
                       }`}
                     >
@@ -140,7 +140,7 @@ const SideBar = () => {
                 ))}
               </ul>
 
-              <div className="md:hidden mt-14 pt-8 border-t border-black/10 w-full flex flex-col items-center gap-5">
+              <div className="md:hidden mt-14 pt-8 border-t border-black/10 dark:border-white/10 w-full flex flex-col items-center gap-5">
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
@@ -159,7 +159,7 @@ const SideBar = () => {
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
                     placeholder="Search"
-                    className="w-full border-b border-black/20 pb-2 text-lg font-light tracking-widest uppercase outline-none placeholder:text-black/30"
+                    className="w-full border-b border-black/20 dark:border-white/20 pb-2 text-lg font-light tracking-widest uppercase outline-none bg-transparent placeholder:text-black/30 dark:placeholder:text-white/30"
                   />
                 </form>
                 {user ? (
@@ -167,7 +167,7 @@ const SideBar = () => {
                     <Link
                       href="/account/purchases"
                       onClick={handleToggle}
-                      className="text-lg font-light tracking-widest uppercase text-black/50 hover:text-black transition-colors"
+                      className="text-lg font-light tracking-widest uppercase text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors"
                     >
                       My Account
                     </Link>
@@ -188,7 +188,7 @@ const SideBar = () => {
                   <Link
                     href="/login"
                     onClick={handleToggle}
-                    className="text-lg font-light tracking-widest uppercase text-black/50 hover:text-black transition-colors"
+                    className="text-lg font-light tracking-widest uppercase text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors"
                   >
                     Log In
                   </Link>
@@ -196,7 +196,7 @@ const SideBar = () => {
                 <Link
                   href="/account/help"
                   onClick={handleToggle}
-                  className="text-lg font-light tracking-widest uppercase text-black/50 hover:text-black transition-colors"
+                  className="text-lg font-light tracking-widest uppercase text-black/50 dark:text-white/50 hover:text-black dark:hover:text-white transition-colors"
                 >
                   Help
                 </Link>
@@ -228,7 +228,7 @@ const SideBar = () => {
                       <li className="mb-5 font-light tracking-widest text-md">
                         <Link
                           href={`/${activeCat.slug}`}
-                          className="hover:border-b-1 border-black p-1"
+                          className="hover:border-b-1 border-black dark:border-white p-1"
                           onClick={handleToggle}
                         >
                           OVERVIEW
@@ -237,7 +237,7 @@ const SideBar = () => {
                       <li className="mb-5 font-light tracking-widest text-md">
                         <Link
                           href={`/search?category=${activeCat.slug}`}
-                          className="hover:border-b-1 border-black p-1"
+                          className="hover:border-b-1 border-black dark:border-white p-1"
                           onClick={handleToggle}
                         >
                           VIEW ALL
@@ -250,7 +250,7 @@ const SideBar = () => {
                         >
                           <Link
                             href={`/${activeCat.slug}/${sub.slug}`}
-                            className="hover:border-b-1 border-black p-1"
+                            className="hover:border-b-1 border-black dark:border-white p-1"
                             onClick={handleToggle}
                           >
                             {sub.name}

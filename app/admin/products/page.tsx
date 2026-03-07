@@ -13,7 +13,7 @@ export default async function AdminProductsPage() {
         </h1>
         <Link
           href="/admin/products/new"
-          className="px-6 py-3 text-white bg-black border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors"
+          className="px-6 py-3 text-white dark:text-black bg-black dark:bg-white border-black dark:border-white uppercase text-[11px] tracking-widest font-light hover:bg-black/80 dark:hover:bg-white/80 transition-colors"
         >
           Add Product
         </Link>

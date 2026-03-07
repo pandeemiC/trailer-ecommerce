@@ -229,7 +229,7 @@ export default function CategoryManager({
             <button
               type="submit"
               disabled={loading || uploading || !newCategoryName.trim()}
-              className="px-4 py-2 bg-black text-white text-[11px] tracking-widest uppercase hover:bg-black/80 transition-colors cursor-pointer disabled:opacity-50"
+              className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black text-[11px] tracking-widest uppercase hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer disabled:opacity-50"
             >
               Add
             </button>
@@ -246,7 +246,7 @@ export default function CategoryManager({
                 <button
                   type="button"
                   onClick={() => setNewCategoryImage(null)}
-                  className="absolute -top-1 -right-1 bg-white rounded-full w-4 h-4 flex items-center justify-center shadow cursor-pointer"
+                  className="absolute -top-1 -right-1 bg-white dark:bg-neutral-700 rounded-full w-4 h-4 flex items-center justify-center shadow cursor-pointer"
                 >
                   <PiXLight size={10} />
                 </button>
@@ -256,7 +256,7 @@ export default function CategoryManager({
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={uploading}
-                className="flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-gray-400 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
               >
                 <PiUploadSimpleLight size={14} />
                 {uploading ? "Uploading..." : "Add Image"}
@@ -279,12 +279,12 @@ export default function CategoryManager({
         </form>
 
         {/* cat list */}
-        <div className="border border-gray-200">
+        <div className="border border-gray-200 dark:border-neutral-700">
           {categories.length > 0 ? (
             categories.map((cat) => (
               <div
                 key={cat.id}
-                className={`flex items-center justify-between px-4 py-3 border-b border-gray-100 last:border-b-0 transition-colors ${selectedCategoryId === cat.id ? "bg-gray-50 border-l-2 border-l-black" : "hover:bg-gray-50"}`}
+                className={`flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-neutral-700 last:border-b-0 transition-colors ${selectedCategoryId === cat.id ? "bg-gray-50 dark:bg-neutral-800 border-l-2 border-l-black dark:border-l-white" : "hover:bg-gray-50 dark:hover:bg-neutral-800"}`}
               >
                 {editingCategoryId === cat.id ? (
                   <form onSubmit={handleUpdateCategory} className="flex-1">
@@ -299,7 +299,7 @@ export default function CategoryManager({
                       <button
                         type="submit"
                         disabled={loading || uploading}
-                        className="p-3 py-1 bg-black text-white text-[10px] transition-colors tracking-widest cursor-pointer disabled:opacity-50 uppercase"
+                        className="p-3 py-1 bg-black dark:bg-white text-white dark:text-black text-[10px] transition-colors tracking-widest cursor-pointer disabled:opacity-50 uppercase"
                       >
                         Save
                       </button>
@@ -309,7 +309,7 @@ export default function CategoryManager({
                           setEditingCategoryId(null);
                           setEditingCategoryImage(null);
                         }}
-                        className="px-3 py-1 border border-gray-200 text-[10px] uppercase tracking-widest transition-colors cursor-pointer"
+                        className="px-3 py-1 border border-gray-200 dark:border-neutral-600 text-[10px] uppercase tracking-widest transition-colors cursor-pointer"
                       >
                         Cancel
                       </button>
@@ -326,7 +326,7 @@ export default function CategoryManager({
                           <button
                             type="button"
                             onClick={() => setEditingCategoryImage(null)}
-                            className="absolute -top-1 -right-1 bg-white rounded-full w-4 h-4 flex items-center justify-center shadow cursor-pointer"
+                            className="absolute -top-1 -right-1 bg-white dark:bg-neutral-700 rounded-full w-4 h-4 flex items-center justify-center shadow cursor-pointer"
                           >
                             <PiXLight size={10} />
                           </button>
@@ -336,7 +336,7 @@ export default function CategoryManager({
                           type="button"
                           onClick={() => editFileInputRef.current?.click()}
                           disabled={uploading}
-                          className="flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors cursor-pointer"
+                          className="flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-gray-400 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
                         >
                           <PiUploadSimpleLight size={14} />
                           {uploading ? "Uploading..." : "Add Image"}
@@ -382,7 +382,7 @@ export default function CategoryManager({
                           setEditingCategoryName(cat.name);
                           setEditingCategoryImage(cat.image);
                         }}
-                        className="p-1.5 hover:bg-gray-200 rounded transition-colors cursor-pointer"
+                        className="p-1.5 hover:bg-gray-200 dark:hover:bg-neutral-600 rounded transition-colors cursor-pointer"
                       >
                         <PiPencilSimpleLight size={15} />
                       </button>
@@ -437,7 +437,7 @@ export default function CategoryManager({
                 <button
                   type="submit"
                   disabled={loading || !newSubcategoryName.trim()}
-                  className="px-4 py-2 bg-black text-white text-[11px] tracking-widest uppercase hover:bg-black/80 transition-colors cursor-pointer disabled:opacity-50"
+                  className="px-4 py-2 bg-black dark:bg-white text-white dark:text-black text-[11px] tracking-widest uppercase hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer disabled:opacity-50"
                 >
                   Add
                 </button>
@@ -454,7 +454,7 @@ export default function CategoryManager({
                     <button
                       type="button"
                       onClick={() => setNewSubcategoryImage(null)}
-                      className="absolute -top-1 -right-1 bg-white rounded-full w-4 h-4 flex items-center justify-center shadow cursor-pointer"
+                      className="absolute -top-1 -right-1 bg-white dark:bg-neutral-700 rounded-full w-4 h-4 flex items-center justify-center shadow cursor-pointer"
                     >
                       <PiXLight size={10} />
                     </button>
@@ -464,7 +464,7 @@ export default function CategoryManager({
                     type="button"
                     disabled={uploading}
                     onClick={() => subFileInputRef.current?.click()}
-                    className="flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors cursor-pointer"
+                    className="flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-gray-400 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
                   >
                     <PiUploadSimpleLight size={14} />
                     {uploading ? "Uploading..." : "Add Image"}
@@ -487,12 +487,12 @@ export default function CategoryManager({
             </form>
 
             {/* subcat list */}
-            <div className="border border-gray-200">
+            <div className="border border-gray-200 dark:border-neutral-700">
               {filteredSubcategories.length > 0 ? (
                 filteredSubcategories.map((sc) => (
                   <div
                     key={sc.id}
-                    className="flex items-center justify-between px-4 py-3 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"
+                    className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-neutral-700 last:border-b-0 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
                   >
                     {editingSubcategoryId === sc.id ? (
                       <form
@@ -512,7 +512,7 @@ export default function CategoryManager({
                           <button
                             type="submit"
                             disabled={loading || uploading}
-                            className="px-3 py-1 bg-black text-white text-[10px] tracking-widest uppercase cursor-pointer disabled:opacity-50"
+                            className="px-3 py-1 bg-black dark:bg-white text-white dark:text-black text-[10px] tracking-widest uppercase cursor-pointer disabled:opacity-50"
                           >
                             Save
                           </button>
@@ -522,7 +522,7 @@ export default function CategoryManager({
                               setEditingSubcategoryId(null);
                               setEditingSubcategoryImage(null);
                             }}
-                            className="px-3 py-1 border border-gray-200 text-[10px] tracking-widest uppercase cursor-pointer"
+                            className="px-3 py-1 border border-gray-200 dark:border-neutral-600 text-[10px] tracking-widest uppercase cursor-pointer"
                           >
                             Cancel
                           </button>
@@ -539,7 +539,7 @@ export default function CategoryManager({
                               <button
                                 type="button"
                                 onClick={() => setEditingSubcategoryImage(null)}
-                                className="absolute -top-1 -right-1 bg-white rounded-full w-4 h-4 flex items-center justify-center shadow cursor-pointer"
+                                className="absolute -top-1 -right-1 bg-white dark:bg-neutral-700 rounded-full w-4 h-4 flex items-center justify-center shadow cursor-pointer"
                               >
                                 <PiXLight size={10} />
                               </button>
@@ -551,7 +551,7 @@ export default function CategoryManager({
                                 editSubFileInputRef.current?.click()
                               }
                               disabled={uploading}
-                              className="flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-gray-400 hover:text-black transition-colors cursor-pointer"
+                              className="flex items-center gap-1.5 text-[10px] tracking-widest uppercase text-gray-400 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
                             >
                               <PiUploadSimpleLight size={14} />
                               {uploading ? "Uploading..." : "Add Image"}
@@ -597,7 +597,7 @@ export default function CategoryManager({
                               setEditingSubcategoryName(sc.name);
                               setEditingSubcategoryImage(sc.image);
                             }}
-                            className="p-1.5 hover:bg-gray-200 rounded transition-colors cursor-pointer"
+                            className="p-1.5 hover:bg-gray-200 dark:hover:bg-neutral-600 rounded transition-colors cursor-pointer"
                           >
                             <PiPencilSimpleLight size={15} />
                           </button>

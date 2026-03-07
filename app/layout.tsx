@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Floral from "@/components/ui/floral";
@@ -26,14 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Floral />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <Floral />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -45,8 +45,8 @@ export default function ProductTable({
       />
 
       {/* table */}
-      <div className="border border-gray-200">
-        <div className="grid grid-cols-[60px_1fr_1fr_100px_120px_80px] gap-4 px-4 py-3 border-b border-gray-200 bg-gray-50">
+      <div className="border border-gray-200 dark:border-neutral-700">
+        <div className="grid grid-cols-[60px_1fr_1fr_100px_120px_80px] gap-4 px-4 py-3 border-b border-gray-200 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800">
           <span className="text-[10px] tracking-widest uppercase text-gray-400">
             Image
           </span>
@@ -72,7 +72,7 @@ export default function ProductTable({
           filtered.map((product) => (
             <div
               key={product.id}
-              className="grid grid-cols-[60px_1fr_1fr_100px_120px_80px] gap-4 px-4 border-b border-gray-100 last:border-b-0 items-center hover:bg-gray-50 transition-colors"
+              className="grid grid-cols-[60px_1fr_1fr_100px_120px_80px] gap-4 px-4 border-b border-gray-100 dark:border-neutral-700 last:border-b-0 items-center hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
             >
               <div className="w-[40px] h-[50px] relative">
                 <Image
@@ -97,7 +97,7 @@ export default function ProductTable({
               <div className="flex items-center justify-end gap-2">
                 <Link
                   href={`/admin/products/${product.id}/edit`}
-                  className="p-1.5 hover:bg-gray-200 rounded transition-colors"
+                  className="p-1.5 hover:bg-gray-200 dark:hover:bg-neutral-600 rounded transition-colors"
                 >
                   <PiPencilSimpleLight size={17} />
                 </Link>

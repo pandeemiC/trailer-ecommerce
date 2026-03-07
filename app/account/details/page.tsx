@@ -199,7 +199,7 @@ export default function AccountDetails() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full sm:w-[200px] py-3 text-white bg-black border border-black uppercase text-[11px] tracking-widest font-light hover:bg-black/80 transition-colors cursor-pointer disabled:opacity-50"
+            className="w-full sm:w-[200px] py-3 text-white dark:text-black bg-black dark:bg-white border border-black dark:border-white uppercase text-[11px] tracking-widest font-light hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer disabled:opacity-50"
           >
             {loading ? "Saving..." : "Save Changes"}
           </button>

@@ -26,7 +26,7 @@ export default function SearchBar() {
   return (
     <div className="relative flex items-center">
       {!isOpen && (
-        <button onClick={() => setIsOpen(true)} className="cursor-pointer bg-white px-3 py-1 rounded-md">
+        <button onClick={() => setIsOpen(true)} className="cursor-pointer bg-white dark:bg-neutral-700 px-3 py-1 rounded-md">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -45,7 +45,7 @@ export default function SearchBar() {
       )}
 
       <div
-        className={`absolute right-0 top-1/2 -translate-y-1/2 flex items-center bg-white overflow-hidden transition-all duration-300 ${
+        className={`absolute right-0 top-1/2 -translate-y-1/2 flex items-center bg-white dark:bg-neutral-700 overflow-hidden transition-all duration-300 ${
           isOpen ? "w-[280px] opacity-100 p-2 rounded-lg" : "w-0 opacity-0"
         }`}
       >
@@ -54,7 +54,7 @@ export default function SearchBar() {
           type="text"
           value={input}
           placeholder="Search"
-          className="w-full text-[11px] font-light tracking-widest uppercase outline-none border-b border-black/30 pb-1 pl-2 pr-8"
+          className="w-full text-[11px] font-light tracking-widest uppercase outline-none border-b border-black/30 dark:border-white/30 dark:text-white bg-transparent pb-1 pl-2 pr-8"
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") handleSubmit();

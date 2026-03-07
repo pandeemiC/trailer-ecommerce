@@ -27,7 +27,7 @@ export default function ViewAllSearch() {
     <input
       type="text"
       placeholder="Search products"
-      className="flex-1 border-b border-black/15 px-4 py-2.5 text-[11px] font-light tracking-widest uppercase outline-none placeholder:text-black/40"
+      className="flex-1 border-b border-black/15 dark:border-white/30 px-4 py-2.5 text-[11px] font-light tracking-widest uppercase outline-none bg-transparent dark:text-white dark:placeholder:text-white placeholder:text-black/40"
       onChange={(e) => setInput(e.target.value)}
     />
   );

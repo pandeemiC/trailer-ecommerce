@@ -44,7 +44,7 @@ export default async function SearchPage({
         <DropdownBar categories={categories} subcategories={subcategories} />
 
         {/* product count */}
-        <p className="text-[10px] font-light tracking-widest text-black/40 uppercase mb-6">
+        <p className="text-[10px] font-light tracking-widest text-black/40 dark:text-white/40 uppercase mb-6">
           {products.length} Products
         </p>
 

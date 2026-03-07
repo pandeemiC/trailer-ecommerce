@@ -251,7 +251,7 @@ export default function ContentManager({ sections }: ContentManagerProps) {
           {sectionImages.map((img, index) => (
             <div
               key={index}
-              className="grid grid-cols-2 mb-4 pl-4 border-l-2 border-gray-200"
+              className="grid grid-cols-2 mb-4 pl-4 border-l-2 border-gray-200 dark:border-neutral-600"
             >
               <div>
                 <label className="text-[10px] tracking-widest uppercase text-gray-400 mb-1 block">
@@ -296,7 +296,7 @@ export default function ContentManager({ sections }: ContentManagerProps) {
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-3 bg-black text-white text-[11px] tracking-widest uppercase hover:bg-black/80 transition-colors cursor-pointer disabled:opacity-50"
+              className="px-6 py-3 bg-black dark:bg-white text-white dark:text-black text-[11px] tracking-widest uppercase hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer disabled:opacity-50"
             >
               {loading
                 ? "Saving..."
@@ -310,7 +310,7 @@ export default function ContentManager({ sections }: ContentManagerProps) {
                 setIsAdding(false);
                 setEditingSection(null);
               }}
-              className="px-6 py-3 border border-gray-200 text-[11px] tracking-widest uppercase cursor-pointer hover:border-black transition-colors"
+              className="px-6 py-3 border border-gray-200 dark:border-neutral-600 text-[11px] tracking-widest uppercase cursor-pointer hover:border-black dark:hover:border-white transition-colors"
             >
               Cancel
             </button>
@@ -331,25 +331,25 @@ export default function ContentManager({ sections }: ContentManagerProps) {
           setDescription("");
           setSectionImages([]);
         }}
-        className="flex items-center gap-2 px-4 py-2 bg-black text-white text-[11px] tracking-widest uppercase hover:bg-black/80 transition-colors cursor-pointer mb-8"
+        className="flex items-center gap-2 px-4 py-2 bg-black dark:bg-white text-white dark:text-black text-[11px] tracking-widest uppercase hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer mb-8"
       >
         <PiPlusLight size={14} />
         Add Section
       </button>
 
       {/* section list */}
-      <div className="border border-gray-200">
+      <div className="border border-gray-200 dark:border-neutral-700">
         {sections.length > 0 ? (
           sections.map((section, index) => (
             <div
               key={section.id}
-              className="flex items-center justify-between px-4 py-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"
+              className="flex items-center justify-between px-4 py-4 border-b border-gray-100 dark:border-neutral-700 last:border-b-0 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors"
             >
               <div className="flex items-center gap-4">
                 <span className="text-[10px] tracking-widest text-gray-400 w-6">
                   {section.position}
                 </span>
-                <span className="text-[10px] tracking-widest uppercase bg-gray-100 px-2 py-1">
+                <span className="text-[10px] tracking-widest uppercase bg-gray-100 dark:bg-neutral-700 px-2 py-1">
                   {section.section_type}
                 </span>
                 <span className="text-[12px] tracking-wider">
@@ -363,21 +363,21 @@ export default function ContentManager({ sections }: ContentManagerProps) {
                 <button
                   onClick={() => handleMoveUp(section, index)}
                   disabled={index === 0 || loading}
-                  className="p-1.5 hover:bg-gray-200 rounded transition-colors cursor-pointer disabled:opacity-30"
+                  className="p-1.5 hover:bg-gray-200 dark:hover:bg-neutral-600 rounded transition-colors cursor-pointer disabled:opacity-30"
                 >
                   <PiArrowUpLight size={15} />
                 </button>
                 <button
                   onClick={() => handleMoveDown(section, index)}
                   disabled={index === sections.length - 1 || loading}
-                  className="p-1.5 hover:bg-gray-200 rounded transition-colors cursor-pointer disabled:opacity-30"
+                  className="p-1.5 hover:bg-gray-200 dark:hover:bg-neutral-600 rounded transition-colors cursor-pointer disabled:opacity-30"
                 >
                   <PiArrowDownLight size={15} />
                 </button>
                 {/* edit button */}
                 <button
                   onClick={() => handleStartEdit(section)}
-                  className="p-1.5 hover:bg-gray-200 rounded transition-colors cursor-pointer"
+                  className="p-1.5 hover:bg-gray-200 dark:hover:bg-neutral-600 rounded transition-colors cursor-pointer"
                 >
                   <PiPencilSimpleLight size={15} />
                 </button>
