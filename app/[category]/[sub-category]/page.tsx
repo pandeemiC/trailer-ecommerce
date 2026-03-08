@@ -67,6 +67,7 @@ export default async function SubCategoryPage({
                 alt={heroProduct.name}
                 width={1200}
                 height={1500}
+                quality={100}
                 className="object-cover w-full h-auto cursor-pointer"
               />
 
@@ -94,6 +95,7 @@ export default async function SubCategoryPage({
                     alt={featuredProduct.name}
                     width={500}
                     height={620}
+                    quality={100}
                     className="object-cover cursor-pointer"
                   />
                   <div className="product-label cursor-pointer">
@@ -122,6 +124,7 @@ export default async function SubCategoryPage({
                     alt={product.description}
                     width={300}
                     height={400}
+                    quality={100}
                     className="object-cover cursor-pointer"
                   />
                   <div className="product-label cursor-pointer">
@@ -148,6 +151,7 @@ export default async function SubCategoryPage({
                 alt={heroBottomProduct.name}
                 width={1000}
                 height={1200}
+                quality={100}
                 className="object-cover w-full h-auto cursor-pointer"
               />
               <div className="product-label">

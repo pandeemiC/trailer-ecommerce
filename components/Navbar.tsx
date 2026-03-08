@@ -100,6 +100,7 @@ const Navbar = () => {
                 alt="TrailerLogo"
                 width={270}
                 height={180}
+                quality={100}
                 priority
                 className="fixed top-0 left-52 z-30 w-[270px] min-2xl:w-[320px]"
               />

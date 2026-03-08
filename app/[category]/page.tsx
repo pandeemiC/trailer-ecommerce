@@ -24,6 +24,7 @@ function renderTile(
           src="/wviewall.jpg"
           alt="View All"
           fill
+          quality={100}
           sizes="100vw"
           className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
         />
@@ -62,6 +63,7 @@ function renderTile(
         src={tile.image}
         alt={tile.name}
         fill
+        quality={100}
         sizes="(max-width: 768px) 100vw, 50vw"
         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
       />

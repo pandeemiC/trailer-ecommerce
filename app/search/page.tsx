@@ -58,6 +58,7 @@ export default async function SearchPage({
                     alt={product.name}
                     width={300}
                     height={400}
+                    quality={100}
                     className="object-cover cursor-pointer transition-transform duration-500 ease-out group-hover:scale-103"
                   />
                 </div>

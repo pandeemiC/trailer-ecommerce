@@ -148,6 +148,7 @@ export default function GalleryLightbox({
             alt={productName}
             width={800}
             height={1000}
+            quality={100}
             className="object-cover w-full cursor-pointer hover:opacity-90 transition-opacity"
             onClick={() => openAt(index)}
           />
@@ -215,6 +216,7 @@ export default function GalleryLightbox({
                     alt={productName}
                     width={1500}
                     height={2000}
+                    quality={100}
                     className="object-cover h-full w-auto"
                   />
                 </div>
@@ -240,6 +242,7 @@ export default function GalleryLightbox({
                     alt={productName}
                     width={1200}
                     height={1600}
+                    quality={100}
                     className="object-contain w-full h-full"
                   />
                 </div>

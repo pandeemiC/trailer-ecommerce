@@ -30,6 +30,7 @@ export default async function SearchProductPage({
               alt={productData.name}
               width={800}
               height={950}
+              quality={100}
               className="object-cover w-full"
             />
           </div>
