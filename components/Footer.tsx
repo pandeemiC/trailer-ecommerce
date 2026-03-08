@@ -78,12 +78,14 @@ const Footer = () => {
           >
             Twitter / X
           </Link>
-          <Link
+          <a
             href="https://www.github.com/pandeemiC"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-[11px] md:text-[10px] font-normal md:font-light tracking-widest uppercase text-black/70 md:text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors"
           >
-            Github (WORKS)
-          </Link>
+            Github
+          </a>
           <Link
             href="#"
             className="text-[11px] md:text-[10px] font-normal md:font-light tracking-widest uppercase text-black/70 md:text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors"
