@@ -6,6 +6,75 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string; "sub-category": string }>;
+}) {
+  const { category, "sub-category": subCategory } = await params;
+  const categoryData = await getCategoryBySlug(category);
+
+  if (!categoryData) {
+    return {
+      title: "Category Not Been Found",
+      description: "The Category you are looking for does not exist.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const subCategoryData = await getSubcategoryBySlug(
+    subCategory,
+    categoryData.id,
+  );
+
+  if (!subCategoryData) {
+    return {
+      title: "Subcategory Not Been Found",
+      description: "The Subcategory you are looking for does not exist.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const title = `${subCategoryData.name} - ${categoryData.name} | Trailer`;
+  const description = `Shop ${categoryData.name}'s ${subCategoryData.name} collection at Trailer.`;
+  const url = `https://trailer-ecommerce.vercel.app/${category}/${subCategory}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "Trailer",
+      type: "website",
+      images: [
+        {
+          url: subCategoryData.image,
+          width: 1200,
+          height: 1200,
+          alt: subCategoryData.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [subCategoryData.image],
+    },
+  };
+}
+
 export default async function SubCategoryPage({
   params,
 }: {
@@ -25,7 +94,6 @@ export default async function SubCategoryPage({
   }
 
   const productsData = await getProductsWithImages(subcategory_data.id);
-  console.log(productsData);
 
   // Unwrap present
   const products = productsData ?? [];
@@ -38,7 +106,6 @@ export default async function SubCategoryPage({
     (p) => p.featured_type === "hero_bottom",
   );
 
-  console.log(heroProduct);
   return (
     <main className="overflow-x-hidden relative">
       <div className="hidden md:block absolute top-20 right-15 z-10 pointer-events-none">
