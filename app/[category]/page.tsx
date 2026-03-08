@@ -4,6 +4,63 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
+  const { category } = await params;
+  const categoryData = await getCategoryBySlug(category);
+
+  if (!categoryData) {
+    return {
+      title: "Category Not Been Found - Trailer",
+      description: "The category you are looking for does not exist.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const title = `${categoryData.name} | Trailer`;
+  const description = `Shop the Trailer ${categoryData.name}'s collection.`;
+
+  const url = `https://trailer-ecommerce.vercel.app/${category}`;
+
+  return {
+    title,
+    description,
+
+    alternates: {
+      canonical: url,
+    },
+
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "Trailer",
+      type: "website",
+      images: [
+        {
+          url: categoryData.image,
+          width: 1200,
+          height: 1200,
+          alt: categoryData.name,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [categoryData.image],
+    },
+  };
+}
+
 type Tile = Subcategory | "view-all";
 
 function renderTile(
