@@ -7,7 +7,9 @@ export async function createCheckoutSession(
   shipping: { method: string; cost: number },
   email: string,
 ) {
-  const origin = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const origin =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
 
   const line_items = items.map((item) => ({
     price_data: {
