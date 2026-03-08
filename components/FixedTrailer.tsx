@@ -25,7 +25,7 @@ export default function FixedTrailer() {
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
-      <h2 className="text-white text-[20vw] md:text-[12vw] lg:text-[180px] font-bold tracking-tighter leading-[0.8] select-none italic lg:not-italic">
+      <h2 className="text-white text-[20vw] md:text-[12vw] lg:text-[180px] 2xl:text-[220px] min-[2560px]:text-[280px] min-[3840px]:text-[400px] font-bold tracking-tighter leading-[0.8] select-none italic lg:not-italic">
         TRAILER
       </h2>
     </div>

@@ -74,27 +74,27 @@ const SideBar = () => {
         <button
           onClick={handleToggle}
           aria-label="Toggle Menu"
-          className="cursor-pointer ml-2 md:ml-10 w-[70px] h-[50px] md:w-[120px] md:h-[75px] flex flex-col justify-center items-center"
+          className="cursor-pointer ml-2 md:ml-10 w-[70px] h-[50px] md:w-[120px] md:h-[75px] 2xl:w-[150px] 2xl:h-[90px] min-[2560px]:w-[180px] min-[2560px]:h-[100px] flex flex-col justify-center items-center"
         >
           {/* top line */}
           <span
-            className={`block w-[40px] md:w-[70px] h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out ${
+            className={`block w-[40px] md:w-[70px] 2xl:w-[85px] min-[2560px]:w-[100px] h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out ${
               isOpen
-                ? "rotate-45 translate-y-[14px] md:translate-y-[22px]"
+                ? "rotate-45 translate-y-[14px] md:translate-y-[22px] 2xl:translate-y-[26px] min-[2560px]:translate-y-[30px]"
                 : "rotate-0 translate-y-0"
             }`}
           />
           {/* middle line */}
           <span
-            className={`block w-[40px] md:w-[70px] my-[12px] md:my-[20px] h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out ${
+            className={`block w-[40px] md:w-[70px] 2xl:w-[85px] min-[2560px]:w-[100px] my-[12px] md:my-[20px] 2xl:my-[24px] min-[2560px]:my-[28px] h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out ${
               isOpen ? "opacity-0" : "opacity-100"
             }`}
           />
           {/* bottom line */}
           <span
-            className={`block w-[40px] md:w-[70px] h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out ${
+            className={`block w-[40px] md:w-[70px] 2xl:w-[85px] min-[2560px]:w-[100px] h-[2px] bg-black dark:bg-white transition-all duration-300 ease-in-out ${
               isOpen
-                ? "-rotate-45 -translate-y-[14px] md:-translate-y-[22px]"
+                ? "-rotate-45 -translate-y-[14px] md:-translate-y-[22px] 2xl:-translate-y-[26px] min-[2560px]:-translate-y-[30px]"
                 : "rotate-0 translate-y-0"
             }`}
           />
@@ -111,7 +111,7 @@ const SideBar = () => {
           ></div>
 
           <div
-            className={`fixed top-0 left-0 md:h-[100px] 2xl:h-[150px] bg-white dark:bg-neutral-800 border-none transition-opacity duration-800 ease-in-out z-20 w-full ${
+            className={`fixed top-0 left-0 md:h-[100px] 2xl:h-[130px] min-[2560px]:h-[150px] bg-white dark:bg-neutral-800 border-none transition-opacity duration-800 ease-in-out z-20 w-full ${
               isOpen && !isAnimating ? "opacity-100" : "opacity-0"
             }`}
           ></div>
@@ -119,7 +119,7 @@ const SideBar = () => {
           <div
             className={`fixed top-0 left-0 h-full bg-white dark:bg-neutral-800 transition-opacity duration-800 ease-in-out z-20 ${
               isOpen && !isAnimating ? "opacity-100" : "opacity-0"
-            } w-full md:w-[600px] 2xl:w-[650px] flex`}
+            } w-full md:w-[600px] 2xl:w-[750px] min-[2560px]:w-[900px] min-[3840px]:w-[1200px] flex`}
           >
             {/* left side south side */}
             <div className="w-1/3 p-4 md:p-6 flex flex-col justify-center items-center mb-[80px] md:mb-[170px]">
@@ -128,7 +128,7 @@ const SideBar = () => {
                   <li key={cat.id}>
                     <button
                       onClick={() => handleCategoryClick(cat.slug)}
-                      className={`uppercase text-lg font-light cursor-pointer transition-colors duration-300 ${
+                      className={`uppercase text-lg 2xl:text-xl min-[2560px]:text-2xl font-light cursor-pointer transition-colors duration-300 ${
                         activeCategory === cat.slug
                           ? "border-b-1 border-black dark:border-white"
                           : ""
@@ -221,11 +221,11 @@ const SideBar = () => {
                         alt={activeCat.name}
                         width={250}
                         height={300}
-                        className="mb-8 rounded-md cursor-pointer"
+                        className="mb-8 rounded-md cursor-pointer w-[250px] 2xl:w-[320px] min-[2560px]:w-[400px] min-[3840px]:w-[500px] h-auto"
                       />
                     </Link>
                     <ul>
-                      <li className="mb-5 font-light tracking-widest text-md">
+                      <li className="mb-5 font-light tracking-widest text-md 2xl:text-lg min-[2560px]:text-xl">
                         <Link
                           href={`/${activeCat.slug}`}
                           className="hover:border-b-1 border-black dark:border-white p-1"
@@ -234,7 +234,7 @@ const SideBar = () => {
                           OVERVIEW
                         </Link>
                       </li>
-                      <li className="mb-5 font-light tracking-widest text-md">
+                      <li className="mb-5 font-light tracking-widest text-md 2xl:text-lg min-[2560px]:text-xl">
                         <Link
                           href={`/search?category=${activeCat.slug}`}
                           className="hover:border-b-1 border-black dark:border-white p-1"
@@ -246,7 +246,7 @@ const SideBar = () => {
                       {activeCat.subcategories.map((sub) => (
                         <li
                           key={sub.id}
-                          className="mb-5 font-light tracking-widest text-md"
+                          className="mb-5 font-light tracking-widest text-md 2xl:text-lg min-[2560px]:text-xl"
                         >
                           <Link
                             href={`/${activeCat.slug}/${sub.slug}`}

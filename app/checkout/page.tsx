@@ -150,12 +150,12 @@ export default function CheckoutPage() {
     <main className="min-h-screen relative">
       <div className="relative z-10 border-b border-black/10 dark:border-white/10 py-6 flex justify-center">
         <Link href="/">
-          <Image src={trailerLogo} alt="Trailer" width={180} height={120} />
+          <Image src={trailerLogo} alt="Trailer" width={180} height={120} className="w-[180px] 2xl:w-[240px] min-[2560px]:w-[300px] min-[3840px]:w-[400px] h-auto" />
         </Link>
       </div>
 
       {/* progression */}
-      <div className="relative z-10 max-w-xl mx-auto pt-8 pb-4 px-4">
+      <div className="relative z-10 max-w-xl 2xl:max-w-2xl min-[2560px]:max-w-3xl mx-auto pt-8 pb-4 px-4">
         <div className="flex items-center justify-between">
           {["Personal", "Shipping", "Summary", "Payment"].map((label, i) => (
             <div
@@ -169,14 +169,14 @@ export default function CheckoutPage() {
                 className="flex flex-col items-center gap-1.5"
               >
                 <div
-                  className={`w-3 h-3 rounded-full border-2 transition-colors ${
+                  className={`w-3 h-3 2xl:w-4 2xl:h-4 min-[2560px]:w-5 min-[2560px]:h-5 rounded-full border-2 transition-colors ${
                     i + 1 <= step
                       ? "bg-black dark:bg-white border-black dark:border-white"
                       : "bg-white dark:bg-neutral-800 border-black/20 dark:border-white/20"
                   }`}
                 />
                 <span
-                  className={`text-[9px] tracking-[0.2em] uppercase ${
+                  className={`text-[9px] 2xl:text-[11px] min-[2560px]:text-[13px] tracking-[0.2em] uppercase ${
                     i + 1 <= step ? "text-black dark:text-white" : "text-black/30 dark:text-white/30"
                   }`}
                 >
@@ -195,11 +195,11 @@ export default function CheckoutPage() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 md:px-16 pt-8 pb-20 flex flex-col lg:flex-row gap-8 lg:gap-16">
+      <div className="relative z-10 max-w-6xl 2xl:max-w-7xl min-[2560px]:max-w-[1600px] min-[3840px]:max-w-[2400px] mx-auto px-4 sm:px-8 md:px-16 2xl:px-20 min-[2560px]:px-24 pt-8 pb-20 flex flex-col lg:flex-row gap-8 lg:gap-16 2xl:gap-24">
         <div className="flex-1">
           {step === 1 && (
             <div>
-              <h2 className="text-[13px] tracking-[0.2em] uppercase mb-8">
+              <h2 className="text-[13px] 2xl:text-[15px] min-[2560px]:text-[18px] tracking-[0.2em] uppercase mb-8">
                 Personal Details
               </h2>
 
@@ -239,7 +239,7 @@ export default function CheckoutPage() {
 
               {/* signin */}
               {authMode === "signin" && (
-                <div className="max-w-sm">
+                <div className="max-w-sm 2xl:max-w-md min-[2560px]:max-w-lg">
                   {authError && (
                     <p className="text-red-500 text-[11px] mb-4">{authError}</p>
                   )}
@@ -276,13 +276,13 @@ export default function CheckoutPage() {
                   <div className="flex flex-col gap-3">
                     <button
                       onClick={() => handleOAuth("google")}
-                      className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
+                      className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 2xl:py-4 min-[2560px]:py-5 text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
                     >
                       <FcGoogle size={16} /> Continue with Google
                     </button>
                     <button
                       onClick={() => handleOAuth("github")}
-                      className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
+                      className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 2xl:py-4 min-[2560px]:py-5 text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
                     >
                       <FaGithub size={16} /> Continue with Github
                     </button>
@@ -292,7 +292,7 @@ export default function CheckoutPage() {
 
               {/* guest */}
               {authMode === "guest" && (
-                <div className="max-w-sm">
+                <div className="max-w-sm 2xl:max-w-md min-[2560px]:max-w-lg">
                   <input
                     type="email"
                     placeholder="E-mail"
@@ -321,11 +321,11 @@ export default function CheckoutPage() {
           {/* shipping */}
           {step === 2 && (
             <div>
-              <h2 className="text-[13px] tracking-[0.2em] uppercase mb-8">
+              <h2 className="text-[13px] 2xl:text-[15px] min-[2560px]:text-[18px] tracking-[0.2em] uppercase mb-8">
                 Shipping Details
               </h2>
 
-              <div className="max-w-lg">
+              <div className="max-w-lg 2xl:max-w-xl min-[2560px]:max-w-2xl">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   <input
                     type="text"
@@ -451,11 +451,11 @@ export default function CheckoutPage() {
           {/* summary */}
           {step === 3 && (
             <div>
-              <h2 className="text-[13px] tracking-[0.2em] uppercase mb-8">
+              <h2 className="text-[13px] 2xl:text-[15px] min-[2560px]:text-[18px] tracking-[0.2em] uppercase mb-8">
                 Order Summary
               </h2>
 
-              <div className="max-w-lg space-y-6">
+              <div className="max-w-lg 2xl:max-w-xl min-[2560px]:max-w-2xl space-y-6">
                 {/* Personal */}
                 <div className="flex justify-between items-start border-b border-black/10 dark:border-white/10 pb-4">
                   <div>
@@ -592,7 +592,7 @@ export default function CheckoutPage() {
         </div>
 
         {/* summary bar */}
-        <div className="w-full lg:w-[300px] lg:sticky lg:top-8 lg:self-start order-first lg:order-last">
+        <div className="w-full lg:w-[300px] 2xl:w-[380px] min-[2560px]:w-[450px] min-[3840px]:w-[600px] lg:sticky lg:top-8 lg:self-start order-first lg:order-last">
           <h3 className="text-[11px] tracking-[0.2em] uppercase mb-6">
             Your Order
           </h3>

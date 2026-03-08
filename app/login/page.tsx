@@ -66,14 +66,14 @@ export default function LoginPage() {
     <div className="flex flex-col md:flex-row min-h-screen">
       {/* left */}
       <div className="w-full md:w-1/2 flex flex-col items-center justify-center px-6 md:px-20 py-12 md:py-0">
-        <div className="w-full max-w-sm">
+        <div className="w-full max-w-sm 2xl:max-w-md min-[2560px]:max-w-lg min-[3840px]:max-w-xl">
           <Link href="/">
             <Image
               src={trailerLogo}
               alt="Trailer"
               width={430}
               height={360}
-              className="mx-auto mb-14"
+              className="mx-auto mb-14 w-[430px] 2xl:w-[500px] min-[2560px]:w-[580px] min-[3840px]:w-[700px] h-auto"
             />
           </Link>
           {error && (
@@ -154,14 +154,14 @@ export default function LoginPage() {
               <div className="flex flex-col gap-3">
                 <button
                   onClick={() => handleOAuth("google")}
-                  className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
+                  className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 2xl:py-4 min-[2560px]:py-5 text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
                 >
                   <FcGoogle size={16} />
                   Continue with Google
                 </button>
                 <button
                   onClick={() => handleOAuth("github")}
-                  className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
+                  className="flex items-center justify-center gap-3 w-full border border-black dark:border-white/30 py-3 2xl:py-4 min-[2560px]:py-5 text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] tracking-[0.2em] uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors cursor-pointer"
                 >
                   <FaGithub size={16} />
                   Continue with Github

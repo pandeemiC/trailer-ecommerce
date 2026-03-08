@@ -24,7 +24,7 @@ export default async function Home() {
                 width={520}
                 height={620}
                 quality={100}
-                className="shadow-md object-cover"
+                className="shadow-md object-cover w-[520px] 2xl:w-[680px] min-[2560px]:w-[800px] min-[3840px]:w-[1100px] h-auto"
               />
             </Link>
           ))}
@@ -84,7 +84,7 @@ export default async function Home() {
               width={420}
               height={620}
               quality={100}
-              className="shadow-md object-cover"
+              className="shadow-md object-cover w-[420px] 2xl:w-[550px] min-[2560px]:w-[680px] min-[3840px]:w-[900px] h-auto"
             />
           </Link>
         )}
@@ -99,7 +99,7 @@ export default async function Home() {
           width={720}
           height={620}
           quality={100}
-          className="shadow-md object-cover"
+          className="shadow-md object-cover w-[720px] 2xl:w-[900px] min-[2560px]:w-[1050px] min-[3840px]:w-[1400px] h-auto"
         />
       </Link>
     );

@@ -40,10 +40,10 @@ export default function ShoppingBag() {
 
   return (
     <main className="h-screen pt-20 overflow-x-hidden">
-      <div className="flex flex-col md:flex-row h-full px-4 md:px-20">
+      <div className="flex flex-col md:flex-row h-full px-4 md:px-20 2xl:px-40 min-[2560px]:px-60 min-[3840px]:px-[400px]">
         {/* LEFT  */}
         <div className="flex-1 overflow-y-auto overflow-x-hidden pt-6 md:pt-10 pr-0 md:pr-16">
-          <h2 className="text-[13px] font-light tracking-widest uppercase mb-10">
+          <h2 className="text-[13px] 2xl:text-[15px] min-[2560px]:text-[18px] min-[3840px]:text-[22px] font-light tracking-widest uppercase mb-10">
             Shopping bag ({totalItems()})
           </h2>
 
@@ -65,7 +65,7 @@ export default function ShoppingBag() {
                   key={item.product.id}
                   className="flex gap-4 md:gap-6 py-6 min-w-0"
                 >
-                  <div className="w-[100px] md:w-[240px] shrink-0">
+                  <div className="w-[100px] md:w-[240px] 2xl:w-[300px] shrink-0">
                     <Image
                       src={item.product.image}
                       alt={item.product.name}
@@ -79,10 +79,10 @@ export default function ShoppingBag() {
                   <div className="flex-1 min-w-0 flex flex-col justify-between">
                     {/* title */}
                     <div className="flex justify-between gap-2">
-                      <h3 className="text-[11px] md:text-[13px] font-light tracking-widest uppercase truncate">
+                      <h3 className="text-[11px] md:text-[13px] 2xl:text-[15px] min-[2560px]:text-[18px] font-light tracking-widest uppercase truncate">
                         {item.product.name}
                       </h3>
-                      <span className="text-[11px] md:text-[13px] font-light tracking-widest shrink-0">
+                      <span className="text-[11px] md:text-[13px] 2xl:text-[15px] min-[2560px]:text-[18px] font-light tracking-widest shrink-0">
                         ${(item.product.price * item.quantity).toFixed(2)}
                       </span>
                     </div>
@@ -136,13 +136,13 @@ export default function ShoppingBag() {
         </div>
 
         {/* RIGHT */}
-        <div className="w-full md:w-[350px] md:sticky md:top-50 md:self-start pt-6 md:pt-10 pl-0 md:pl-10 border-t md:border-t-0 md:border-l border-black/10 dark:border-white/10">
+        <div className="w-full md:w-[350px] 2xl:w-[420px] min-[2560px]:w-[500px] md:sticky md:top-50 md:self-start pt-6 md:pt-10 pl-0 md:pl-10 border-t md:border-t-0 md:border-l border-black/10 dark:border-white/10">
           <div className="flex flex-col gap-6">
             <div className="flex justify-between">
-              <span className="text-[11px] font-light tracking-widest uppercase">
+              <span className="text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] font-light tracking-widest uppercase">
                 Subtotal
               </span>
-              <span className="text-[11px] font-light tracking-widest">
+              <span className="text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] font-light tracking-widest">
                 ${totalPrice().toFixed(2)}
               </span>
             </div>
@@ -151,8 +151,8 @@ export default function ShoppingBag() {
                 disabled={totalItems() === 0 || loading}
                 className={
                   totalItems() === 0 || loading
-                    ? "w-full py-3.5 text-white bg-gray-400 border border-gray-400 uppercase text-[11px] tracking-widest font-light cursor-not-allowed transition-colors"
-                    : "w-full py-3.5 text-white dark:text-black bg-black dark:bg-white border border-black dark:border-white uppercase text-[11px] tracking-widest font-light hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer"
+                    ? "w-full py-3.5 2xl:py-4 min-[2560px]:py-5 text-white bg-gray-400 border border-gray-400 uppercase text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] tracking-widest font-light cursor-not-allowed transition-colors"
+                    : "w-full py-3.5 2xl:py-4 min-[2560px]:py-5 text-white dark:text-black bg-black dark:bg-white border border-black dark:border-white uppercase text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] tracking-widest font-light hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer"
                 }
               >
                 {loading ? "Redirecting..." : "Proceed To Checkout"}

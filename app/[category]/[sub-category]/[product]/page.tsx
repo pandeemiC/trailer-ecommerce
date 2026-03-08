@@ -96,7 +96,7 @@ export default async function ProductPage({
     <main className="overflow-x-hidden">
       {productData && (
         <>
-          <section className="hidden md:flex flex-row px-20 lg:px-40 py-16 gap-10">
+          <section className="hidden md:flex flex-row px-20 lg:px-40 2xl:px-60 min-[2560px]:px-80 min-[3840px]:px-[500px] py-16 gap-10 2xl:gap-16">
             <div className="w-1/2">
               <Image
                 src={productData.image}
@@ -184,7 +184,7 @@ export default async function ProductPage({
         </>
       )}
 
-      <hr className="mb-15 mx-4 md:mx-20 lg:mx-40 mt-8 md:mt-0" />
+      <hr className="mb-15 mx-4 md:mx-20 lg:mx-40 2xl:mx-60 min-[2560px]:mx-80 min-[3840px]:mx-[500px] mt-8 md:mt-0" />
 
       <GalleryLightbox images={galleryImages} productName={productData.name} />
     </main>

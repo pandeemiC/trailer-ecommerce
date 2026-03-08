@@ -121,7 +121,7 @@
   }
 
   .view-all-container {
-    @apply w-full max-w-[1100px] mx-auto px-4 sm:px-10;
+    @apply w-full max-w-[1100px] 2xl:max-w-[1400px] min-[2560px]:max-w-[1800px] min-[3840px]:max-w-[2600px] mx-auto px-4 sm:px-10 2xl:px-16 min-[3840px]:px-24;
   }
 
   .navitems {
@@ -133,43 +133,43 @@
   }
 
   .product-title {
-    @apply tracking-widest uppercase text-[11px] p-1;
+    @apply tracking-widest uppercase text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] min-[3840px]:text-[18px] p-1;
   }
 
   .product-price {
-    @apply mt-1 tracking-widest text-[12px];
+    @apply mt-1 tracking-widest text-[12px] 2xl:text-[14px] min-[2560px]:text-[16px] min-[3840px]:text-[19px];
   }
 
   .product-page-title {
-    @apply text-[12px] uppercase tracking-widest font-light;
+    @apply text-[12px] 2xl:text-[14px] min-[2560px]:text-[17px] min-[3840px]:text-[20px] uppercase tracking-widest font-light;
   }
 
   .product-page-price {
-    @apply text-[15px] uppercase tracking-widest font-light;
+    @apply text-[15px] 2xl:text-[18px] min-[2560px]:text-[22px] min-[3840px]:text-[26px] uppercase tracking-widest font-light;
   }
 
   .product-page-description {
-    @apply text-[12px] uppercase tracking-widest text-black/80 dark:text-white/80 font-light;
+    @apply text-[12px] 2xl:text-[14px] min-[2560px]:text-[17px] min-[3840px]:text-[20px] uppercase tracking-widest text-black/80 dark:text-white/80 font-light;
   }
 
   .product-page-extras {
-    @apply text-[12px] uppercase tracking-widest text-black dark:text-white font-light cursor-pointer;
+    @apply text-[12px] 2xl:text-[14px] min-[2560px]:text-[17px] min-[3840px]:text-[20px] uppercase tracking-widest text-black dark:text-white font-light cursor-pointer;
   }
 
   .add-to-cart-btn {
-    @apply w-full py-3 bg-white dark:bg-white/10 border border-black dark:border-white/20 dark:text-white uppercase text-[11px] tracking-widest font-light hover:bg-gray-100 dark:hover:bg-white/20 transition-colors cursor-pointer;
+    @apply w-full py-3 2xl:py-4 min-[2560px]:py-5 bg-white dark:bg-white/10 border border-black dark:border-white/20 dark:text-white uppercase text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] min-[3840px]:text-[18px] tracking-widest font-light hover:bg-gray-100 dark:hover:bg-white/20 transition-colors cursor-pointer;
   }
 
   .add-to-cart-btn-reverse {
-    @apply w-full py-3 text-white dark:text-black bg-black dark:bg-white border border-black dark:border-white uppercase text-[11px] tracking-widest font-light hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer;
+    @apply w-full py-3 2xl:py-4 min-[2560px]:py-5 text-white dark:text-black bg-black dark:bg-white border border-black dark:border-white uppercase text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] min-[3840px]:text-[18px] tracking-widest font-light hover:bg-black/80 dark:hover:bg-white/80 transition-colors cursor-pointer;
   }
 
   .auth-input {
-    @apply w-full border-b border-black dark:border-white/30 py-3 text-sm tracking-wider outline-none dark:text-white dark:bg-transparent placeholder:text-gray-400 placeholder:uppercase placeholder:text-[11px] placeholder:tracking-widest;
+    @apply w-full border-b border-black dark:border-white/30 py-3 2xl:py-4 min-[2560px]:py-5 text-sm 2xl:text-base min-[2560px]:text-lg tracking-wider outline-none dark:text-white dark:bg-transparent placeholder:text-gray-400 placeholder:uppercase placeholder:text-[11px] 2xl:placeholder:text-[13px] min-[2560px]:placeholder:text-[15px] placeholder:tracking-widest;
   }
 
   .auth-btn {
-    @apply w-full bg-black dark:bg-white text-white dark:text-black py-3.5 cursor-pointer text-[11px] tracking-[0.3em] uppercase mt-2 hover:bg-gray-900 dark:hover:bg-gray-100 transition-colors disabled:opacity-50;
+    @apply w-full bg-black dark:bg-white text-white dark:text-black py-3.5 2xl:py-4 min-[2560px]:py-5 cursor-pointer text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] min-[3840px]:text-[18px] tracking-[0.3em] uppercase mt-2 hover:bg-gray-900 dark:hover:bg-gray-100 transition-colors disabled:opacity-50;
   }
 
 }

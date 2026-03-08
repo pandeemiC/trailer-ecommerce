@@ -57,7 +57,7 @@ export default function CartSideBar() {
     <div>
       <Sheet open={isCartOpen} onOpenChange={setCartOpen}>
         <SheetTrigger asChild>
-          <button className="relative cursor-pointer">
+          <button className="relative cursor-pointer [&_svg]:w-[16px] [&_svg]:h-[16px] 2xl:[&_svg]:w-[20px] 2xl:[&_svg]:h-[20px] min-[2560px]:[&_svg]:w-[24px] min-[2560px]:[&_svg]:h-[24px]">
             <ShoppingBag size={16} strokeWidth={1.5} />
             {mounted && totalItems() > 0 && (
               <span className="absolute -top-2 -right-2 bg-black dark:bg-white text-white dark:text-black text-[9px] w-4 h-4 rounded-full flex items-center justify-center">

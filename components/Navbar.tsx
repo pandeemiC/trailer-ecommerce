@@ -91,7 +91,7 @@ const Navbar = () => {
           <SideBar />
           <Link href="/">
             {isShoppingBag || isCatPage || isSearchPage ? (
-              <span className="fixed top-5.5 left-50 z-30 text-[34px] font-medium tracking-[0.35em] uppercase">
+              <span className="fixed top-5.5 left-50 2xl:left-60 min-[2560px]:left-72 z-30 text-[34px] 2xl:text-[42px] min-[2560px]:text-[50px] min-[3840px]:text-[64px] font-medium tracking-[0.35em] uppercase">
                 TRAILER
               </span>
             ) : (
@@ -102,19 +102,19 @@ const Navbar = () => {
                 height={180}
                 quality={100}
                 priority
-                className="fixed top-0 left-52 z-30 w-[270px] min-2xl:w-[320px]"
+                className="fixed top-0 left-52 2xl:left-60 min-[2560px]:left-72 z-30 w-[270px] min-2xl:w-[320px] min-[2560px]:w-[400px] min-[3840px]:w-[500px]"
               />
             )}
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 fixed top-5 right-8 z-30">
+        <div className="flex items-center gap-2 fixed top-5 right-8 2xl:right-12 min-[2560px]:right-16 z-30">
           <SearchBar />
-          <div className="flex items-center gap-6 bg-white dark:bg-neutral-700 px-4 py-1 rounded-md">
+          <div className="flex items-center gap-6 2xl:gap-8 min-[2560px]:gap-10 bg-white dark:bg-neutral-700 px-4 2xl:px-6 min-[2560px]:px-8 py-1 2xl:py-2 min-[2560px]:py-3 rounded-md">
             {user ? (
               <div className="relative" ref={dropdownRef}>
                 <button
-                  className="flex items-center cursor-pointer"
+                  className="flex items-center cursor-pointer [&_svg]:w-[20px] [&_svg]:h-[20px] 2xl:[&_svg]:w-[24px] 2xl:[&_svg]:h-[24px] min-[2560px]:[&_svg]:w-[28px] min-[2560px]:[&_svg]:h-[28px]"
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                 >
                   <PiUserCircleLight size={20} />
@@ -124,7 +124,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         href="/account/purchases"
-                        className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600"
+                        className="block px-4 py-2 text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600"
                       >
                         My Purchases
                       </Link>
@@ -132,7 +132,7 @@ const Navbar = () => {
                     <li>
                       <Link
                         href="/account/details"
-                        className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600"
+                        className="block px-4 py-2 text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600"
                       >
                         My Details
                       </Link>
@@ -140,14 +140,14 @@ const Navbar = () => {
                     <li>
                       <Link
                         href="/account/settings"
-                        className="block px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600"
+                        className="block px-4 py-2 text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600"
                       >
                         Settings
                       </Link>
                     </li>
                     <li>
                       <button
-                        className="w-full text-left px-4 py-2 text-[11px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600 cursor-pointer"
+                        className="w-full text-left px-4 py-2 text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] tracking-widest uppercase hover:bg-gray-100 dark:hover:bg-neutral-600 cursor-pointer"
                         onClick={async () => {
                           await supabase.auth.signOut();
                           setUser(null);
@@ -163,7 +163,7 @@ const Navbar = () => {
               </div>
             ) : (
               <Link
-                className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black dark:border-white transition-all duration-100"
+                className="text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] font-light tracking-widest uppercase hover:border-b border-black dark:border-white transition-all duration-100"
                 href="/login"
               >
                 Log In
@@ -171,7 +171,7 @@ const Navbar = () => {
             )}
 
             <Link
-              className="text-[11px] font-light tracking-widest uppercase hover:border-b border-black dark:border-white transition-all duration-100"
+              className="text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] font-light tracking-widest uppercase hover:border-b border-black dark:border-white transition-all duration-100"
               href="/account/help"
             >
               Help

@@ -31,7 +31,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap justify-center gap-8 sm:gap-12 lg:gap-20 py-10 px-6 sm:px-10 border-t border-black/10 dark:border-white/10">
+      <div className="grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap justify-center gap-8 sm:gap-12 lg:gap-20 2xl:gap-28 min-[2560px]:gap-36 min-[3840px]:gap-48 py-10 px-6 sm:px-10 2xl:px-20 min-[3840px]:px-32 border-t border-black/10 dark:border-white/10">
         <div className="flex flex-col gap-3">
           <h4 className="text-[12px] md:text-[11px] font-medium tracking-widest uppercase mb-2">
             Help

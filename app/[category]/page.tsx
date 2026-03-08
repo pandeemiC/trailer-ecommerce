@@ -242,7 +242,7 @@ export default async function CategoryPage({
   const tiles: Tile[] = [...subcategories, "view-all"];
 
   return (
-    <main className="relative max-w-[1400px] mx-auto px-4 md:px-16 lg:px-20 pt-20 md:pt-32 pb-20">
+    <main className="relative max-w-[1400px] 2xl:max-w-[1800px] min-[2560px]:max-w-[2200px] min-[3840px]:max-w-[3200px] mx-auto px-4 md:px-16 lg:px-20 2xl:px-24 min-[3840px]:px-32 pt-20 md:pt-32 pb-20">
       <h1 className="hidden md:flex absolute text-[70px] font-light tracking-widest text-black/10 italic uppercase z-10 left-0 top-32 flex-col leading-none">
         {categoryData.name.split("").map((letter: string, i: number) => (
           <span key={i}>{letter}</span>
