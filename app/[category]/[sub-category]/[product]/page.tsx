@@ -3,6 +3,72 @@ import { getProductById } from "@/lib/queries";
 import GalleryLightbox from "@/components/GalleryLightbox";
 import AddToCartButton from "@/components/AddToCartButton";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{
+    category: string;
+    "sub-category": string;
+    product: string;
+  }>;
+}) {
+  const { product, category, "sub-category": subCategory } = await params;
+  const productData = await getProductById(product);
+
+  if (!productData) {
+    return {
+      title: "Product Not Found | Trailer",
+      description: "The product you are looking for does not exist.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const title = `${productData.name} | Trailer`;
+  const description = `Shop ${productData.name} at Trailer. Premium ${subCategory} from our ${category} collection. Available now for $${productData.price}.`;
+
+  const url = `https://trailer-ecommerce.vercel.app/${category}/${subCategory}/${product}`;
+
+  return {
+    title,
+    description,
+
+    alternates: {
+      canonical: url,
+    },
+
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "Trailer",
+      type: "product",
+      images: [
+        {
+          url: productData.image,
+          width: 1200,
+          height: 1200,
+          alt: productData.name,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [productData.image],
+    },
+
+    other: {
+      "product:price:amount": productData.price,
+      "product:price:currency": "USD",
+    },
+  };
+}
+
 export default async function ProductPage({
   params,
 }: {

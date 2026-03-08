@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://trailer-ecommerce.vercel.app"),
   title: "Trailer - Official Online Store",
   description:
     "Discover Trailer - a contemporary fashion store featuring the latest clothing, accessories, and seasonal colelctions. Shop modern essentials and refined styles designed for everyday wear.",
