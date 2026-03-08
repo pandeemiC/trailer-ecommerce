@@ -79,7 +79,7 @@ const Footer = () => {
             Twitter / X
           </Link>
           <Link
-            href="www.github.com/pandeemiC"
+            href="https://www.github.com/pandeemiC"
             className="text-[11px] md:text-[10px] font-normal md:font-light tracking-widest uppercase text-black/70 md:text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors"
           >
             Github (WORKS)
