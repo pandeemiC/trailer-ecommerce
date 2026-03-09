@@ -14,9 +14,7 @@
 
 ## What is this
 
-Trailer is a fashion ecommerce site I built to learn full-stack development properly. I wanted to go beyond tutorials and actually build something that works end-to-end — browsing products, adding to cart, checking out, paying with Stripe, and CRUD operations as an admin dashboard.
-
-There's also an admin side where you can manage products, categories, and the homepage layout.
+Trailer is a fashion ecommerce site I built to learn full-stack development properly. I wanted to go beyond tutorials and actually build something that works end-to-end — browsing products, adding to cart, checking out, paying with Stripe, and CRUD operations as an admin dashboard including management of the products, categories and homepage layouts.
 
 ## Tech
 
