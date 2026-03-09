@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/icons/trailer-logo-dark.png" alt="Trailer" width="400" />
+  <img src="public/icons/trailer-logo-light.png" alt="Trailer" width="400" />
 </p>
 
 <p align="center">
@@ -106,10 +106,10 @@ Then `npm run dev` and open [localhost:3000](http://localhost:3000).
 | :---------------------------------------------------------: | :---------------------------------------------------: |
 | ![Account Settings](public/screenshots/accountsettings.png) | ![Purchases](public/screenshots/accountpurchases.png) |
 
-| Admin Dashboard | Admin Products | Admin Categories |
-|:-:|:-:|:-:|
+|                      Admin Dashboard                      |                     Admin Products                      |                      Admin Categories                       |
+| :-------------------------------------------------------: | :-----------------------------------------------------: | :---------------------------------------------------------: |
 | ![Admin Dashboard](public/screenshots/admindashboard.png) | ![Admin Products](public/screenshots/adminproducts.png) | ![Admin Categories](public/screenshots/admincategories.png) |
 
-| Admin Content |
-|:-:|
+|                     Admin Content                     |
+| :---------------------------------------------------: |
 | ![Admin Content](public/screenshots/admincontent.png) |
