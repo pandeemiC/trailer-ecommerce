@@ -222,7 +222,7 @@ const SideBar = () => {
                         width={250}
                         height={300}
                         quality={100}
-                        className="mb-8 rounded-md cursor-pointer w-[250px] 2xl:w-[320px] min-[2560px]:w-[400px] min-[3840px]:w-[500px] h-auto"
+                        className="mb-8 rounded-md cursor-pointer"
                       />
                     </Link>
                     <ul>
