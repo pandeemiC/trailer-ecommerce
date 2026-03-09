@@ -122,7 +122,7 @@ export default async function SubCategoryPage({
       </div>
 
       {heroProduct && (
-        <section className="w-full min-h-screen flex justify-center items-center px-3 md:px-5">
+        <section className="w-full min-h-screen flex justify-center items-center px-3 md:px-5 pb-10">
           <Link href={`/${category}/${subCategory}/${heroProduct.id}`}>
             <div className="flex flex-col items-start w-full max-w-[1000px] 2xl:max-w-[1300px] min-[2560px]:max-w-[1600px] min-[3840px]:max-w-[2200px]">
               <Image
@@ -148,7 +148,7 @@ export default async function SubCategoryPage({
       )}
 
       {featuredProduct && (
-        <section className="flex flex-col sm:flex-row justify-center items-start gap-2 md:gap-5 2xl:gap-8 min-[2560px]:gap-10 px-3 sm:px-0 pb-10">
+        <section className="flex flex-col sm:flex-row justify-center items-start gap-2 md:gap-5 px-3 sm:px-0 pb-10">
           {featuredProduct.product_images
             .filter((img) => img.image_type === "thumbnail")
             .map((img) => (
@@ -160,10 +160,10 @@ export default async function SubCategoryPage({
                   <Image
                     src={img.url}
                     alt={featuredProduct.name}
-                    width={500}
+                    width={600}
                     height={620}
                     quality={100}
-                    className="object-cover cursor-pointer w-[500px] 2xl:w-[650px] min-[2560px]:w-[800px] min-[3840px]:w-[1050px] h-auto"
+                    className="object-cover cursor-pointer"
                   />
                   <div className="product-label cursor-pointer">
                     <h2 className="product-title">{featuredProduct.name}</h2>

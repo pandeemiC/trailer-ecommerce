@@ -128,7 +128,7 @@ const SideBar = () => {
                   <li key={cat.id}>
                     <button
                       onClick={() => handleCategoryClick(cat.slug)}
-                      className={`uppercase text-lg 2xl:text-xl min-[2560px]:text-2xl font-light cursor-pointer transition-colors duration-300 ${
+                      className={`uppercase text-lg 2xl:text-[24px] min-[2560px]:text-2xl font-light cursor-pointer transition-colors duration-300 ${
                         activeCategory === cat.slug
                           ? "border-b-1 border-black dark:border-white"
                           : ""
@@ -221,11 +221,12 @@ const SideBar = () => {
                         alt={activeCat.name}
                         width={250}
                         height={300}
+                        quality={100}
                         className="mb-8 rounded-md cursor-pointer w-[250px] 2xl:w-[320px] min-[2560px]:w-[400px] min-[3840px]:w-[500px] h-auto"
                       />
                     </Link>
                     <ul>
-                      <li className="mb-5 font-light tracking-widest text-md 2xl:text-lg min-[2560px]:text-xl">
+                      <li className="mb-5 font-light tracking-widest text-md 2xl:text-[22px] min-[2560px]:text-xl">
                         <Link
                           href={`/${activeCat.slug}`}
                           className="hover:border-b-1 border-black dark:border-white p-1"
@@ -234,7 +235,7 @@ const SideBar = () => {
                           OVERVIEW
                         </Link>
                       </li>
-                      <li className="mb-5 font-light tracking-widest text-md 2xl:text-lg min-[2560px]:text-xl">
+                      <li className="mb-5 font-light tracking-widest text-md 2xl:text-[22px] min-[2560px]:text-xl">
                         <Link
                           href={`/search?category=${activeCat.slug}`}
                           className="hover:border-b-1 border-black dark:border-white p-1"
@@ -246,7 +247,7 @@ const SideBar = () => {
                       {activeCat.subcategories.map((sub) => (
                         <li
                           key={sub.id}
-                          className="mb-5 font-light tracking-widest text-md 2xl:text-lg min-[2560px]:text-xl"
+                          className="mb-5 font-light tracking-widest text-md 2xl:text-[22px] min-[2560px]:text-xl"
                         >
                           <Link
                             href={`/${activeCat.slug}/${sub.slug}`}

@@ -40,7 +40,7 @@ export async function generateMetadata({
       description,
       url,
       siteName: "Trailer",
-      type: "product",
+      type: "website",
       images: [
         {
           url: productData.image,

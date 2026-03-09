@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col gap-3">
-          <h4 className="text-[12px] md:text-[11px] font-medium tracking-widest uppercase mb-2">
+          <h4 className="text-[12px] md:text-[10px] font-medium tracking-widest uppercase mb-2">
             Follow Me
           </h4>
           <Link

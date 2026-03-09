@@ -104,7 +104,7 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white">
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-neutral-800">
       <div className="w-full max-w-sm">
         <div className="flex flex-col items-center gap-3 mb-12">
           <span className="text-[32px] font-bold tracking-[0.35em] uppercase">

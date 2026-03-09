@@ -4,6 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --breakpoint-3xl: 2560px;
+  --breakpoint-4xl: 3840px;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -171,7 +173,6 @@
   .auth-btn {
     @apply w-full bg-black dark:bg-white text-white dark:text-black py-3.5 2xl:py-4 min-[2560px]:py-5 cursor-pointer text-[11px] 2xl:text-[13px] min-[2560px]:text-[15px] min-[3840px]:text-[18px] tracking-[0.3em] uppercase mt-2 hover:bg-gray-900 dark:hover:bg-gray-100 transition-colors disabled:opacity-50;
   }
-
 }
 
 .watermark-text {
