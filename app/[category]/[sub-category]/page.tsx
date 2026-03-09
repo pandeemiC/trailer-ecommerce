@@ -175,7 +175,7 @@ export default async function SubCategoryPage({
         </section>
       )}
       {gridProducts && (
-        <section className="px-4 sm:px-10 lg:px-20 xl:px-53 2xl:px-64 min-[2560px]:px-80 min-[3840px]:px-[420px] py-10">
+        <section className="px-4 sm:px-10 lg:px-20 xl:px-53 2xl:px-64 min-[2560px]:px-0 min-[3840px]:px-[420px] py-10">
           <h1 className="text-[13px] font-light tracking-[0.3em] uppercase mb-8 pl-1">
             Trails
           </h1>
