@@ -119,8 +119,8 @@ export default function CheckoutPage() {
         email,
       );
       if (url) window.location.href = url;
-    } catch (err) {
-      console.error("Checkout failed: ", err);
+    } catch {
+      // silent
     } finally {
       setLoading(false);
     }
