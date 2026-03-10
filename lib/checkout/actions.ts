@@ -11,17 +11,23 @@ export async function createCheckoutSession(
     process.env.NEXT_PUBLIC_SITE_URL ||
     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
 
-  const line_items = items.map((item) => ({
-    price_data: {
-      currency: "usd",
-      product_data: {
-        name: item.name,
-        images: [item.image],
+  const line_items = items.map((item) => {
+    const imageUrl = item.image.startsWith("http")
+      ? item.image
+      : `${origin}${item.image}`;
+
+    return {
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: item.name,
+          images: [imageUrl],
+        },
+        unit_amount: Math.round(item.price * 100),
       },
-      unit_amount: Math.round(item.price * 100),
-    },
-    quantity: item.quantity,
-  }));
+      quantity: item.quantity,
+    };
+  });
 
   if (shipping.cost > 0) {
     line_items.push({

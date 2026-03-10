@@ -150,7 +150,13 @@ export default function CheckoutPage() {
     <main className="min-h-screen relative">
       <div className="relative z-10 border-b border-black/10 dark:border-white/10 py-6 flex justify-center">
         <Link href="/">
-          <Image src={trailerLogo} alt="Trailer" width={180} height={120} className="w-[180px] 2xl:w-[240px] min-[2560px]:w-[300px] min-[3840px]:w-[400px] h-auto" />
+          <Image
+            src={trailerLogo}
+            alt="Trailer"
+            width={180}
+            height={120}
+            className="w-[180px] 2xl:w-[240px] min-[2560px]:w-[300px] min-[3840px]:w-[400px] h-auto"
+          />
         </Link>
       </div>
 
@@ -177,7 +183,9 @@ export default function CheckoutPage() {
                 />
                 <span
                   className={`text-[9px] 2xl:text-[11px] min-[2560px]:text-[13px] tracking-[0.2em] uppercase ${
-                    i + 1 <= step ? "text-black dark:text-white" : "text-black/30 dark:text-white/30"
+                    i + 1 <= step
+                      ? "text-black dark:text-white"
+                      : "text-black/30 dark:text-white/30"
                   }`}
                 >
                   {label}
@@ -186,7 +194,9 @@ export default function CheckoutPage() {
               {i < 3 && (
                 <div
                   className={`flex-1 h-[1px] mx-3 mt-[-14px] ${
-                    i + 1 < step ? "bg-black dark:bg-white" : "bg-black/15 dark:bg-white/15"
+                    i + 1 < step
+                      ? "bg-black dark:bg-white"
+                      : "bg-black/15 dark:bg-white/15"
                   }`}
                 />
               )}
@@ -310,7 +320,7 @@ export default function CheckoutPage() {
                     if (email) setStep(2);
                   }}
                   disabled={!email}
-                  className="auth-btn max-w-sm mt-6"
+                  className="auth-btn max-w-sm mt-6 disabled:cursor-not-allowed"
                 >
                   Continue
                 </button>
